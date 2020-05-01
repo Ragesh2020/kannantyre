@@ -1,0 +1,163 @@
+﻿@model EasyBilling.Models.Products_For_Sale
+
+@{
+    ViewBag.Title = "Product creation";
+
+}
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.css">
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+<div class="container" style="padding-bottom:10px">
+    <h1 class=" <form ititle-agile text-center">Stock Entry...</h1>
+    @*<form class="form-inline" action="/action_page.php">*@
+    <div id="mainrow" class="col-md-12 col-lg-12 col-sm-12">
+        @using (Html.BeginForm("Create", "ProductsForSale", FormMethod.Post, new { @class = "form-inline" }))
+        {
+        <div style="padding:3px 3px 3px 3px" class="col-md-12 col-lg-12 col-sm-12">
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.Purchase_number)
+                @Html.EditorFor(model => model.Purchase_number, new { htmlAttributes = new { @class = "form-control", @readonly = "readonly", @Value = ViewBag.lstid } })
+              
+                @Html.ValidationMessageFor(model => model.Purchase_number, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.PurchaseDate)
+                @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control pp", @type = "date" } })
+
+                @Html.ValidationMessageFor(model => model.PurchaseDate, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.Delivery_contact_number)
+                @Html.EditorFor(model => model.Delivery_contact_number, new { htmlAttributes = new { @class = "form-control pp", @type = "number" } })
+
+                @Html.ValidationMessageFor(model => model.Delivery_contact_number, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.Delivery_address)
+                @Html.EditorFor(model => model.Delivery_address, new { htmlAttributes = new { @class = "form-control pp" } })
+
+                @Html.ValidationMessageFor(model => model.Delivery_address, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+        <div style="padding:3px 3px 3px 3px" class="col-md-12 col-lg-12 col-sm-12">
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.Item_tyre_Id)
+                @Html.DropDownListFor(model => model.Item_tyre_Id, new SelectList(@ViewBag.itmtyres, "Token_number", "Item_Id"),
+                                                "Select Item Id", new { @class = "form-control nm" })
+                @Html.ValidationMessageFor(model => model.Product_name, "", new { @class = "text-danger" })
+
+            </div>
+
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.Tyre_make)
+                @Html.EditorFor(model => model.Tyre_make, new { htmlAttributes = new { @class = "form-control pp" } })
+
+                @Html.ValidationMessageFor(model => model.Tyre_make, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.Tyre_type)
+                @Html.EditorFor(model => model.Tyre_type, new { htmlAttributes = new { @class = "form-control pp" } })
+
+                @Html.ValidationMessageFor(model => model.Tyre_type, "", new { @class = "text-danger" })
+
+            </div>
+            <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                @Html.LabelFor(model => model.Tyre_feel)
+                @Html.EditorFor(model => model.Tyre_feel, new { htmlAttributes = new { @class = "form-control pp" } })
+
+                @Html.ValidationMessageFor(model => model.Tyre_feel, "", new { @class = "text-danger" })
+
+            </div>
+
+        </div>
+            <div style="padding:3px 3px 3px 3px" class="col-md-12 col-lg-12 col-sm-12">
+                <div class="form-group col-md-4 col-lg-4 col-sm-4">
+                    @Html.LabelFor(model => model.Product_name)
+                    @Html.DropDownListFor(model => model.Product_name, new SelectList(@ViewBag.prdct, "Token_Number", "Product_name"),
+                                                    "Select Product name", new { @class = "form-control nm" })
+                    @Html.ValidationMessageFor(model => model.Product_name, "", new { @class = "text-danger" })
+
+                </div>
+
+                <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                    @Html.LabelFor(model => model.Tyre_Size)
+                    @Html.DropDownListFor(model => model.Tyre_Size, new SelectList(@ViewBag.tyresize, "Token_number", "Tyre_size1"),
+                                                    "Select Tyre Size", new { @class = "form-control pp", @onchange = "calculate()" })
+
+                    @Html.ValidationMessageFor(model => model.Tyre_Size, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group col-md-3 col-lg-3 col-sm-3">
+                    @Html.LabelFor(model => model.Supplier_name)
+                    @Html.DropDownListFor(model => model.Supplier_token, new SelectList(@ViewBag.dlr, "Token_number", "Name"),
+                                                    "Select Supplier token", new { @class = "form-control pp", @onchange = "calculate()" })
+
+                    @Html.ValidationMessageFor(model => model.Supplier_name, "", new { @class = "text-danger" })
+
+                </div>
+
+            </div>
+            <div style="padding:3px 3px 3px 3px" class="col-md-12 col-lg-12 col-sm-12">
+                <div class="form-group col-md-4 col-lg-4 col-sm-4">
+                    @Html.LabelFor(model => model.Purchase_Price)
+                    @Html.EditorFor(model => model.Purchase_Price, new { htmlAttributes = new { @class = "form-control nm" } })
+                    @Html.ValidationMessageFor(model => model.Purchase_Price, "", new { @class = "text-danger" })
+
+
+                </div>
+
+                <div class="form-group col-md-4 col-lg-4 col-sm-4">
+                    @Html.LabelFor(model => model.SGST)
+                    @Html.EditorFor(model => model.SGST, new { htmlAttributes = new { @class = "form-control nm" } })
+
+                    @Html.ValidationMessageFor(model => model.SGST, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4 col-lg-4 col-sm-4">
+                    @Html.LabelFor(model => model.CGST)
+                    @Html.EditorFor(model => model.CGST, new { htmlAttributes = new { @class = "form-control nm" } })
+
+                    @Html.ValidationMessageFor(model => model.CGST, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4 col-lg-4 col-sm-4">
+                    @Html.LabelFor(model => model.Pieces)
+                    @Html.EditorFor(model => model.Pieces, new { htmlAttributes = new { @class = "form-control nm" } })
+
+                    @Html.ValidationMessageFor(model => model.Pieces, "", new { @class = "text-danger" })
+                </div>
+                <div class="form-group col-md-4 col-lg-4 col-sm-4">
+                    @Html.LabelFor(model => model.Selling_Price)
+                    @Html.EditorFor(model => model.Selling_Price, new { htmlAttributes = new { @class = "form-control nm" } })
+
+                    @Html.ValidationMessageFor(model => model.Selling_Price, "", new { @class = "text-danger" })
+
+                </div>
+                <div class="form-group col-md-4 col-lg-4 col-sm-4">
+                    @Html.LabelFor(model => model.Total)
+                    @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control nm" } })
+
+                    @Html.ValidationMessageFor(model => model.Total, "", new { @class = "text-danger" })
+
+                </div>
+                <input type="submit" class="form-control" value="Submit" />
+
+            </div>
+        }
+    </div>
+    @*</form>*@
+</div>
+<script>
+$(document).ready( function () {
+    $('#myTable').DataTable();
+});
+</script>

@@ -1,0 +1,16 @@
+﻿@model EasyBilling.Models.Billing_Master
+@{
+    ViewBag.Title = "BillSpecific";
+}
+
+<h2>Retail Invoice</h2>
+
+<br />
+<h3> Billing number:  <label> @ViewBag.billingnum</label></h3>
+<br />
+@if (ViewBag.BarcodeImage != null)
+{
+    <img src="@ViewBag.BarcodeImage" alt="" />
+}
+
+<a href="~/Billing/Index"> Back</a>

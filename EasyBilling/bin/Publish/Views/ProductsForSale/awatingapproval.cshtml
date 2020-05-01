@@ -1,0 +1,80 @@
+﻿@model IEnumerable<EasyBilling.Models.Products_For_Sale>
+
+@{
+    ViewBag.Title = "awatingapproval";
+}
+
+<h2>Awating for approval</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pieces)
+        </th>
+     
+        <th>
+            @Html.DisplayNameFor(model => model.Tyre_Size)
+        </th>
+       
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier_name)
+        </th>
+       
+      
+        <th>
+            <label>Stock entry date</label>
+        </th>
+       
+        <th>
+            <label>Current state</label>
+        </th>
+       
+        @*<th>
+            @Html.DisplayNameFor(model => model.Product.Product_Code)
+        </th>*@
+        <th>Action</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Pieces)
+        </td>
+       
+                <td>
+                    @item.Tyre_Size
+                </td>
+           
+
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Supplier_name)
+        </td>
+       
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+
+        <td>
+            Waiting for approval
+        </td>
+
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Product.Product_Code)
+        </td>*@
+        <td>
+            @Html.ActionLink("Approve", "Approve", new { id = item.Token_Number }) |
+            @Html.ActionLink("Reject", "Reject", new { id = item.Token_Number }) |
+          
+        </td>
+    </tr>
+}
+
+</table>

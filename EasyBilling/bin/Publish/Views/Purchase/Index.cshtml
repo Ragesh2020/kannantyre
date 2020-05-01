@@ -1,0 +1,154 @@
+﻿@model IEnumerable<EasyBilling.Models.PurchaseAll>
+@using GridMvc.Html
+@using GridMvc.Sorting
+@using GridMvc.Pagination
+@{
+    ViewBag.Title = "Purchase List";
+    WebGrid grid = new WebGrid(source: Model, canSort: false, rowsPerPage: 6);
+    //Layout = "~/Views/Shared/_MasterView.cshtml";
+
+}
+
+<style>
+
+    th, td {
+        padding: 5px;
+    }
+
+    th {
+        background-color: rgb(248, 248, 248);
+    }
+
+    #gridT, #gridT tr {
+        border: 1px solid #0D857B;
+    }
+
+    #subT, #subT tr {
+        /*border: 1px solid #f3f3f3;*/
+        border: 1px solid #000000;
+    }
+
+    #subT {
+        margin: 0px 0px 0px 10px;
+        padding: 5px;
+        width: 95%;
+    }
+
+        #subT th {
+            font-size: 12px;
+        }
+
+    .hoverEff {
+        cursor: pointer;
+    }
+
+        .hoverEff:hover {
+            background-color: rgb(248, 242, 242);
+        }
+
+    .expand {
+        background-image: url(/Images/pm.png);
+        background-position-x: -22px;
+        background-repeat: no-repeat;
+    }
+
+    .collapse {
+        background-image: url(/Images/pm.png);
+        background-position-x: -2px;
+        background-repeat: no-repeat;
+    }
+</style>
+
+<div id="main" style="padding:25px; background-color:white;">
+    @grid.GetHtml(
+                                         htmlAttributes: new { id = "gridT", width = "100%" },
+                                         columns: grid.Columns(
+                                             grid.Column("", style: "button",
+                    format:
+                @<text>
+                    <button class="edit-case read" id="">Edit</button>
+                    <button class="delete-case read" id="">Delete</button>
+                    <button class="update-case edit" id="">Update</button>
+                    <button class="cancel-case edit" id="">Cancel</button>
+                </text>),
+                                                      //grid.Columns(
+                                                      grid.Column("Purchasemast.Purchase_Number", "Purchase Number"),
+                                                      grid.Column(header: "Date", format: (item) => string.Format("{0:dd-MM-yyyy}", item.Purchasemast.Date)),
+                                                      grid.Column("Purchasemast.Total_tax", "Total Tax"),
+
+                                                       grid.Column("Purchasemast.Total_amount", "Total amount"),
+
+
+                                                  grid.Column(format: (item) =>
+                                                  {
+                                                      WebGrid subGrid = new WebGrid(source: item.PurchaseDet);
+                                                      return subGrid.GetHtml(
+                                                          htmlAttributes: new { id = "subT" },
+                                                          columns: subGrid.Columns(
+                                                                   //  subGrid.Column("Product_Token", "Product Token"),
+                                                                   subGrid.Column("Product_name", "Product name"),
+                                                                  subGrid.Column("Pieces", "Pieces"),
+
+                                                                  subGrid.Column("Quantity", "Quantity"),
+                                                                  subGrid.Column("Tax", "Tax"),
+                                                      subGrid.Column("Amount", "Amount")
+
+
+                                                                  )
+                                                              );
+                                                  }, header: " Purchase Details")
+
+                                                  //grid.Column(format: (item) =>
+                                                  //{
+                                                  //    WebGrid subGrid1 = new WebGrid(source: item.stck);
+                                                  //    return subGrid1.GetHtml(
+                                                  //        htmlAttributes: new { id = "subT" },
+                                                  //        columns: subGrid1.Columns(
+                                                  //                subGrid1.Column("Stock_Id", "Stock Id"),
+
+                                                  //                 subGrid1.Column("Product_name", "Product name"),
+                                                  //                subGrid1.Column("Pieces", "Pieces"),
+                                                  //                subGrid1.Column("Quantity", "Quantity"),
+                                                  //                subGrid1.Column("Tax", "Tax"),
+                                                  //                subGrid1.Column("Sub_Total", "Amount")
+
+                                                  //            )
+                                                  //        );
+                                                  //}, header: " Stocks")
+                                                  ))
+</div>
+@*@section Scripts{
+        <script>
+            $(document).ready(function () {
+                var size = $("#main #gridT > thead > tr >th").size(); // get total column
+                $("#main #gridT > thead > tr >th").last().remove(); // remove last column
+                $("#main #gridT > thead > tr").prepend("<th></th>"); // add one column at first for collapsible column
+                $("#main #gridT > tbody > tr").each(function (i, el) {
+                    $(this).prepend(
+                        $("<td></td>")
+                            .addClass("expand")
+                            .addClass("hoverEff")
+                            .attr('title', "click for show/hide")
+                    );
+                    alert(i);
+                    //Now get sub table from last column and add this to the next new added row
+                    var table = $("table", this).parent().html();
+                    //add new row with this subtable
+                    $(this).after("<tr><td></td><td style='padding:5px; margin:0px;' colspan='" + (size - 1) + "'>" + table + "</td></tr>");
+                    $("table", this).parent().remove();
+                    // ADD CLICK EVENT FOR MAKE COLLAPSIBLE
+                    $(".hoverEff", this).live("click", function () {
+                        $(this).parent().closest("tr").next().slideToggle(100);
+                        $(this).toggleClass("expand collapse");
+                    });
+                });
+
+                //by default make all subgrid in collapse mode
+                $("#main #gridT > tbody > tr td.expand").each(function (i, el) {
+                    $(this).toggleClass("expand collapse");
+                    $(this).parent().closest("tr").next().slideToggle(100);
+                });
+
+            });
+        </script>
+    }*@

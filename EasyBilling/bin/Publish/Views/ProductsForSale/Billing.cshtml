@@ -1,0 +1,780 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<EasyBilling.Models.Products_For_Sale>
+@{
+    ViewBag.Title = "Billing";
+
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+<!--//tags -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="~/UI styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/font-awesome.css" rel="stylesheet">
+<!--pop-up-box-->
+<link href="~/UI styles/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<!--//pop-up-box-->
+<!-- price range -->
+<link rel="stylesheet" type="text/css" href="~/UI styles/css/jquery-ui1.css">
+<!-- fonts -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+<!-- top-header -->
+<div class="header-most-top" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">
+    
+    <p style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">Product for sale (Including tax and discounts)</p>
+</div>
+<link href="~/UI styles/test.css" rel="stylesheet" />
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- page -->
+<div class="services-breadcrumb">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="#">Transactions</a>
+                    <i>|</i>
+                </li>
+                <li>Product Catalogue</li>
+                @if (Request.IsAuthenticated && (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com"))
+                {
+                <li style="float:right">
+                    <a href="#" data-toggle="modal" data-target="#fsModal">Instant Billing</a>
+
+                </li>
+                }
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+<!-- //page -->
+@if (@ViewBag.Success != null)
+{
+    <div style="text-align:center" id="scc"><label class="label-success" style="text-align:right"> @ViewBag.Success</label></div>
+}
+@if (@ViewBag.Error != null)
+{
+    <div style="text-align:center"><label class="label-danger" style="text-align:right"> @ViewBag.Error</label></div>
+}
+
+<!-- top Products -->
+@*<div class="ads-grid">*@
+<div class="w3-animate-top" style="animation-duration:2s">
+    <br />
+    <div class="container">
+        <!-- tittle heading -->
+        <!-- //tittle heading -->
+        <!-- product left -->
+        <div class="side-bar col-md-3" style="box-shadow:0px 0px 15px 0px #D6D6D6">
+            <div class="search-hotel">
+                <h3 class="agileits-sear-head">Search Here...</h3>
+                <script type="text/javascript">
+    $(function () {
+        $("#txtSearch1").autocomplete({
+            source: '@Url.Action("GetStudents")',
+            minLength: 1
+        });
+    });
+                </script>
+
+                <form method="get" action="~/ProductsForSale/Billing">
+                    <input type="search" placeholder="tyre name..." name="keyword" required="" id="txtSearch1">
+                    <input type="submit" value=" ">
+                </form>
+            </div>
+            <!-- price range -->
+            @*<div class="range">
+                <h3 class="agileits-sear-head">Price range</h3>
+                <ul class="dropdown-menu6">
+                    <li>
+
+                        <div id="slider-range"></div>
+                        <input type="text" id="amount" style="border: 0; color: #ffffff; font-weight: normal;" />
+                    </li>
+                </ul>
+            </div>*@
+            <!-- //price range -->
+            <!-- food preference -->
+            <style>
+                .collapsible {
+                    background-color: #777;
+                    color: white;
+                    cursor: pointer;
+                    padding: 15px;
+                    width: 100%;
+                    border: none;
+                    text-align: left;
+                    outline: none;
+                    font-size: 13px;
+                }
+
+                    .active1, .collapsible:hover {
+                        background-color: #555;
+                    }
+
+                    .collapsible:after {
+                        content: '\002B';
+                        color: white;
+                        font-weight: bold;
+                        float: right;
+                        margin-left: 5px;
+                    }
+
+                .active1:after {
+                    content: "\2212";
+                }
+
+                .content {
+                    padding: 0 18px;
+                    padding-top: 2%;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.2s ease-out;
+                    background-color: #f1f1f1;
+                }
+            </style>
+            <div class="left-side">
+                <h3 class="agileits-sear-head">Categories</h3>
+                @foreach (var prdcts in @ViewBag.ctgry)
+                {
+
+                    using (Ajax.BeginForm("FilterForBilling", "ProductsForSale", new AjaxOptions
+                    {
+                        HttpMethod = "GET", // HttpMethod to use, GET or POST
+                        UpdateTargetId = "wrapper", // ID of the HTML element to update
+                        InsertionMode = InsertionMode.Replace
+                    }))
+                    {
+                        <ul style="padding-bottom:0px;font-weight:700!important">
+                            @*@prdcts.Product_name*@
+                            <input type="hidden" name="key" value="@prdcts.Product_name" />
+                            <button type="submit" class="collapsible">@prdcts.Product_name</button>
+                            <div class="content">
+                                @foreach (var subcat in @prdcts.Subcategory)
+                                {
+
+                                    <li style="margin-left:20px" class="newli">
+                                        <input type="hidden" class="key" name="key" value="@prdcts.Product_name" />
+                                        <input type="hidden" class="keysub" name="keysub" value="@subcat" />
+                                        <a title="Click" class="keysubbtn"><span class="span">@subcat</span></a>
+                                        @*<span class="span">@subcat</span>*@
+                                    </li>
+                                }
+                            </div>
+                            @*<button class="collapsible">@prdcts.Product_name</button>*@
+
+                        </ul>
+                    }
+
+
+
+                }
+                <script>
+                    $('.keysubbtn').click(function () {
+                        var key = $(this).parents('li.newli').find('.key').val();
+                        var keysub = $(this).parents('li.newli').find('.keysub').val();
+                        $.ajax({
+                            type: 'GET',
+                            url: 'http://etreesales.com/ProductsForSale/FilterForBilling?key=' + key + "&&keysub=" + keysub,
+
+                        }).done(function (data) {
+                            $("#wrapper").html(data);
+                        });
+                    });
+                </script>
+                <script>
+                    var coll = document.getElementsByClassName("collapsible");
+                    var i;
+
+                    for (i = 0; i < coll.length; i++) {
+                        coll[i].addEventListener("click", function () {
+                            this.classList.toggle("active1");
+                            var content = this.nextElementSibling;
+                            if (content.style.maxHeight) {
+                                content.style.maxHeight = null;
+                            } else {
+                                content.style.maxHeight = content.scrollHeight + "px";
+                            }
+                        });
+                    }
+                </script>
+            </div>
+            <!-- //food preference -->
+            <!-- discounts -->
+            @*<div class="left-side">
+                <h3 class="agileits-sear-head">Discount</h3>
+                <ul>
+                    <li>
+                        <input type="checkbox" class="checked">
+                        <span class="span">5% or More</span>
+                    </li>
+                    <li>
+                        <input type="checkbox" class="checked">
+                        <span class="span">10% or More</span>
+                    </li>
+                    <li>
+                        <input type="checkbox" class="checked">
+                        <span class="span">20% or More</span>
+                    </li>
+                    <li>
+                        <input type="checkbox" class="checked">
+                        <span class="span">30% or More</span>
+                    </li>
+                    <li>
+                        <input type="checkbox" class="checked">
+                        <span class="span">50% or More</span>
+                    </li>
+                    <li>
+                        <input type="checkbox" class="checked">
+                        <span class="span">60% or More</span>
+                    </li>
+                </ul>
+            </div>*@
+            <!-- //discounts -->
+            <!-- //deals -->
+        </div>
+        <!-- //product left -->
+        <!-- product right -->
+        <div class="agileinfo-ads-display col-md-9 w3l-rightpro">
+            <div class="wrapper" id="wrapper">
+                <!-- first section -->
+                <div class="product-sec1">
+                    @{
+                        var count = 0;
+                    }
+                    @foreach (var prdcts in Model)
+                    {
+                        <div class="modal fade" tabindex="-1" id="loginModal" data-keyboard="true" data-backdrop="true">
+                            <div class="modal-dialog modal-sm" style="position:absolute; width:40%;height:70%; top:80px;left:500px">
+                                <div class="modal-content " style="width:400px">
+                                    <div class="modal-header" style="background-color:darkgray">
+                                        <button type="button" class="close" data-dismiss="modal">
+                                            &times;
+                                        </button>
+                                        <h4 class="modal-title loginmodelhdttl" style="color:black"><b> Summary of @prdcts.Product_name </b></h4>
+                                    </div>
+                                    @*<div class="modal-body">*@
+                                    <div class="modal-content">
+
+                                        <div class="col-md-5 col-sm-7 single-right-left ">
+                                            <br />
+                                            <div class="grid images_3_of_2">
+                                                <div class="flexslider">
+
+                                                    <div class="thumb-image">
+                                                        <img src="~/UI styles/Test UI/images/tyre.png" data-imagezoom="true" class="img-responsive" alt="">
+                                                    </div>
+
+                                                    <div class="clearfix"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-7 col-sm-9 single-right-left simpleCart_shelfItem">
+                                            <br />
+                                            <h3 class="loginmodelbodytitl"><b>@prdcts.Product_name </b></h3>
+
+                                            <p>
+                                                <label>
+                                                    <span class="item_price loginmodelbodytotl">Rs. @prdcts.Total</span>
+                                                </label>
+
+                                                @*<label>Discount: <span class="item_price loginmodelbodydis">Rs. @prdcts.Discount</span></label>*@
+                                                <label>Other Details</label>
+                                            </p>
+                                            <div class="single-infoagile">
+                                                @*<ul>
+                                                    <li>
+                                                        Product code: <span class="loginmodelbodyprdctcd"> @prdcts.Product_Code </span>
+                                                    </li>
+                                                    <li>
+                                                        HSN/SAC code: <span class="loginmodelbodyhsn"> @prdcts.HSN_SAC_Code </span>
+                                                    </li>
+                                                    <li>
+                                                        Sell on: <span class="loginmodelbodysellon"> @prdcts.Sell_On </span>
+                                                    </li>
+                                                    <li>
+                                                        Tax rate: <span class="loginmodelbodytxrt"> @prdcts.Tax_rate </span> (%) 
+                                                    </li>
+
+                                                </ul>*@
+                                                <p>
+                                                   
+                                                  <label>In Stock: <span class="item_price loginmodelbodypcs">@prdcts.Pieces </span> (Pieces)</label>
+                                                       
+                                                </p>
+                                            </div>
+
+
+                                        </div>
+                                    </div>
+                                    @*</div>*@
+                                    <div class="modal-footer">
+
+                                        <button type="button" class="btn btn-primary"
+                                                data-dismiss="modal">
+                                            Close
+                                        </button>
+                                        
+                                            <button type="button" class="btn btn-primary loginmodelbodydtlbtn">
+                                                More details
+                                            </button>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xs-4 product-men">
+                            <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+                               
+                                @*@Html.Action("SearchPeople", new { keyword = "" })*@
+                                <div class="men-thumb-item">
+                                  
+                                    <img src="~/UI styles/Test UI/images/tyre.png" @*data-target="#loginModal" data-toggle="modal"*@ class="morph" alt="Easy Billing">
+
+                                    <div class="men-cart-pro">
+                                        <div class="inner-men-cart-pro">
+                                            <a @*data-target="#loginModal" data-toggle="modal"*@ href="http://etreesales.com/ProductsForSale/Details/@prdcts.Token_Number" class="link-product-add-cart">Quick View</a>
+
+
+                                        </div>
+                                    </div>
+
+                                    @*<span class="product-new-top">New</span>*@
+                                </div>
+                                <div class="item-info-product ">
+                                    <div class="caption" style="text-align:center">
+                                        <h4>
+                                            <a @*data-target="#loginModal" data-toggle="modal"*@ href="http://etreesales.com/ProductsForSale/Details/@prdcts.Token_Number">@prdcts.Product_name</a>
+
+                                        </h4>
+                                    </div>
+                                    <div class="info-product-price">
+                                        <span class="item_price" style="color:brown">Rs. @prdcts.Total</span>
+
+                                        @*<del>$1020.00</del>*@
+                                    </div>
+                                    <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                                        <form action="#" method="post">
+                                            <fieldset>
+                                                <input type="hidden" name="cmd" value="_cart" />
+                                                <input type="hidden" name="add" value="1" />
+                                                <input type="hidden" name="business" value=" " />
+                                               
+                            <input type="hidden" name="quantity" value="1" />
+
+            
+                                                <input type="hidden" name="item_name" value="@prdcts.Product_name" />
+
+                                                <input type="hidden" name="amount" value="@prdcts.Amout_after_tax" />
+                                                @*<input type="hidden" name="discount_amount" value="@prdcts.Discount" />
+                                                <input type="hidden" name="tax" value="@prdcts.Tax_rate" />*@
+                                                <input type="hidden" name="token" value="@prdcts.Token_Number" />
+                                                <input type="hidden" name="tokencust" class="tknno" value="" />
+                                                @*<input type="hidden" name="sellon" value="@prdcts.Sell_On" />*@
+                                                <input type="hidden" name="currency_code" value="INR" />
+                                                <input type="hidden" name="return" value=" " />
+                                                <input type="hidden" name="cancel_return" value=" " />
+                                                @*<input type="submit" name="submit" value="Add to cart" class="button btnaddtocrt" />*@
+                                                @if (Request.IsAuthenticated && (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com"))
+                    {
+
+                            @*<button type="submit" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+        Add to cart
+        <i class="fa fa-cart-plus" aria-hidden="true" style="float:right; text-align:center"></i>
+    </button>*@
+                            <button type="submit" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:lightslategray">
+                                Add to cart
+                                <i class="fa fa-cart-plus" aria-hidden="true" style="float:right; text-align:center"></i>
+                            </button>
+}
+else
+{
+                            <a href="~/ProductsForSale/Details/@prdcts.Token_Number">
+                                <button type="button" class="btnaddtocrt" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    View details
+                                    <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                </button>
+                            </a>
+}
+                                            </fieldset>
+                                        </form>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        count++;
+                        if (count == 3)
+                        {
+                            <div class="col-md-12 col-sm-12 col-xs-12 product-men"><br /></div>
+                            count = 0;
+                        }
+                    }
+
+                    <div class="clearfix"></div>
+                </div>
+                @Html.PagedListPager(Model, Page => Url.Action("Billing", new { Page, keyword = Request.QueryString["keyword"] }), new PagedListRenderOptions()
+                {
+                    Display = PagedListDisplayMode.IfNeeded,
+                    DisplayPageCountAndCurrentLocation = true,
+                    DisplayItemSliceAndTotal = true
+                })
+            </div>
+        </div>
+        <!-- //product right -->
+    </div>
+</div>
+<!-- //top products -->
+<!-- popup modal (for signin & signup)-->
+<script>
+    $(document).ready(function () {
+
+        $("#scc").fadeOut(8000);
+        if ("@ViewBag.billno" != "") {
+
+            window.open('http://etreesales.com/api/Billing/GetBillingListReport?Bllno=' + "@ViewBag.billno", 'name', 'width=600,height=400');
+        }
+    });
+
+
+
+</script>
+
+<div id="fsModal" class="modal animated bounceIn" @*data-target=".navbar" data-offset="50"*@>
+
+    <div class="modal-dialog">
+
+        <div class="modal-content">
+
+            <div class="modal-header"> <h3 id="myModalLabel" class="modal-title"><b style="background-color:white; color:black"> Kannan tyres <img src="~/UI styles/images/rsz_9b48c14d632e79bf6534570bbbf1fae5-bpfull.jpg" style="height:30px" alt=""></b></h3> </div>
+
+            <div class="modal-body  col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-3 col-sm-3 col-xs-3">
+                        <h4 style="float:left;text-align:start"><b><span style="color:#c22b2b">I</span>nvoice</b></h4>
+                    </div>
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#txtSearchppup").autocomplete({
+
+                                source: "http://etreesales.com/ProductsForSale/GetStudents",
+                                minLength: 1
+                            });
+                        });
+                    </script>
+                    <div style="float:inherit" class="col-md-7 col-sm-7 col-xs-7">
+                        @using (Ajax.BeginForm("Search", "ProductsForSale", new AjaxOptions
+        {
+            HttpMethod = "GET", // HttpMethod to use, GET or POST
+            UpdateTargetId = "searchResultnew", // ID of the HTML element to update
+            InsertionMode = InsertionMode.Replace
+        }))
+        {
+                <input type="search" name="keyword" id="txtSearchppup" style="width:60%" placeholder="Search for tyres" />
+                <button type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"> </span></button>
+}
+
+
+
+                    </div>
+                    <div style="float:right" class="col-md-2 col-sm-2 col-xs-2">
+                        <a href="#" data-target="#chkstk" data-toggle="modal" style="color:green">Check your stock <span class="glyphicon glyphicon-search" style="color:red" ></span></a>
+                    </div>
+                    </div>
+
+                    <br />
+                    <div class="w3-animate-top" style="animation-duration:2s">
+
+                        <div class="w3-animate-top" style="animation-duration:2s">
+                            <br />
+                            <div class="container" style="margin-left:0">
+
+                                <div class="side-bar col-md-3 " style=" box-shadow:0px 0px 15px 0px #D6D6D6">
+                                    <h4>Billing sumarry...</h4>
+                                    <br />
+                                    <div id="tblcontainer" style="height:380px; overflow-y:scroll">
+
+                                    </div>
+
+                                </div>
+                                <div id="searchResultnew" class="col-md-9">
+                                    <div class="agileinfo-ads-display col-md-9 w3l-rightpro" id="searchResult" style="height:420px; width:121%; overflow-y:scroll; ">
+                                        <div class="wrapper">
+                                            <!-- first section -->
+                                            <div class="product-sec1">
+                                                @{
+                                    var count1 = 0;
+                                                }
+                                                @foreach (var prdcts in Model)
+                                {
+
+                                    <div class="col-xs-2 product-men prdtlsdiv" style="width:20%">
+                                        <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+                                            @*@Html.Action("SearchPeople", new { keyword = "" })*@
+                                            <div class="men-thumb-item">
+                                                <img src="~/UI styles/Test UI/images/tyre.png" style="height:100px;width:120px;text-align:center;position:center" class="morph" alt="Easy Billing">
+
+                                            </div>
+                                            <div class="item-info-product ">
+                                                <div class="caption" style="text-align:center;width:120px">
+                                                    <h4>
+                                                        <a id="prdctnm">@prdcts.Product_name</a>
+                                                    </h4>
+                                                    <label class="prdctprce" style="color:brown;float:right">Rs. @prdcts.Total</label>
+                                                    <label class="prdcttkn" hidden>@prdcts.Token_Number</label>
+                                                </div>
+
+                                            </div>
+                                            <table id="tblprdcts" style="width:100%" class="hidden">
+                                                <tr style="background-color:#ded7d7">
+                                                    <td style="border:2px solid black;">
+                                                        <label style="float:left; color:black; font-size:12px" class="col-md-12">@prdcts.Product_name</label>
+                                                        <label style="float:left; color:black; font-size:12px" class="col-md-7 ttllvl">Rs. <span id="ttl"> @prdcts.Total</span></label>
+                                                        <label class="prdcttkntbl" hidden>@prdcts.Token_Number</label>
+                                                        @*<label class="prdcdistbl" hidden>@prdcts.Discount</label>
+                                                        <label class="prdctaxtbl" hidden>@prdcts.Tax_rate</label>*@
+                                                        <label style="float:right; color:black; font-size:12px" class="col-md-5 ttlpcs">
+                                                            Qty: <span id="ttlpcsspn"> @prdcts.Pieces</span>
+
+                                                        </label>
+                                                        <button style="float:right;" class="remove col-md-12">
+                                                            <span class="glyphicon glyphicon-trash"></span>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+
+                                            </table>
+                                        </div>
+
+                                    </div>
+                    count1++;
+                    if (count1 == 5)
+                    {
+                        <div class="col-md-12 col-sm-12 col-xs-12 product-men"><br /></div>
+        count1 = 0;
+    }
+}
+
+                                                <div class="clearfix"></div>
+                                            </div>
+                                            <script src="~/Scripts/InvoiceCalc.js"></script>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <!-- //product right -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <div class="modal-footer grndftr" style="height:72px">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-10 col-sm-10 col-xs-10 grntdv">
+                        <label style="float:left;font-size:18px;background-color:deepskyblue; padding:5px 5px 5px 5px" class="gndamtlbl">Total amount: <span class="grndamt">0.00</span></label>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2">
+                        <input id="submit" type="button" value="Payment" class="btn btn-warning" style="padding:10px 20px" />
+                        <button type="button" class="btn btn-primary" data-dismiss="modal" style="float:right;padding:10px 20px"> close </button>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="col-md-10 col-sm-10 col-xs-10">
+                        <label style="float:left;font-size:12px" class="gndtaxlbl">Total tax: <span class="grndtax">0.00</span></label>
+                        <label style="float:left;font-size:12px" class="gnddislbl">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Total discount: <span class="grnddis">0.00</span></label>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-xs-12"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="prcdok" data-keyboard="true" data-backdrop="" style="position:center">
+    <div class="modal-dialog modal-sm" style="position:absolute; width:40%;height:30%;top:70px;left:500px">
+        <div class="modal-content ">
+            <div class="modal-header" style="background-color:black">
+                <button type="button" style="color:darkorange" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h3 style="color:yellow"><b> Billing Statement </b></h3>
+
+            </div>
+            @*<div class="modal-body">*@
+            <div class="modal-content">
+                <div style="float:right; padding:10px 10px 10px 10px"><a href="#" class="lnkclick" target="popup">Print &nbsp <span style="float:right" class="glyphicon glyphicon-print"></span> </a></div>
+                <div class="col-md-12 col-sm-12 single-right-left ">
+                    <h4><b>Billing Successfull! </b></h4>
+                    <br />
+                    <h5><b>Your bill number: <span class="bllno"></span>  </b></h5>
+                    <h5>You can keep a copy of this number or generate report...</h5>
+
+                    <div class="grid images_3_of_2">
+                        <div class="flexslider">
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary"
+                        data-dismiss="modal">
+                    Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="Errormodel" data-keyboard="true" data-backdrop="" style="position:center">
+    <div class="modal-dialog modal-sm" style="position:absolute; width:40%;height:25%;top:80px;left:500px">
+        <div class="modal-content ">
+            <div class="modal-header" style="background-color:black">
+                <button type="button" style="color:darkorange" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h3 style="color:yellow"><b> Billing Error </b></h3>
+
+            </div>
+            @*<div class="modal-body">*@
+            <div class="modal-content">
+
+                <div class="col-md-12 col-sm-12 single-right-left ">
+
+
+                    <div class="grid images_3_of_2">
+                        <div class="flexslider">
+
+                            <h4 style="top:25px;padding:30px 30px 30px 30px"><b class="errorstat"> </b></h4>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary"
+                        data-dismiss="modal">
+                    Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" tabindex="-1" id="chkstk" data-keyboard="true" data-backdrop="" style="position:center">
+    <div class="modal-dialog modal-sm" style="position:absolute; width:32%;height:35%;top:70px;left:500px">
+        <div class="modal-content ">
+            <div class="modal-header" style="background-color:black">
+                <button type="button" style="color:darkorange" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h3 style="color:yellow"><b> Stock Checking </b></h3>
+
+            </div>
+            @*<div class="modal-body">*@
+            <div class="modal-content">
+                
+                <div class="col-md-12 col-sm-12 single-right-left ">
+                   <br />
+                    <h4 style="top:10px"><b>Please check your stock by name: </b></h4>
+                    <br />
+                    <script type="text/javascript">
+                        $(function () {
+                            $("#txtSearchppupchkstk").autocomplete({
+
+                                source: "http://etreesales.com/ProductsForSale/GetStudents",
+                                minLength: 1
+                            });
+                        });
+                    </script>
+                    <input type="search" name="keyword" id="txtSearchppupchkstk" style="width:60%" placeholder="Search for tyres" />
+                    <button type="submit" class="btnchkstk"><span class="glyphicon glyphicon-search" aria-hidden="true"> </span></button>
+                    <br /><br />
+                    Stock In: <label class="stkinpcs" ></label>
+                    <div class="grid images_3_of_2">
+                        <div class="flexslider">
+
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary"
+                        data-dismiss="modal">
+                    Close
+                </button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/PopupBilling.js"></script>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+<script>
+    $('.btnchkstk').on('click', function () {
+        var prdctnm = $('#txtSearchppupchkstk').val();
+
+        if (prdctnm == "") {
+            prdctnm = "0000";
+        }
+        $.ajax
+        ({
+            type: 'POST',
+            url: 'http://etreesales.com/Stock/Getstockpernm',
+            dataType: 'json',
+            data: { 'id': prdctnm },
+
+            success: function (data) {
+               
+                $('.stkinpcs').text(data);
+                
+            },
+            error: function (ex) {
+                alert("Sorry something went wrong, Please give proper key and try again...");
+                $('.stkinpcs').text('');
+               
+                //var r = jQuery.parseJSON(response.responseText);
+                //alert("Message: " + r.Message);
+            }
+        });
+        return false;
+    });
+
+   
+</script>
+<script>
+    $( window ).on( "load", function() {
+
+        $.ajax({
+            type: 'GET',
+            url: 'http://etreesales.com/ProductsForSale/Search',
+
+        }).done(function (data) {
+            $("#searchResultnew").html(data);
+        });
+    });
+
+</script>

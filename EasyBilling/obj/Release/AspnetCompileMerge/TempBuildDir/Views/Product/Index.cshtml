@@ -1,0 +1,373 @@
+﻿
+<script>
+
+    jQuery(document).ready(function ($) {
+
+        var employeeTable = $('#employeeTable').DataTable({
+            //"sorting": false,
+                ajax: {
+                    url: "/api/company",
+                    dataSrc: '',
+                },
+                columns: [
+                  
+                       //{ data: 'Token_Number class="hidden"' },
+                        {
+                            data: function (data, type, full, meta){
+                                return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data.Token_Number).html() + '">';
+                            }
+                        },
+                    { data: 'Date' },
+                     { data: 'Product_name' }
+
+                    @*{
+                        data: '', "defaultContent":
+                            //'<button type="button" ' +
+                            //'class="btn btn-primary pull-left edit" aria-label="Left Align" title="Edit">' +
+                            //'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                            //'</button> ' +
+                            '<td><input type="checkbox" name="employeeIdsToDelete" id="employeeIdsToDelete"  class="custom-checkbox chkCheckBoxId @count++" /></td>  '
+                            //'<button type="button" ' +
+                            //'class="btn btn-sm btn-danger delete" aria-label="Delete" title="Delete"> Delete &nbsp;  ' +
+                            //'<span class="fa fa-trash-alt" aria-hidden="true"></span>' +
+                            //'</button> '
+                    },*@
+
+
+                ]
+            });
+        $('#example-select-all').on('click', function(){
+            // Get all rows with search applied
+            var rows = employeeTable.rows({ 'search': 'applied' }).nodes();
+            // Check/uncheck checkboxes for all rows in the table
+            $('input[type="checkbox"]', rows).prop('checked', this.checked);
+        });
+        $('#modalPopup').find('.deletesel').on('click', function () {
+            var formData = {};
+            var list = new Array();
+            $("#employeeTable input[type=checkbox]:checked").each(function () {
+
+                list.push($(this).val());
+
+            });
+
+            $.ajax({
+                url: "/api/company/Deletesel", data: JSON.stringify(list),
+                contentType: 'application/json', type: 'POST',
+                success: function () {
+                    employeeTable.ajax.reload();
+                    $('#modaltest').find('.msg').text("Successfully Deleted");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+
+                }, error: function (xhr, errorType, exception) {
+                    var responseText;
+                    var txtend = ".";
+                    responseText = jQuery.parseJSON(xhr.responseText);
+                   // alert(responseText.Message);
+                    //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                    $('#modaltest').find('.msg').text(responseText.Message);
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+                    alertElnot.show();
+                }
+            });
+        });
+        // Handle click on checkbox to set state of "Select all" control
+        $('#employeeTable tbody').on('change', 'input[type="checkbox"]', function () {
+            // If checkbox is not checked
+            if(!this.checked){
+                var el = $('#example-select-all').get(0);
+                // If "Select all" control is checked and has 'indeterminate' property
+                if(el && el.checked && ('indeterminate' in el)){
+                    // Set visual state of "Select all" control
+                    // as 'indeterminate'
+                    el.indeterminate = true;
+                }
+            }
+        });
+
+            var editEmployee = function (e) {
+                var isEdit = e.type === 'dblclick';
+                var rowData = isEdit ? employeeTable.row($(this)).data() :
+                    employeeTable.row($(this).closest('tr')[0]).data();
+                if (isEdit || $(this).hasClass('edit')) {
+                    $('#employeeFormModal').modal();
+                    for (var key in rowData) {
+                        var value = key.indexOf('date') != -1 ? new Date(rowData[key]).toISOString().split('T')[0] :
+                            rowData[key];
+                        $('#employeeFormModal').find('#' + key).val(value);
+                    }
+                } else if ($(this).hasClass('delete')) {
+                    $('#confirmEmployeeDeleteModal').modal();
+
+                    $('#confirmEmployeeDeleteModal').find('input.Token_Number').val(rowData.Token_Number);
+                }
+            };
+            var resetModal = function (e) {
+                $('#employeeFormModal').find('input').val('');
+                $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                $('#employeeFormModal').find('.modal-footer .alert').hide();
+            }
+            var saveEmployee = function (e) {
+                var alertEl = $('#employeeFormModal').find('.modal-footer .alert');
+                var alertElnot = $('#employeeFormModal').find('.modal-footer .alertnotsaved');
+
+                var isDelete = this.id == 'deleteEmployee';
+                var formData = {};
+                var data = $('#employeeForm').serializeArray();
+                var url = !isDelete ? '/api/company/PostSave' : '/api/company/' + $('#confirmEmployeeDeleteModal').find('input.Token_Number').val();
+                var type = isDelete ? 'DELETE' : 'POST'
+
+                $.each(data, function (i, v) {
+
+                    formData[v.name] = v.value;
+                });
+
+                $.ajax({
+                    url: url, data: JSON.stringify(formData),
+                    contentType: 'application/json', type: type,
+                    success: function () {
+                        employeeTable.ajax.reload();
+                        $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                        //alertEl.show();
+                        setTimeout(function () {
+                            $('#employeeFormModal').find('.modal-footer .alert').hide();
+                            $('#employeeFormModal').modal('hide');
+                            $('#modaltest').find('.msg').text("Company successfully created");
+                            $('#modaltest').modal('toggle');
+                            $('#modaltest').modal('show');
+                        }, 500);
+                        $('#employeeFormModal').find('input').val('');
+
+                    }, error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        //alert(responseText.Message);
+                        $('#modaltest').find('.msg').text(responseText.Message);
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        alertElnot.show();
+                    }
+                });
+            }
+
+            $('#employeeTable tbody').on('click', 'tr td button.btn', editEmployee);
+            $('#employeeTable tbody').on('dblclick', 'tr', editEmployee);
+            $('#employeeFormModal').on('hidden.bs.modal', resetModal);
+            $('body').on('click', '#deleteEmployee', saveEmployee);
+            $('body').on('click', '#employeeFormSubmit', saveEmployee);
+        });</script>
+<script type="text/javascript">
+
+        $(document).ready(function () {
+            $('#DataTable').DataTable();
+            $('#checkBoxAll').click(function () {
+                if ($(this).is(":checked")) {
+                    $(".chkCheckBoxId").prop("checked", true)
+                }
+                else {
+                    $(".chkCheckBoxId").prop("checked", false)
+                }
+            });
+        });
+</script>
+<script>
+    jQuery(document).ready(function ($) {
+        $("#accordionSidebar li.nav-item,#accordionSidebar .collapse-item").removeClass("active");
+        $("#masters,#nav-company").addClass("active");
+    });
+</script>
+<style>
+
+    .employeeTableWrap {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+</style>
+@*</head>
+    <body>*@
+<div class="container-fluid employeeTableWrap">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3 d-flex flex-row align-items-center ">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between col-md-3">
+                <h6 class="m-0 font-weight-bold text-primary">Company list</h6>
+            </div>
+            <div class="card-header py-2 d-flex flex-row align-items-center justify-content-end col-md-9">
+                <button type="button" class="btn btn-sm btn-success" style="float:right" title="Add company"
+                        data-toggle="modal" data-target="#employeeFormModal">
+                    Add company &nbsp;
+                    <span class="fa fa-plus"></span>
+                </button> &nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm btn-danger deletesel" aria-label="Delete" title="Delete" data-toggle="modal" data-target="#modalPopup">
+                    Delete &nbsp;
+                    <span class="fa fa-trash-alt" aria-hidden="true"></span>
+                </button>
+
+            </div>
+
+        </div>
+        <div class="card-body">
+            <div class="table-responsive employeeTable">
+                <table id="employeeTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+
+                        <tr>
+                            <th><input type="checkbox" name="select_all" value="1" id="example-select-all"></th>
+                            <th>Date</th>
+                            <th>Name</th>
+                            @*<th><input type="checkbox" id="checkBoxAll" class="custom-checkbox" /></th>*@
+
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="employeeFormModal" tabindex="-1" role="dialog" aria-labelledby="employeeFormModalLabel">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Add company</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body container-fluid">
+                <div class="row">
+                    <form id="employeeForm" name="employeeForm">
+                        <div col-md-12 col-sm-12 col-xs-12>
+                            <input type="hidden" id="Token_Number" name="Token_Number" />
+                            <div class="form-group row col-xs-10 col-sm-12 col-md-12 col-lg-12">
+                                <label for="message-text" class="control-label">Company Name:</label>
+                                <input type="text" class="form-control form-control-sm" id="Product_name" name="Product_name" />
+                            </div>
+
+                        </div>
+                        @*<div class="form-group row">
+                                <div class="col">
+                                    <label for="message-text" class="form-label">Company Name:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control form-control-sm" id="Product_name" name="Product_name" />
+                                </div>
+
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label for="message-text" class="form-label">Company Name:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control form-control-sm" id="Product_name" name="Product_name" />
+                                </div>
+
+
+                            </div>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <label for="message-text" class="form-label">Company Name:</label>
+                                </div>
+                                <div class="col">
+                                    <input type="text" class="form-control form-control-sm" id="Product_name" name="Product_name" />
+                                </div>
+
+
+                            </div>*@
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Created!</strong> Company created successfully.
+                </div>
+                <div class="alertnotsaved alert-danger pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Not created!</strong>Company is not created.
+
+                </div>
+                <button type="button" class="btn btn-sm btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-sm btn-primary" id="employeeFormSubmit">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="confirmEmployeeDeleteModal" class="modal fade">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <input type="hidden" name="Token_Number" class="Token_Number" />
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger" id="deleteEmployee">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modaltest" class="modal fade">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img src="~/Images/Alert-Logo.jpg" />
+            <div class="modal-body msg" style="border:none; text-align:center;">
+
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalPopup" class="modal fade">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <input type="hidden" name="Token_Number" class="Token_Number" />
+            <div class="modal-body">
+                
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger deletesel" id="deletesel">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $('#employeeTable').on('click', '.addstk', function calculate1() {
+
+                $(':input', '#employeeForm').val('');
+
+                $('#employeeForm').find('#Token_Number').val('');
+
+                var dd = $(this).closest("tr").find('td:nth-child(1)').html();
+                $('#employeeForm').find('.itmidbycomp').val(dd);
+
+
+  });
+</script>
+@*</body>
+    </html>*@
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/UI styles/Dashboard/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>

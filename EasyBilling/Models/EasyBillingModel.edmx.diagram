@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="211632f163774f669d31c98566ebd528" Name="Diagram1">
+        <EntityTypeShape EntityType="KannanTyresModel.Barcode_Master" Width="1.5" PointX="5.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Billing_Detail" Width="1.5" PointX="7.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Billing_Master" Width="1.5" PointX="5.5" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Customer" Width="1.5" PointX="3.875" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Customer_shipping_address" Width="1.5" PointX="7.25" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Dealer" Width="1.5" PointX="3" PointY="17.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Employee" Width="1.5" PointX="7.25" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Item_Tube" Width="1.5" PointX="3.875" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Item_Tyre" Width="1.5" PointX="2.125" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Manager" Width="1.5" PointX="9.125" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Marchent_Account" Width="1.5" PointX="3" PointY="25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Marchent_account_payment_detail" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Order_Detail" Width="1.5" PointX="12.5" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Order_Master" Width="1.5" PointX="14.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Other_Product" Width="1.5" PointX="9.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Placed_Order" Width="1.5" PointX="9.125" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Product" Width="1.5" PointX="0.5" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Products_For_Sale" Width="1.5" PointX="5.25" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Proprietor" Width="1.5" PointX="16.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Purchase_detail" Width="1.5" PointX="10" PointY="14.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Purchase_Invoice" Width="1.5" PointX="3.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Purchase_Master" Width="1.5" PointX="7.75" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Quotation_Detail" Width="1.5" PointX="16.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Quotation_Master" Width="1.5" PointX="10.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Rate_update_Backup" Width="1.5" PointX="12.5" PointY="2.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.State" Width="1.5" PointX="0.75" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Stock" Width="1.5" PointX="10" PointY="19.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.StockForBillingRPT" Width="1.5" PointX="18.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Stockout" Width="1.5" PointX="5.5" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Tax_Group" Width="1.5" PointX="18.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Temp_Bill" Width="1.5" PointX="18.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Temp_placedorder" Width="1.5" PointX="12.5" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Temp_Stock" Width="1.5" PointX="10.875" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Transaction_amount_detail" Width="1.5" PointX="20.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Tyre_size" Width="1.5" PointX="2.125" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.User" Width="1.5" PointX="12.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="KannanTyresModel.Vehicle" Width="1.5" PointX="2.125" PointY="8.75" IsExpanded="true" />
+        <AssociationConnector Association="KannanTyresModel.FK_Barcode_Master_Billing_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Billing_Details_Billing_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Stockout_Billing_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Dealer_State" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Products_For_Sale_Dealer" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Item_Tube_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Item_Tube_Tyre_size" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Item_Tyre_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Item_Tyre_Tyre_size" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Item_Tyre_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Marchent_Account_State" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Purchase_details_Purchase_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="KannanTyresModel.FK_Stock_Purchase_Master" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="KannanTyresModel.Employee_salary_expense" Width="1.5" PointX="13.75" PointY="9.75" />
+        <EntityTypeShape EntityType="KannanTyresModel.Other_expense" Width="1.5" PointX="0.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KannanTyresModel.Product_expense" Width="1.5" PointX="2.75" PointY="12.75" />
+        <EntityTypeShape EntityType="KannanTyresModel.Balance_calculation_data_table" Width="1.5" PointX="15.375" PointY="0.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

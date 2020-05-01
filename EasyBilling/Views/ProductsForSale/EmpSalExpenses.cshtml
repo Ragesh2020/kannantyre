@@ -1,0 +1,338 @@
+﻿@model EasyBilling.Models.Employee_salary_expense
+@{
+    ViewBag.Title = "EmpSalExpenses";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+<h2>Employee salary expenses</h2>
+
+<script>
+    jQuery(document).ready(function ($) {
+        var employeeTable = $('#employeeTable').DataTable({
+            ajax: {
+                url: "/api/expenses",
+                dataSrc: '',
+            },
+            columns: [
+
+                { data: 'Employee_name' },
+                { data: 'Advance_collected' },
+                { data: 'salary_to_be_paid' },
+
+                { data: 'Date' },
+                { data: 'Monthly_salary' },
+                { data: 'Salary_paid' },
+               // { data: 'monthYear' },
+            ]
+        });
+
+        var saveEmployee = function (e) {
+            var chkempty = false;
+          
+            if ($('#Salary_paid').val() == 0 ) {
+                $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                $('#modaltest').find('.msg').text("Paid amount should not zero or empty");
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+                chkempty = true;
+            }
+            
+            if (chkempty == false) {
+
+                var formData = {};
+
+                var url = '/api/expenses/PostEmployee_salary_expenseSave';
+                var type = 'POST'
+
+                formData["Employee_token_number"] = $('#Employee_token_number').val();
+                formData["Advance_collected"] = $('#Advance_collected').val();
+                formData["salary_to_be_paid"] = $('#salary_to_be_paid').val();
+                formData["Salary_paid"] = $('#Salary_paid').val();
+
+                $.ajax({
+                    url: url, data: JSON.stringify(formData),
+                    contentType: 'application/json', type: type,
+                    success: function () {
+                        employeeTable.ajax.reload();
+
+                        setTimeout(function () {
+                            $('#employeeFormModal').find('.modal-footer .alert').hide();
+                            $('#employeeFormModal').modal('hide');
+                            $('#image').attr('src', 'http://localhost:8087/Images/rsz_success.jpg');
+                            $('#modaltest').find('.msg').text("Salary expenses successfully submitted");
+                            $('#modaltest').modal('toggle');
+                            $('#modaltest').modal('show');
+                        }, 500);
+                        location.reload(true);
+                    },
+                    error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        //alert(responseText.Message);
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text(responseText.Message);
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        //alertElnot.show();
+                    }
+                });
+            }
+        }
+
+        $('body').on('click', '#employeeFormSubmit', saveEmployee);
+    });
+</script>
+@*<form class="frmmain">*@
+    <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Select employee</label>
+        @Html.DropDownListFor(model => model.Employee_token_number, new SelectList(@ViewBag.emps, "Token_number", "Employee_name"),
+                                                  "Employee name", new { @class = "form-control form-control-sm col-md-3",  @id= "Employee_token_number", @name = "Employee_token_number" })
+    </div>
+    <div class="hidediv hide">
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Paid amount</label>
+            <div class="col-sm-3">
+
+                <input id="Salary_paid" name="Salary_paid" class="form-control form-control-sm" type="number" value="0" min="0" max="1000000" required="required">
+                @Html.ValidationMessageFor(model => model.Salary_paid, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="staticEmail" class="col-sm-2 col-form-label">Advance collected</label>
+            <div class="col-sm-3">
+                <input id="Advance_collected" name="Advance_collected" class="form-control form-control-sm" type="number" value="0" disabled="disabled">
+                @Html.ValidationMessageFor(model => model.Advance_collected, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class=" col-sm-2 col-form-label">Salary to be paid</label>
+            <div class="col-sm-3">
+                <input id="salary_to_be_paid" name="salary_to_be_paid" class="form-control form-control-sm" type="number" value="0" disabled="disabled">
+                @Html.ValidationMessageFor(model => model.salary_to_be_paid, "", new { @class = "text-danger" })
+
+            </div>
+        </div>
+        <div class="form-group row">
+            <label for="inputPassword" class=" col-sm-2 col-form-label"></label>
+            <div class="col-sm-3">
+                <button type="button" id="employeeFormSubmit" class="btn btn-sm btn-success" title="submit">
+                    Submit
+
+                </button>
+
+            </div>
+        </div>
+    </div>
+@*</form>*@
+    <div id="modaltest" class="modal fade">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <img id="image" src="~/Images/Alert-Logo.jpg" />
+                <div class="modal-body msg" style="border:none; text-align:center;">
+
+                </div>
+                <div class="modal-footer" style="border:none">
+                    <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+<style>
+
+
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+</style>
+<script type="text/javascript">
+    $('#Employee_token_number').change(function () {
+
+        if ($("#Employee_token_number").val() != "") {
+
+            $('.hidediv').removeClass('hide');
+            var tknnum = $("#Employee_token_number").val();
+            $.ajax
+                ({
+                    type: 'GET',
+                    url: 'http://localhost:8087/ProductsForSale/GetEmpsal',
+                    dataType: 'json',
+                    data: { 'id': tknnum },
+
+                    success: function (data) {
+                       
+                        //if (parseFloat(data.Monthly_salary) - parseFloat(data.Advance_collected) - parseFloat($("#Salary_paid").val()) < 0) {
+                        //    $("#salary_to_be_paid").val(0);
+                        //    $("#Advance_collected").val(parseFloat(data.Advance_collected));
+                        //    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        //    $('#modaltest').find('.msg').text("Advance cannot be exceed than employee salary");
+                        //    $('#modaltest').modal('toggle');
+                        //    $('#modaltest').modal('show');
+
+                        //    return false;
+                        //} else {
+                            $("#Advance_collected").val(parseFloat(data.Advance_collected) + parseFloat($("#Salary_paid").val()));
+                            $("#salary_to_be_paid").val(parseFloat(data.Monthly_salary) - parseFloat(data.Advance_collected) - parseFloat($("#Salary_paid").val()));
+                        //}
+                    },
+                    error: function (ex) {
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text("Employee does not exist");
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+
+                        return false;
+
+                    }
+
+                });
+        } else {
+            $('.hidediv').addClass('hide');
+        }
+
+    });
+
+    $('#Salary_paid').change(function () {
+
+        if ($("#Salary_paid").val() != "") {
+
+            if ($("#Salary_paid").val() < 0)
+            {
+                $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                $('#modaltest').find('.msg').text("Paid amount cannot be less than 0");
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+                $("#Salary_paid").val(0);
+                return false;
+            } else if ($("#Salary_paid").val() >1000000) {
+                $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                $('#modaltest').find('.msg').text("Paid amount cannot be greater than 10 lakh");
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+                $("#Salary_paid").val(0);
+                return false;
+            } else {
+
+           var tknnum=$("#Employee_token_number").val();
+            $.ajax
+                ({
+                    type: 'GET',
+                    url: 'http://localhost:8087/ProductsForSale/GetEmpsal',
+                    dataType: 'json',
+                    data: { 'id': tknnum },
+
+                    success: function (data) {
+                        //if (parseFloat(data.Monthly_salary) - parseFloat(data.Advance_collected) - parseFloat($("#Salary_paid").val()) < 0) {
+                        //    $("#salary_to_be_paid").val(0);
+                        //    $("#Advance_collected").val(parseFloat(data.Advance_collected));
+                        //    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        //    $('#modaltest').find('.msg').text("Advance cannot be exceed than employee salary");
+                        //    $('#modaltest').modal('toggle');
+                        //    $('#modaltest').modal('show');
+
+                        //    return false;
+                        //} else {
+                            $("#Advance_collected").val(parseFloat(data.Advance_collected) + parseFloat($("#Salary_paid").val()));
+                            $("#salary_to_be_paid").val(parseFloat(data.Monthly_salary) - parseFloat(data.Advance_collected) - parseFloat($("#Salary_paid").val()));
+                        //}
+                    },
+                    error: function (ex) {
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text("Employee does not exist");
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+              
+                        return false;
+
+                    }
+
+                });
+
+            }
+        }
+    });
+</script>
+
+
+<style>
+
+    .employeeTableWrap {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+</style>
+
+<div class="container-fluid employeeTableWrap">
+
+    <div class="card shadow mb-4">
+       
+   
+        <div class="card-body">
+            <div class="table-responsive employeeTable">
+                <table id="employeeTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th>Employee name</th>
+                            <th>Advance collected</th>
+
+                            <th>Amount to be paid</th>
+
+                            <th>Date</th>
+                            <th>Monthly salary</th>
+                            <th>Salary paid</th>
+                            @*<th>Salary for month & year</th>*@
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+@*<div class="modal fade" id="employeeFormModal" tabindex="-1" role="dialog" aria-labelledby="employeeFormModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" style="width:600px;">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="myModalLabel">Add item tube</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+            <div class="modal-body container-fluid">
+                <div class="row">
+                    <form id="employeeForm" name="employeeForm" style="width:600px;">
+                        <input type="hidden" id="Token_number" name="Token_number" />
+
+                        <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                            <label for="message-text" class="control-label">Description:</label>
+                            <textarea class="form-control form-control-sm" style="width:80%" id="Description" name="Description"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>*@
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/UI styles/Dashboard/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>

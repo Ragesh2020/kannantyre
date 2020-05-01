@@ -1,0 +1,180 @@
+﻿@model EasyBilling.Models.Customer_shipping_address
+
+<link href="~/UI styles/Customize/css/bootstrap.css" type="text/css" rel="stylesheet" media="all">
+<!-- shop css -->
+<link href="~/UI styles/Customize/css/shop.css" type="text/css" rel="stylesheet" media="all">
+<link href="~/UI styles/Customize/css/style.css" type="text/css" rel="stylesheet" media="all">
+
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<div style="text-align:center">
+    <h3><b style="color:black"><u>Shipping Journey </u><img style="text-align:center;" src="~/Images/checkout-spc-address-banner._CB138348967_.gif" /></b></h3>
+</div>
+<div class="checkout-left" style="padding-bottom:20px">
+
+    <div class="col-md-3 checkout-left-basket" style="left:30px;background-color:white;padding-right:30px;width:25%">
+        <div style="padding:10px 10px 10px 10px">
+            <h3><b>Continue to basket</b></h3>
+
+            <ul style="list-style-type:none">
+                @{
+
+                    if (@ViewBag.item != null)
+                    {
+
+                        var item = @ViewBag.item;
+                        <label class="hidden">@item.Token_Number</label>
+                        <li>
+                            tyre name
+                            <i>-</i>
+                            <span>@item.Name</span>
+                        </li>
+
+                        <li>
+                            Total Service Charges with tax
+                            <i>-</i>
+                            <span>@item.Tax_rate</span>
+                        </li>
+                        <li>
+                            Total discount
+                            <i>-</i>
+                            <span>@item.Discount</span>
+                        </li>
+                        <li>
+                            Total
+                            <i>-</i>
+                            <span>@item.Total</span>
+                        </li>
+                    }
+                    if (@ViewBag.itemcart != null)
+                    {
+
+                        <li>
+                            Subtotal
+                            <i>-</i>
+                            <span>Rs. @ViewBag.itemcart</span>
+                        </li>
+
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+    <div class="col-md-9 address_form" id="address_form" style="padding-left:80px">
+        <h3>Shipping Address</h3>
+        @*<form action="payment.html" method="post" class="creditly-card-form shopf-sear-headinfo_form">*@
+        @using (Ajax.BeginForm("Payment", "Billing", new AjaxOptions
+        {
+            HttpMethod = "GET", // HttpMethod to use, GET or POST
+            UpdateTargetId = "address_form", // ID of the HTML element to update
+            InsertionMode = InsertionMode.Replace
+        }))
+        {
+            
+            <div class="creditly-wrapper wrapper">
+                <div class="information-wrapper">
+                    <div class="first-row form-group">
+                        <div class="controls">
+                            <label class="control-label">Full name: </label>
+                            @Html.EditorFor(model => model.First_name, new { htmlAttributes = new { @class = "billing-address-name form-control", @type = "text", @placeholder = "First name" } })
+                            @Html.ValidationMessageFor(model => model.First_name, "", new { @class = "text-danger" })
+                            <input type="hidden" name="tkn" value="@ViewBag.tkn" />
+                            @*<input class="billing-address-name form-control" type="text" name="name" placeholder="Full name">*@
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Last name:</label>
+                            @Html.EditorFor(model => model.Last_name, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Last name" } })
+                            @Html.ValidationMessageFor(model => model.Last_name, "", new { @class = "text-danger" })
+
+                            @*<input class="form-control" type="text" placeholder="Mobile number">*@
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Address:</label>
+                            @Html.EditorFor(model => model.Address_Line1, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Address" } })
+                            @Html.ValidationMessageFor(model => model.Address_Line1, "", new { @class = "text-danger" })
+
+                            @*<input class="form-control" type="text" placeholder="Mobile number">*@
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">(Secondery) Address: </label>
+                            @Html.EditorFor(model => model.Address_Line2, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Secondary address" } })
+                            @Html.ValidationMessageFor(model => model.Address_Line2, "", new { @class = "text-danger" })
+
+                            @*<input class="form-control" type="text" placeholder="Mobile number">*@
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Town/City:</label>
+                            @Html.EditorFor(model => model.Town_City, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Town/City" } })
+                            @Html.ValidationMessageFor(model => model.Town_City, "", new { @class = "text-danger" })
+
+                            @*<input class="form-control" type="text" placeholder="Mobile number">*@
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Pin Code:</label>
+                            @Html.EditorFor(model => model.Pin_code, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Pin Code" } })
+                            @Html.ValidationMessageFor(model => model.Pin_code, "", new { @class = "text-danger" })
+
+                            @*<input class="form-control" type="text" placeholder="Mobile number">*@
+                        </div>
+                        <div class="controls">
+                            <label class="control-label">Phone number:</label>
+                            @Html.EditorFor(model => model.Phone_number, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Phone number" } })
+                            @Html.ValidationMessageFor(model => model.Phone_number, "", new { @class = "text-danger" })
+
+                            @*<input class="form-control" type="text" placeholder="Mobile number">*@
+                        </div>
+                        
+                      
+                    </div>
+                    <button class="submit check_out">place order</button>
+                </div>
+            </div>
+            @*</form>*@
+        }
+    </div>
+
+    <div class="clearfix"> </div>
+
+</div>
+
+<script src="~/UI styles/Customize/js/jquery-2.2.3.min.js"></script>
+<!-- //js -->
+<!--search jQuery-->
+<script src="~/UI styles/Customize/js/main.js"></script>
+<!--search jQuery-->
+<!-- //dropdown nav -->
+<!-- start-smooth-scrolling -->
+<script src="~/UI styles/Customize/js/move-top.js"></script>
+<script src="~/UI styles/Customize/js/easing.js"></script>
+<script>
+    jQuery(document).ready(function ($) {
+        $(".scroll").click(function (event) {
+            event.preventDefault();
+
+            $('html,body').animate({
+                scrollTop: $(this.hash).offset().top
+            }, 1000);
+        });
+    });
+</script>
+<!-- //end-smooth-scrolling -->
+<!-- smooth-scrolling-of-move-up -->
+<script>
+    $(document).ready(function () {
+
+
+        $().UItoTop({
+            easingType: 'easeOutQuart'
+        });
+
+    });
+</script>
+
+<script src="~/UI styles/Customize/js/numscroller-1.0.js"></script>
+

@@ -1,0 +1,1529 @@
+﻿@model EasyBilling.Models.Products_For_Sale
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+
+<script>
+
+            jQuery(document).ready(function ($) {
+
+    var employeeTable = $('#employeeTable').DataTable({
+        searching: false, paging: false, info: false, ordering: false,
+                ajax: {
+                    url: "/api/stocksitms",
+                    dataSrc: '',
+                },
+
+                columns: [
+                    //{ data: 'Purchase_number' },
+                    // { data: 'Date' },
+                     { data: 'Item_tyre_Id' },
+                     { data: 'Pieces' },
+                     { data: 'SGST' },
+                       { data: 'CGST' },
+                           { data: 'Total' }
+
+                           //{ data: 'Approve' }
+                                 //{
+                                 //    data: '', "defaultContent":
+                                         //'<button type="button" ' +
+                                         //'class="btn btn-primary pull-left edit" aria-label="Left Align" title="Edit">' +
+                                         //'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                                         //'</button> ' +
+                                         // '<button type="button" ' +
+                                         //'class="btn btn-sm btn-primary pull-left edit" aria-label="Left Align" title="Edit">' +
+                                         //  '<span class="fas fa-save" aria-hidden="true"></span>' +
+                                         //'</button> ' +
+                                         //'<td><input type="checkbox" name="ID" value="Product_name" class="custom-checkbox chkCheckBoxId" /></td>  '
+
+                                 //        '<button type="button" ' +
+                                 //        'class="btn btn-sm btn-danger delete" aria-label="Delete" title="Delete">' +
+                                 //        '<span class="fa fa-trash-alt" aria-hidden="true"></span>' +
+                                 //        '</button> '
+                                 //}
+                    //{
+                    //    data: 'requestsend',
+                    //    render: function (value) { return value ? "<button class='btn btn-sm btn-success'>Add</button>":"<input type='checkbox' name='multiSelect'/>"}
+                    //}
+                ],
+                footerCallback: function () {
+
+                    //var api = this.api();
+
+                    //var table = api.table();
+
+                    ////Sub Total
+                    ////$( table.footer(0) ).html(
+                    ////    api.column( 1, {page:'current'} ).data().sum()
+                    ////);
+
+                    ////Grand Totals
+                    //$(table.footer(5)).html(
+                    //    api.column(5).data().sum()
+                    //);
+
+                    //var table = $('#employeeTable').DataTable();
+                    //table.column( 3 ).data().sum();
+
+                }
+    });
+    //jQuery.fn.dataTable.Api.register( 'sum()', function ( ) {
+    //    return this.flatten().reduce( function ( a, b ) {
+    //        if ( typeof a === 'string' ) {
+    //            a = a.replace(/[^\d.-]/g, '') * 1;
+    //        }
+    //        if ( typeof b === 'string' ) {
+    //            b = b.replace(/[^\d.-]/g, '') * 1;
+    //        }
+
+    //        return a + b;
+    //    }, 0 );
+    //} );
+
+        // ... do something with data(), or column.nodes(), etc
+
+            //var itmidTable = $('#itmidTable').DataTable({
+            //    ajax: {
+            //        url: "/api/stocksitms/Getitemsdetails",
+            //        dataSrc: '',
+            //    },
+            //    columns: [
+            //        { data: 'Item_tyre_Id' },
+            //         { data: 'Product_name' },
+            //          { data: 'Tyre_Size' },
+            //           { data: 'Tyre_feel' },
+            //            { data: 'Tyre_make' },
+            //             { data: 'Vehicle_type' },
+            //              { data: 'Pieces' },
+            //        {
+            //            data: '', "defaultContent": '<button type="button" class="btn btn-sm btn-success" title="Add vehicle"' +
+            //       ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+            //        },
+
+            //    ]
+            //});
+            var editEmployee = function (e) {
+                var isEdit = e.type === 'dblclick';
+                var rowData = isEdit ? employeeTable.row($(this)).data() :
+                    employeeTable.row($(this).closest('tr')[0]).data();
+                if (isEdit || $(this).hasClass('edit')) {
+                    $('#employeeFormModal').modal();
+                    for (var key in rowData) {
+                        var value = key.indexOf('date') != -1 ? new Date(rowData[key]).toISOString().split('T')[0] :
+                            rowData[key];
+                        $('#employeeFormModal').find('#' + key).val(value);
+                    }
+                } else if ($(this).hasClass('delete')) {
+                    $('#confirmEmployeeDeleteModal').modal();
+                    $('#confirmEmployeeDeleteModal').find('input.Token_Number').val(rowData.Token_Number);
+                }
+            };
+            var resetModal = function (e) {
+                $('#employeeFormModal').find('input.itmidbycomp').val('');
+                $('#employeeFormModal').find('input.purchprice').val('');
+                $('#employeeFormModal').find('input.sgst').val('');
+                $('#employeeFormModal').find('input.cgst').val('');
+                $('#employeeFormModal').find('input.pcs').val('');
+                $('#employeeFormModal').find('input.total').val('');
+                $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                $('#employeeFormModal').find('.modal-footer .alert').hide();
+            }
+            var saveEmployee = function (e) {
+
+                var alertEl = $('#employeeFormModal').find('.modal-footer .alert');
+                var alertElnot = $('#employeeFormModal').find('.modal-footer .alertnotsaved');
+
+                var isDelete = this.id == 'deleteEmployee';
+                var formData = {};
+                var data = $('#employeeForm').serializeArray();
+                var data1 = $('#purchaseForm').serializeArray();
+                var data2 = $('#selectionForm').serializeArray();
+              //  var data3 = $('#CompForm').serializeArray();
+
+                var url = !isDelete ? '/api/stocksitms/PostSave' : '/api/stocksitms/' + $('#confirmEmployeeDeleteModal').find('input.Token_Number').val();
+                var type = isDelete ? 'POST' : 'POST'
+
+                $.each(data, function (i, v) {
+
+                    formData[v.name] = v.value;
+                });
+                $.each(data1, function (i, v) {
+
+                    formData[v.name] = v.value;
+                });
+                $.each(data2, function (i, v) {
+                    if (v.value!="")
+                    formData[v.name] = v.value;
+                });
+                //$.each(data3, function (i, v) {
+                //    if (v.value != "")
+                //    formData[v.name] = v.value;
+                //});
+                $.ajax({
+                    url: url, data: JSON.stringify(formData),
+                    contentType: 'application/json', type: type,
+                    success: function () {
+                        employeeTable.ajax.reload();
+                        $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                        alertEl.show();
+
+                        setTimeout(function () {
+                            $('#employeeFormModal').find('.modal-footer .alert').hide();
+                            $('#employeeFormModal').modal('hide');
+
+
+                            var hiddenContainer = '#stockTable';
+
+                            $(hiddenContainer).removeClass('hide');
+                            $('#stockTable1').addClass('hide');
+
+                            $(hiddenContainer + ' tr th:nth-child(1)').show();
+                            $(hiddenContainer + ' tr td:nth-child(1)').show();
+                            $(hiddenContainer + ' tr th:nth-child(2)').show();
+                            $(hiddenContainer + ' tr td:nth-child(2)').show();
+                            $(hiddenContainer + ' tr th:nth-child(3)').show();
+                            $(hiddenContainer + ' tr td:nth-child(3)').show();
+                            $(hiddenContainer + ' tr th:nth-child(4)').show();
+                            $(hiddenContainer + ' tr td:nth-child(4)').show();
+                            $(hiddenContainer + ' tr th:nth-child(5)').show();
+                            $(hiddenContainer + ' tr td:nth-child(5)').show();
+                            $(hiddenContainer + ' tr th:nth-child(6)').show();
+                            $(hiddenContainer + ' tr td:nth-child(6)').show();
+                            $(hiddenContainer + ' tr th:nth-child(7)').show();
+                            $(hiddenContainer + ' tr td:nth-child(7)').show();
+                            $(hiddenContainer + ' tr th:nth-child(8)').show();
+                            $(hiddenContainer + ' tr td:nth-child(8)').show();
+
+
+                           // $("#employeeForm")[0].reset();
+                        }, 2000);
+                        $.ajax({
+                            url: "/ProductsForSale/AjaxGetCall",
+                            dataType: "json",
+                            contentType: 'application/json', type: 'GET',
+                            success: function (response) {
+                                $('.ttlvals').removeClass('hide');
+                                $('.ttlamt').text("Total Amount:" + response.Total);
+                                $('.ttlqty').text("Total QTY:" + response.Pieces);
+                                $('.ttlitm').text("Total Item:" + response.ttlitms);
+
+                            }, error: function (xhr, errorType, exception) {
+
+                            }
+                        });
+
+                    }, error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text(responseText.Message);
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                        //alert(responseText.Message);
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        alertElnot.show();
+                    }
+                });
+            }
+            var saveStock = function (e) {
+
+                var formData = {};
+
+                var data = $('#purchaseForm').serializeArray();
+
+                var url = '/api/stocksitms/Postallstock';
+                var type = 'POST'
+
+                $.each(data, function (i, v) {
+
+                    formData[v.name] = v.value;
+                });
+
+                $.ajax({
+                    url: url, data: JSON.stringify(formData),
+                    contentType: 'application/json', type: type,
+                    success: function () {
+                        $('#image').attr('src', 'http://localhost:8087/Images/rsz_success.jpg');
+                        $('#modaltest').find('.msg').text("Successfully saved all stocks. Please approve.");
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                        //   alert("Successfully saved all stocks. Please approve.");
+                        setTimeout(function () {
+                            location.reload();
+                        }, 3000);
+
+                    }, error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text(responseText.Message);
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                       // alert(responseText.Message);
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        alertElnot.show();
+                    }
+                });
+            }
+
+            $('#employeeTable tbody').on('click', 'tr td button.btn', editEmployee);
+            $('#employeeTable tbody').on('dblclick', 'tr', editEmployee);
+            $('#employeeFormModal').on('hidden.bs.modal', resetModal);
+            $('body').on('click', '#deleteEmployee', saveEmployee);
+            $('body').on('click', '#employeeFormSubmit', saveEmployee);
+            $('body').on('click', '#all-save', saveStock);
+            function enableContainer(e) {
+                var hiddenContainer = $(this).data('hide');
+                $(hiddenContainer).removeClass('hide');
+                if (e.target.id === 'employeeFormSubmit') {
+                    $(hiddenContainer + ' tr th:first-child').show();
+                    $(hiddenContainer + ' tr td:first-child').show();
+
+                }
+                if (e.target.id === 'get-tyre-byID') {
+                    $(hiddenContainer + ' tr th:first-child').show();
+                    $(hiddenContainer + ' tr td:first-child').show();
+
+                }
+                if (e.target.id === 'get-tyre') {
+                    //$(hiddenContainer + ' tr th:first-child').hide();
+                    //$(hiddenContainer + ' tr td:first-child').hide();
+                    $(hiddenContainer + ' tr th:first-child').show();
+                    $(hiddenContainer + ' tr td:first-child').show();
+
+                    //$(hiddenContainer + ' tr th:nth-child(1)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(1)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(2)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(2)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(3)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(3)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(4)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(4)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(5)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(5)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(6)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(6)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(7)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(7)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(8)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(8)').show();
+
+                }
+            };
+
+            $('#invoice-go').on('click', function () {
+                var chkpurchnum = $('.PN').val();
+                var chkpurchdate = $('.PD').val();
+                var CurrentDate = new Date().getDate();
+                var myDate = new Date(chkpurchdate).getDate();
+
+                if (myDate > CurrentDate )
+                {
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("Purchase date should be same as current date or less");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+                   // alert("Purchase date should be same as current date or less");
+                    return false;
+                }
+                var chksupname = $('.SN').val();
+                if (chkpurchnum == '') {
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("Sorry, invoice number should not be blank");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+                   // alert("Sorry, invoice number should not be blank");
+                } else if (chkpurchdate == '') {
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("Sorry, invoice date should not be blank");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+                  //  alert("Sorry, invoice date should not be blank");
+                }
+                else if (chksupname == '') {
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("Sorry,supplier name should not be blank");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+                 //   alert("Sorry,supplier name should not be blank");
+                }
+                else {
+                    var container = $(this);
+                    $.ajax
+                    ({
+                        type: 'GET',
+                        url: '@Url.Action("Getcheckingsuppliername")',
+                        dataType: 'json',
+                        data: { 'id': chksupname },
+
+                        success: function (data) {
+
+                            var hiddenContainer = container.data('hide');
+                            $(hiddenContainer).removeClass('hide');
+                            $('.PN').attr('readonly', true);
+                            $('.PD').attr('readonly', true);
+                            $('.SN').attr('readonly', true);
+                            $('.SDA').attr('readonly', true);
+                            $('#selectionForm').removeClass('hide');
+
+                        },
+                        error: function (ex) {
+                            $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                            $('#modaltest').find('.msg').text("Supplier does not exists please add supplier");
+                            $('#modaltest').modal('toggle');
+                            $('#modaltest').modal('show');
+                           // alert("Supplier does not exists please add supplier");
+                            return false;
+
+                        }
+
+                    });
+
+
+                }
+
+            });
+                $('#invoice-go-clear').on('click', function () {
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("All entry along with supplier is cleared... ");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+       // alert("All entry along with supplier is cleared... ");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 3000);
+    });
+                $('#all-clear').on('click', function () {
+                    $('#image').attr('src', 'http://localhost:8087/Images/rsz_success.jpg');
+                    $('#modaltest').find('.msg').text("All stocks are successfully removed... ");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+        //alert("All stocks are successfully removed... ");
+                    setTimeout(function () {
+                        location.reload();
+                    }, 3000);
+    });
+    $('input.compname').keypress(function() {
+        $('.itmid').val("");
+        $('.itmtubeid').val("");
+        $('.proid').val("");
+        $('.comptubename').val("");
+        $('.proname').val("");
+    });
+    $('input.comptubename').keypress(function() {
+
+        $('.itmid').val("");
+        $('.itmtubeid').val("");
+        $('.proid').val("");
+        $('.compname').val("");
+        $('.proname').val("");
+    });
+    $('input.itmid').keypress(function() {
+        $('.compname').val("");
+        $('.comptubename').val("");
+        $('.itmtubeid').val("");
+        $('.proid').val("");
+        $('.proname').val("");
+
+    });
+    $('input.itmtubeid').keypress(function() {
+        $('.compname').val("");
+        $('.comptubename').val("");
+        $('.itmid').val("");
+        $('.proid').val("");
+        $('.proname').val("");
+
+    });
+    $('input.proid').keypress(function() {
+
+        $('.compname').val("");
+        $('.comptubename').val("");
+        $('.itmid').val("");
+        $('.itmtubeid').val("");
+        $('.proname').val("");
+
+    });
+    $('input.proname').keypress(function() {
+
+        $('.compname').val("");
+        $('.comptubename').val("");
+        $('.itmid').val("");
+        $('.itmtubeid').val("");
+        $('.proid').val("");
+
+
+    });
+    //$('#get-tyre').on('click', enableContainer);
+            //$('#get-tyre').on('click', function () {
+            //    var chkcompnm = $('.compname').val();
+            //    $('.itmid').val("");
+            //    $('.itmtubeid').val("");
+            //    $('.proid').val("");
+
+            //    if (chkcompnm == '') {
+            //        alert("Sorry, company name should not be blank");
+            //    }
+            //    else {
+
+            //        var hiddenContainer = $(this).data('hide');
+            //        $(hiddenContainer).removeClass('hide');
+
+
+            //        $(hiddenContainer + ' tr th:nth-child(1)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(1)').show();
+            //        $(hiddenContainer + ' tr th:nth-child(2)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(2)').show();
+            //        $(hiddenContainer + ' tr th:nth-child(3)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(3)').show();
+            //        $(hiddenContainer + ' tr th:nth-child(4)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(4)').show();
+            //        $(hiddenContainer + ' tr th:nth-child(5)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(5)').show();
+            //        $(hiddenContainer + ' tr th:nth-child(6)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(6)').show();
+            //        $(hiddenContainer + ' tr th:nth-child(7)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(7)').show();
+            //        $(hiddenContainer + ' tr th:nth-child(8)').show();
+            //        $(hiddenContainer + ' tr td:nth-child(8)').show();
+
+
+            //    }
+
+            //});
+            $('#get-tyre-byID').on('click', function () {
+                var chkitmid = $('.itmid').val();
+                var chkitmtubeid = $('.itmtubeid').val();
+                var chkproid = $('.proid').val();
+                var chkcomp = $('.compname').val();
+                var chkcomptube = $('.comptubename').val();
+                var chkproname = $('.proname').val();
+
+                var selectedId = $('#selectionForm').find('[name=isselection]:checked').val();
+                if (selectedId == "itmtyre")
+                {
+                   $('.itmtubeid').val('');
+                   $('.proid').val('');
+                   $('.comptubename').val('');
+                   $('.proname').val('');
+                   if (chkitmid == '' && chkcomp == '') {
+                       $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                       $('#modaltest').find('.msg').text("Sorry, id or company both should not be blank");
+                       $('#modaltest').modal('toggle');
+                       $('#modaltest').modal('show');
+
+                      //  alert("Sorry, id or company both should not be blank");
+                    }
+                    else {
+
+                        var hiddenContainer = $(this).data('hide');
+                        $(hiddenContainer).removeClass('hide');
+
+
+                        $(hiddenContainer + ' tr th:nth-child(1)').show();
+                        $(hiddenContainer + ' tr td:nth-child(1)').show();
+                        $(hiddenContainer + ' tr th:nth-child(2)').show();
+                        $(hiddenContainer + ' tr td:nth-child(2)').show();
+                        $(hiddenContainer + ' tr th:nth-child(3)').show();
+                        $(hiddenContainer + ' tr td:nth-child(3)').show();
+                        $(hiddenContainer + ' tr th:nth-child(4)').show();
+                        $(hiddenContainer + ' tr td:nth-child(4)').show();
+                        $(hiddenContainer + ' tr th:nth-child(5)').show();
+                        $(hiddenContainer + ' tr td:nth-child(5)').show();
+                        $(hiddenContainer + ' tr th:nth-child(6)').show();
+                        $(hiddenContainer + ' tr td:nth-child(6)').show();
+                        $(hiddenContainer + ' tr th:nth-child(7)').show();
+                        $(hiddenContainer + ' tr td:nth-child(7)').show();
+                        $(hiddenContainer + ' tr th:nth-child(8)').show();
+                        $(hiddenContainer + ' tr td:nth-child(8)').show();
+
+                    }
+                }
+                else if (selectedId == "itmtube") {
+                    $('.itmid').val('');
+                    $('.proid').val('');
+                    $('.compname').val('');
+                    $('.proname').val('');
+                    if (chkitmtubeid == '' && chkcomptube == '') {
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text("Sorry, id or company both should not be blank");
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+
+                       // alert("Sorry, id or company both should not be blank");
+                    }
+                    else {
+
+                        var hiddenContainer = $(this).data('hide');
+                        $(hiddenContainer).removeClass('hide');
+
+
+                        $(hiddenContainer + ' tr th:nth-child(1)').show();
+                        $(hiddenContainer + ' tr td:nth-child(1)').show();
+                        $(hiddenContainer + ' tr th:nth-child(2)').show();
+                        $(hiddenContainer + ' tr td:nth-child(2)').show();
+                        $(hiddenContainer + ' tr th:nth-child(3)').show();
+                        $(hiddenContainer + ' tr td:nth-child(3)').show();
+                        $(hiddenContainer + ' tr th:nth-child(4)').show();
+                        $(hiddenContainer + ' tr td:nth-child(4)').show();
+                        $(hiddenContainer + ' tr th:nth-child(5)').show();
+                        $(hiddenContainer + ' tr td:nth-child(5)').show();
+                        $(hiddenContainer + ' tr th:nth-child(6)').show();
+                        $(hiddenContainer + ' tr td:nth-child(6)').show();
+                        $(hiddenContainer + ' tr th:nth-child(7)').show();
+                        $(hiddenContainer + ' tr td:nth-child(7)').show();
+                        $(hiddenContainer + ' tr th:nth-child(8)').show();
+                        $(hiddenContainer + ' tr td:nth-child(8)').show();
+
+                    }
+                }
+                else if (selectedId == "prdct") {
+                   $('.itmid').val('');
+                $('.itmtubeid').val('');
+                $('.compname').val('');
+                $('.comptubename').val('');
+
+                if (chkproid == '' && chkproname == '') {
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("Sorry, id or product name both should not be blank");
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+
+                   // alert("Sorry, id or product name both should not be blank");
+
+                    }
+                    else {
+                        var hiddenContainer = $(this).data('hide');
+                        $(hiddenContainer).removeClass('hide');
+
+                        $(hiddenContainer + ' tr th:nth-child(1)').show();
+                        $(hiddenContainer + ' tr td:nth-child(1)').show();
+                        $(hiddenContainer + ' tr th:nth-child(2)').show();
+                        $(hiddenContainer + ' tr td:nth-child(2)').show();
+                        $(hiddenContainer + ' tr th:nth-child(3)').show();
+                        $(hiddenContainer + ' tr td:nth-child(3)').show();
+                        $(hiddenContainer + ' tr th:nth-child(4)').show();
+                        $(hiddenContainer + ' tr td:nth-child(4)').show();
+                        $(hiddenContainer + ' tr th:nth-child(5)').show();
+                        $(hiddenContainer + ' tr td:nth-child(5)').show();
+                        $(hiddenContainer + ' tr th:nth-child(6)').show();
+                        $(hiddenContainer + ' tr td:nth-child(6)').show();
+                        $(hiddenContainer + ' tr th:nth-child(7)').show();
+                        $(hiddenContainer + ' tr td:nth-child(7)').show();
+                        $(hiddenContainer + ' tr th:nth-child(8)').show();
+                        $(hiddenContainer + ' tr td:nth-child(8)').show();
+                    }
+                }
+                });
+
+        });</script>
+
+<script>
+            jQuery(document).ready(function ($) {
+
+        $("#accordionSidebar li.nav-item,#accordionSidebar .collapse-item").removeClass("active");
+        $("#masters,#nav-company").addClass("active");
+    });
+</script>
+<style>
+
+    .employeeTableWrap {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+
+    .item-number:before, .other-item:before {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        content: '\f056';
+        font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: 900;
+    }
+
+    .item-number.collapsed:before, .other-item.collapsed:before {
+        content: '\f055';
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .collapse-container {
+        margin-top: 20px;
+    }
+
+        .collapse-container .row {
+            margin-bottom: 15px;
+        }
+</style>
+
+<div class="container-fluid employeeTableWrap">
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+            <form id="purchaseForm" name="purchaseForm">
+                <div class="row">
+                    <script type="text/javascript">
+    $(function () {
+
+        $(".SN").autocomplete({
+            source: '@Url.Action("GetSupplier")',
+            minLength: 1
+        });
+
+    });
+                    </script>
+
+                    <div class="col-md-2">
+                        @*<input type="number" placeholder="Supplier Invoice Number" name="supplierInvoiceNo" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.Purchase_number, new { htmlAttributes = new { @class = "form-control form-control-sm PN", @placeholder = "Invoice Number", @id = "Purchase_number", @name = "Purchase_number" } })
+
+                    </div>
+                    <div class="col-md-2">
+                        @*<input type="text" placeholder="Supplier Invoice Date" name="supplierInvoiceDate" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now } })
+
+                    </div>
+                    <div class="col-md-3">
+                        @*<input type="text" placeholder="Supplier Name" name="supplierName" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.Supplier_name, new { htmlAttributes = new { @class = "form-control form-control-sm SN", @placeholder = "Supplier Name", @id = "Supplier_name", @name = "Supplier_name" } })
+
+                    </div>
+
+                    <div class="col-md-7" style="margin-top:10px">
+                        @*<input type="text" placeholder="Supplier Name" name="supplierName" value="" class="form-control form-control-sm" />*@
+                        @Html.TextAreaFor(model => model.Delivery_address, new { @class = "form-control form-control-sm SDA", @placeholder = "Supplier address", @id = "Delivery_address", @name = "Delivery_address", @readonly = "readonly" })
+
+                    </div>
+                    <div class="col-md-1">
+                        <button id="invoice-go" type="button" data-hide="#collapse-container" style="margin-top:10px" class="btn btn-sm btn-primary invoice">Go</button>
+
+                    </div>
+                    <div class="col-md-1">
+                        <button id="invoice-go-clear" type="button" data-hide="#collapse-container" style="margin-top:10px" class="btn btn-sm btn-primary invoice">Clear</button>
+                    </div>
+                    <div class="col-md-3 hide ttlvals" style="border:dashed">
+                        <label class="col-md-12 ttlamt" style="color:black">@*Total Amount: @ViewBag.ttlamt*@</label>
+                        <label class="col-md-12 ttlqty" style="color:black">@*Total QTY: @ViewBag.qty*@</label>
+                        <label class="col-md-12 ttlitm" style="color:black">@*Total Item: @ViewBag.ttlitm*@</label>
+                    </div>
+                </div>
+            </form>
+            <form id="selectionForm" class="hide">
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-2">
+                        <input type="radio" class="radio" value="itmtyre" checked name="isselection" id="isselection" />
+                        Item tyre
+                        <input class="radio" id="rateperunit" name="rateperunit" onchange="calculate()" type="radio" value="1">
+                    </div>
+                    <div class="col-md-2">
+                        <input type="radio" class="radio" value="itmtube" name="isselection" id="isselection" />
+                        Item tube
+                    </div>
+                    <div class="col-md-2">
+                        <input type="radio" class="radio" value="prdct" name="isselection" id="isselection" />
+                        Product
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-3">
+
+                        <script type="text/javascript">
+    $(function () {
+
+        $(".itmid").autocomplete({
+
+            source: '@Url.Action("GetItemId")',
+            minLength: 1
+        });
+        $(".itmtubeid").autocomplete({
+
+            source: '@Url.Action("GetItemTubeId")',
+            minLength: 1
+        });
+        $(".proid").autocomplete({
+
+            source: '@Url.Action("GetProductId")',
+            minLength: 1
+        });
+    });
+                        </script>
+
+                        @Html.EditorFor(model => model.Item_tyre_Id, new { htmlAttributes = new { @class = "form-control form-control-sm itmid", @placeholder = "Item ID Number", name = "Item_tyre_Id" } })
+                        @Html.EditorFor(model => model.Item_tyre_Id, new { htmlAttributes = new { @class = "form-control form-control-sm itmtubeid hide", @placeholder = "Item tube Id", name = "Item_tyre_Id" } })
+                        @Html.EditorFor(model => model.Item_tyre_Id, new { htmlAttributes = new { @class = "form-control form-control-sm proid hide", @placeholder = "Product Id", name = "Item_tyre_Id" } })
+
+
+                    </div>
+                    <div class="col-md-1" style="text-align:center">
+                        <label style="text-align:center" class="or">OR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <script type="text/javascript">
+    $(function () {
+
+        $(".compname").autocomplete({
+            source: '@Url.Action("GetCompName")',
+            minLength: 1
+        });
+        $(".comptubename").autocomplete({
+            source: '@Url.Action("GetCompNameTube")',
+            minLength: 1
+        });
+        $(".proname").autocomplete({
+            source: '@Url.Action("GetProdctname")',
+            minLength: 1
+        });
+    });
+                        </script>
+
+                        @Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control form-control-sm compname", @placeholder = "Company Name", name = "Product_name" } })
+                        @Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control form-control-sm comptubename hide", @placeholder = "Company Name", name = "Product_name" } })
+                        @Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control form-control-sm proname hide", @placeholder = "Product Name", name = "Product_name" } })
+
+                    </div>
+                    <div class="col-md-3">
+                        <button id="get-tyre-byID" type="button" data-hide="#stockTable1" class="btn btn-sm btn-primary itmidgo">Go</button>
+                    </div>
+                </div>
+            </form>
+            <div id="stockTable1" class="table-responsive hide" style="margin-top:10px">
+                <table id="itmidTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+
+                        <tr>
+                            <th>Item ID</th>
+                            @*<th col="5">Description</th>*@
+                            <th>Company</th>
+                            <th>Tyre size</th>
+                            <th>Tyre feel</th>
+                            <th>Tyre make</th>
+                            <th>Vehicle type</th>
+                            <th>Old stock</th>
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                </table>
+                <table id="itmtubeidTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Company</th>
+                            <th>Tube size</th>
+
+                            <th>Old stock</th>
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                </table>
+                <table id="itmprodctidTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+
+                        <tr>
+                            <th>Product ID</th>
+                            <th>Product name</th>
+                            <th>Product type</th>
+
+                            <th>Old stock</th>
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                </table>
+            </div>
+            @*<div id="collapse-container" class="collapse-container hide">
+                            <div class="row">
+                            <div class="col-md-12">
+                                <a data-toggle="collapse" href="#itemNumber" class="collapsed item-number" role="button" aria-expanded="false" aria-controls="itemNumber">
+                                    Select Item id
+                                </a>
+                            </div>
+                        </div>
+                            <div class="collapse" id="itemNumber">
+                                <form id="itemForm" name="itemForm">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <script type="text/javascript">
+                $(function () {
+
+                    $(".itmid").autocomplete({
+                        source: '@Url.Action("GetItemId")',
+                        minLength: 1
+                    });
+
+                });
+                                            </script>
+
+                                            @Html.EditorFor(model => model.Item_tyre_Id, new { htmlAttributes = new { @class = "form-control form-control-sm itmid", @placeholder = "Item ID Number", name = "Item_tyre_Id" } })
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button id="get-tyre-byID" type="button" data-hide="#stockTable1" class="btn btn-sm btn-primary itmidgo">Go</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <a data-toggle="collapse" href="#otherItems" role="button" class="collapsed other-item" aria-expanded="false" aria-controls="otherItems">
+                                        Select Others
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="collapse" id="otherItems">
+                                <form id="CompForm" name="CompForm">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <script type="text/javascript">
+                $(function () {
+
+                    $(".compname").autocomplete({
+                        source: '@Url.Action("GetCompName")',
+                        minLength: 1
+                    });
+
+                });
+                                            </script>
+
+                                            @Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control form-control-sm compname", @placeholder = "Company Name", name = "Product_name" } })
+
+                                        </div>
+                                        <div class="col-md-3">
+                                            <button id="get-tyre" data-hide="#stockTable1" type="button" class="btn btn-sm btn-primary compnamego">Go</button>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div id="stockTable1" class="table-responsive itmidTable hide">
+                                <table id="itmidTable" class="table table-bordered" width="100%" cellspacing="0">
+                                    <thead>
+
+                                        <tr>
+                                            <th>Item ID</th>
+                                            <th>Company</th>
+                                            <th>Tyre size</th>
+                                            <th>Tyre feel</th>
+                                            <th>Tyre make</th>
+                                            <th>Vehicle type</th>
+                                            <th>Old stock</th>
+                                            <th></th>
+
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                </table>
+                            </div>
+                        </div>*@
+
+
+            <div id="stockTable" class="table-responsive employeeTable hide" style="margin-top:10px">
+                <table id="employeeTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            @*<th>Item ID</th>
+                                <th>Company</th>
+                                <th>Tyre size</th>
+                                <th>Tyre feel</th>
+                                <th>Tyre make</th>
+                                <th>Vehicle type</th>
+                                <th>Old stock</th>
+                                <th>Options</th>*@
+                            @*<th>Invoice number</th>
+                                <th>Date of stock entry</th>*@
+                            <th> Item id</th>
+                            @*<th>Tyre make</th>
+                                <th>Tyre type</th>
+                                <th>Company name</th>
+                                <th>Tyre sizes</th>
+
+                                <th>Supplier</th>*@
+                            <th>No of pieces</th>
+                            <th>SGST</th>
+                            <th>CGST</th>
+                            <th>Total</th>
+
+                            @*<th>Current State</th>*@
+                            @*<th>Action</th>*@
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                </table>
+                <div style="text-align:right">
+                    <button type="button" id="all-save" class="btn btn-sm btn-primary ">Save</button>
+                    <button type="button" id="all-clear" class="btn btn-sm btn-danger ">Delete</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="employeeFormModal" tabindex="-1" role="dialog" aria-labelledby="employeeFormModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="myModalLabel">Add stock</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body container-fluid">
+                <form id="employeeForm" name="employeeForm">
+                    <div class="row">
+                        <input type="hidden" id="Token_Number" name="Token_Number" />
+                        @Html.HiddenFor(model => model.Item_tyre_Id, new { @class = "form-control form-control-sm itmidbycomp", @placeholder = "Item ID Number", name = "Item_tyre_Id" })
+
+                        <div class="form-group col-md-4 ">
+                            <label for="message-text" class="control-label">Purchase Price:</label>
+                            @Html.TextBoxFor(model => model.Purchase_Price, new { @class = "form-control form-control-sm purchprice", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">Rate per unit:</label>
+                            @Html.RadioButtonFor(model => model.rateperunit, "1", new { @class = "radio", @onchange = "calculate()" })
+                         
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">Total amount:</label>
+                            @Html.RadioButtonFor(model => model.rateperunit, "2", new { @class = "radio", @onchange = "calculate()" })
+                          
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">SGST <span id="sgstlbl"></span>:</label>
+                            @Html.TextBoxFor(model => model.SGST, new { @class = "form-control form-control-sm sgst", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">CGST<span id="cgstlbl"></span>:</label>
+                            @Html.TextBoxFor(model => model.CGST, new { @class = "form-control form-control-sm cgst", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label"> Percentage based </label>
+                            @Html.RadioButtonFor(model => model.percent, "3", new { htmlAttributes = new { @class = "radio", @onchange = "calculate()" } })
+                           
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">Amount based:</label>
+                            @Html.RadioButtonFor(model => model.percent, "4", new { htmlAttributes = new { @class = "radio", @onchange = "calculate()" } })
+                          
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="message-text" class="control-label">Pieces:</label>
+                            @Html.TextBoxFor(model => model.Pieces, new { @class = "form-control form-control-sm pcs", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="message-text" class="control-label">Total:</label>
+                            @Html.TextBoxFor(model => model.Total, new { @class = "form-control form-control-sm total", @style = "width:80%", @readonly = "readonly" })
+
+                        </div>
+                        @*<div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Date:</label>
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control form-control-sm", @style = "width:80%", @type = "date" } })
+
+                            </div>
+                            <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <label for="message-text" class="control-label">Description:</label>
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control form-control-sm", @style = "width:80%", @rows = "2" })
+
+                            </div>*@
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Created!</strong> Stock created successfully.
+                </div>
+                <div class="alertnotsaved alert-danger pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Not created!</strong> Stock is not created.
+
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" data-hide="#stockTable" class="btn btn-primary" id="employeeFormSubmit">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modaltest" class="modal fade">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img id="image" src="http://localhost:8087/Images/Alert-Logo.jpg" />
+            <div class="modal-body msg" style="border:none; text-align:center;">
+
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="confirmEmployeeDeleteModal" class="modal fade">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <input type="hidden" name="Token_Number" class="Token_Number" />
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger" id="deleteEmployee">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        //$('#employeeFormModal').find('input.pp')
+        $('#employeeFormModal').find('.pp').on('change', function () {
+            var prdcttkn = $('.pp').val();
+
+            if (prdcttkn == "") {
+                prdcttkn = "0000";
+            }
+            $.ajax
+            ({
+                type: 'GET',
+                url: '@Url.Action("GetItemDetails")',
+                dataType: 'json',
+                data: { 'id': prdcttkn },
+
+                success: function (data) {
+
+                    $('#employeeFormModal').find('.TM').val(data.Tyre_make);
+                    $('#employeeFormModal').find('.TT').val(data.Tyre_type);
+                    $('#employeeFormModal').find('.TF').val(data.Tyre_feel);
+                    $('#employeeFormModal').find('.COMP').val(data.Company_name);
+                    $('#employeeFormModal').find('.COMPtkn').val(data.Company_token);
+                    $('#employeeFormModal').find('.TS').val(data.Tyre_size);
+                    $('#employeeFormModal').find('.VT').val(data.Vehicle_type);
+
+
+                },
+                error: function (ex) {
+                    $('#employeeFormModal').find('.TM').val('');
+                    $('#employeeFormModal').find('.TT').val('');
+                    $('#employeeFormModal').find('.TF').val('');
+                    $('#employeeFormModal').find('.COMP').val('');
+                    $('#employeeFormModal').find('.TS').val('');
+                    $('#employeeFormModal').find('.VT').val('');
+                    var r = jQuery.parseJSON(response.responseText);
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("Message: " + r.Message);
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+
+                    //alert("Message: " + r.Message);
+                }
+            });
+            return false;
+        });
+
+
+</script>
+<script type="text/javascript">
+
+    $('#purchaseForm').find('.SN').on('change', function () {
+            var prdcttkn = $('.SN').val();
+
+            $.ajax
+            ({
+                type: 'GET',
+                url: '@Url.Action("Getcheckingsupplieraddbyname")',
+                dataType: 'json',
+                data: { 'id': prdcttkn },
+
+                success: function (data) {
+
+                    $('#purchaseForm').find('.SDA').val("Ph. number : "+ data.Phone_number +" - " + "Email : "+ data.Email +" - " + "Pan number : "+ data.Pan_number +" - " + "GST number : "+ data.GST_number +" - " + "Address : "+ data.Address);
+
+                },
+                error: function (ex) {
+                    $('#purchaseForm').find('.SDA').val("");
+                    var r = jQuery.parseJSON(response.responseText);
+                    $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                    $('#modaltest').find('.msg').text("Message: " + r.Message);
+                    $('#modaltest').modal('toggle');
+                    $('#modaltest').modal('show');
+
+                 //   alert("Message: " + r.Message);
+                }
+            });
+            return false;
+        });
+
+
+</script>
+<script type="text/javascript">
+
+        //$('#employeeFormModal').find('input.pp')
+    $('.itmidgo').on('click', function () {
+
+        var selectedId = $('#selectionForm').find('[name=isselection]:checked').val();
+        var chk=0;
+        if (selectedId == "itmtyre") {
+            var prdcttkn = $('.itmid').val();
+            var prdcttkncomp = $('.compname').val();
+
+
+            $('#itmtubeidTable').addClass('hide');
+            $('#itmprodctidTable').addClass('hide');
+            $('#itmtubeidTable_wrapper').addClass('hide');
+            $('#itmprodctidTable_wrapper').addClass('hide');
+            $('#itmidTable').removeClass('hide');
+            if(prdcttkn!='')
+            {
+                $.ajax
+                ({
+                    type: 'GET',
+                    url: '@Url.Action("Getcheckingtmp")',
+                    dataType: 'json',
+                    data: { 'id': prdcttkn },
+
+                    success: function (data) {
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text("ID already exist");
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+
+                       // alert("ID already exist");
+                        $('#itmidTable').addClass('hide');
+
+                        $('#itmidTable_wrapper').addClass('hide');
+                        chk=1;
+                        return false;
+                    },
+                    error: function (ex) {
+
+                    }
+                });
+                if(chk==0)
+                {
+                    var itmidTable = $('#itmidTable').DataTable({
+                        destroy: true,
+                        //searching: false, paging: false, info: false,
+                        ajax: {
+                            url: "/api/stocksitms/Getitemsdetails",
+                            dataSrc: '',
+                            data: { 'id': prdcttkn },
+                        },
+                        columns: [
+
+                            { data: 'Item_Id' },
+                                    { data: 'Company_name' },
+                                     { data: 'Tyre_size' },
+                                      { data: 'Tyre_feel' },
+                                       { data: 'Tyre_make' },
+                                        { data: 'Vehicle_type' },
+                                         { data: 'Pieces' },
+                                   {
+                                       data: '', "defaultContent": '<button type="button" class="btn btn-sm btn-success" title="Add vehicle"' +
+                                  ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                                   },
+
+                            //{
+                            //    data: 'requestsend',
+                            //    render: function (value) { return value ? "<button class='btn btn-sm btn-success'>Add</button>":"<input type='checkbox' name='multiSelect'/>"}
+                            //}
+                        ]
+                    });
+                }
+            }
+            if(prdcttkncomp!='')
+            {
+                var itmidTable = $('#itmidTable').DataTable({
+                    destroy: true,
+                    ajax: {
+                        url: "/api/stocksitms/GetitemsdetailsByCompname",
+                        dataSrc: '',
+                        data: { 'id': prdcttkncomp },
+                    },
+                    columns: [
+
+                        { data: 'Item_Id' },
+                                { data: 'Company_name' },
+                                 { data: 'Tyre_size' },
+                                  { data: 'Tyre_feel' },
+                                   { data: 'Tyre_make' },
+                                    { data: 'Vehicle_type' },
+                                     { data: 'Pieces' },
+                               {
+                                   data: '', "defaultContent": '<button type="button" onclick = "calculate1()" class="btn btn-sm btn-success addstk" title="Add stock"' +
+                              ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                               },
+
+                    ]
+
+                });
+
+            }
+
+        }
+        else if (selectedId == "itmtube") {
+            var prdcttkn = $('.itmtubeid').val();
+            var prdcttkncomp = $('.comptubename').val();
+            $('#itmidTable').addClass('hide');
+            $('#itmprodctidTable').addClass('hide');
+            $('#itmidTable_wrapper').addClass('hide');
+            $('#itmprodctidTable_wrapper').addClass('hide');
+            $('#itmtubeidTable').removeClass('hide');
+            if(prdcttkn!='')
+            {
+                $.ajax
+                  ({
+                      type: 'GET',
+                      url: '@Url.Action("Getcheckingtmp")',
+                      dataType: 'json',
+                      data: { 'id': prdcttkn },
+
+                      success: function (data) {
+                          $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                          $('#modaltest').find('.msg').text("ID already exist");
+                          $('#modaltest').modal('toggle');
+                          $('#modaltest').modal('show');
+
+                        //  alert("ID already exist");
+                          $('#itmtubeidTable').addClass('hide');
+
+                          $('#itmtubeidTable_wrapper').addClass('hide');
+                          chk=1;
+                          //return false;
+                      },
+                      error: function (ex) {
+
+                      }
+                  });
+                if(chk==0)
+                {
+                    var itmtubeidTable = $('#itmtubeidTable').DataTable({
+
+                        destroy: true,
+                        ajax: {
+                            url: "/api/stocksitms/Getitemsdetails",
+                            dataSrc: '',
+                            data: { 'id': prdcttkn },
+                        },
+                        columns: [
+
+                            { data: 'Item_Id' },
+                                    { data: 'Company_name' },
+                                     { data: 'Tube_size' },
+
+                                         { data: 'Pieces' },
+                                   {
+                                       data: '', "defaultContent": '<button type="button" class="btn btn-sm btn-success" title="Add vehicle"' +
+                                  ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                                   },
+
+                            //{
+                            //    data: 'requestsend',
+                            //    render: function (value) { return value ? "<button class='btn btn-sm btn-success'>Add</button>":"<input type='checkbox' name='multiSelect'/>"}
+                            //}
+                        ]
+                    });
+                }
+            }
+
+
+            if(prdcttkncomp!='')
+            {
+
+                var itmtubeidTable = $('#itmtubeidTable').DataTable({
+                    destroy: true,
+                    ajax: {
+                        url: "/api/stocksitms/Gettubecomp",
+                        dataSrc: '',
+                        data: {'id':prdcttkncomp},
+                    },
+                    columns: [
+
+                            { data: 'Item_Id' },
+                                    { data: 'Company_name' },
+                                     { data: 'Tube_size' },
+
+                                         { data: 'Pieces' },
+                                   {
+                                       data: '', "defaultContent": '<button type="button" onclick = "calculate1()" class="btn btn-sm btn-success addstk" title="Add stock"' +
+                                 ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                                   },
+
+                    ]
+
+                });
+
+            }
+
+        }
+        else if (selectedId == "prdct"){
+            var prdcttkn = $('.proid').val();
+            var prdcttkncomp = $('.proname').val();
+
+            $('#itmidTable').addClass('hide');
+            $('#itmtubeidTable').addClass('hide');
+            $('#itmidTable_wrapper').addClass('hide');
+            $('#itmtubeidTable_wrapper').addClass('hide');
+            $('#itmprodctidTable').removeClass('hide');
+            if(prdcttkn!='')
+            {
+                $.ajax
+                  ({
+                      type: 'GET',
+                      url: '@Url.Action("Getcheckingtmp")',
+                      dataType: 'json',
+                      data: { 'id': prdcttkn },
+
+                      success: function (data) {
+                          $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                          $('#modaltest').find('.msg').text("ID already exist");
+                          $('#modaltest').modal('toggle');
+                          $('#modaltest').modal('show');
+
+                         // alert("ID already exist");
+                          $('#itmprodctidTable').addClass('hide');
+
+                          $('#itmprodctidTable_wrapper').addClass('hide');
+                          chk=1;
+                          //return false;
+                      },
+                      error: function (ex) {
+
+                      }
+                  });
+                if(chk==0)
+                {
+                    var itmprodctidTable = $('#itmprodctidTable').DataTable({
+                        destroy: true,
+                        ajax: {
+                            url: "/api/stocksitms/Getitemsdetails",
+                            dataSrc: '',
+                            data: { 'id': prdcttkn },
+                        },
+                        columns: [
+
+                            { data: 'Product_id' },
+                                    { data: 'Product_name' },
+                                     { data: 'Product_type' },
+
+                                         { data: 'Pieces' },
+                                   {
+                                       data: '', "defaultContent": '<button type="button" class="btn btn-sm btn-success" title="Add vehicle"' +
+                                  ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                                   },
+
+                        ]
+                    });
+                }
+            }
+            if(prdcttkncomp!='')
+            {
+
+                var itmprodctidTable = $('#itmprodctidTable').DataTable({
+                    destroy: true,
+                    ajax: {
+                        url: "/api/stocksitms/GetProdctDetls",
+                        dataSrc: '',
+                        data: {'id':prdcttkncomp},
+                    },
+                    columns: [
+
+                            { data: 'Product_id' },
+                                    { data: 'Product_name' },
+                                     { data: 'Product_type' },
+
+                                         { data: 'Pieces' },
+                                   {
+                                       data: '', "defaultContent": '<button type="button" onclick = "calculate1()" class="btn btn-sm btn-success addstk" title="Add stock"' +
+                                 ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                                   },
+
+                    ]
+
+                });
+
+            }
+        }
+
+
+    });
+    //$('.compnamego').on('click', function () {
+    //    var prdcttkn = $('.compname').val();
+    //    var itmidTable = $('#itmidTable').DataTable({
+    //        destroy: true,
+    //        ajax: {
+    //            url: "/api/stocksitms/GetitemsdetailsByCompname",
+    //            dataSrc: '',
+    //            data: { 'id': prdcttkn },
+    //        },
+    //        columns: [
+
+    //            { data: 'Item_Id' },
+    //                    { data: 'Company_name' },
+    //                     { data: 'Tyre_size' },
+    //                      { data: 'Tyre_feel' },
+    //                       { data: 'Tyre_make' },
+    //                        { data: 'Vehicle_type' },
+    //                         { data: 'Pieces' },
+    //                   {
+    //                       data: '', "defaultContent": '<button type="button" onclick = "calculate1()" class="btn btn-sm btn-success addstk" title="Add stock"' +
+    //                  ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+    //                   },
+
+    //        ]
+
+    //    });
+
+
+    //});
+</script>
+<script src="~/Scripts/CalculationStockentry.js"></script>
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/UI styles/Dashboard/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>

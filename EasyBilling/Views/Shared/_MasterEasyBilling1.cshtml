@@ -1,0 +1,946 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Kannan tyres | Home :: Elephanttree tech.</title>
+    <!--/tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Kannan tyres, Billing, Kadambari, Agencies, Purchase, Bill, Foods, Hotels, Sourav, Souravganguly707@gmail.com, elephanttree," />
+    <script>
+        addEventListener("load", function () {
+            setTimeout(hideURLbar, 0);
+        }, false);
+        
+        function hideURLbar() {
+            window.scrollTo(0, 1);
+        }
+    </script>
+    <!--//tags -->
+    @*<link rel="icon" type="image/x-icon" href="~/Itzikgur-My-Seven-Books-2.ico" />*@
+
+    <link rel="icon" type="image/x-icon" href="~/Images/IMG-20181116-WA0000.jpg" />
+    
+    <!--pop-up-box-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link href="http://localhost:8087/Scripts/JqueryAutocomplete/jquery-ui.min.css" rel="stylesheet" />
+    <script src="http://localhost:8087/Scripts/JqueryAutocomplete/jquery-ui.min.js"></script>
+    <script src="http://localhost:8087/Scripts/JqueryAutocomplete/jquery.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
+        });
+    </script>
+    <script type="text/javascript">
+    $(function () {
+        $("#txtSearch").autocomplete({
+            @*source: '@Url.Action("~/ProductsForSale/GetStudents")',*@
+            source: "http://localhost:8087/ProductsForSale/GetStudents",
+            minLength: 1
+        });
+    });
+    </script>
+
+
+    <link href="~/UI styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/UI styles/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <link href="~/UI styles/css/font-awesome.css" rel="stylesheet">
+    <!--pop-up-box-->
+    <link href="~/UI styles/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+    <!--//pop-up-box-->
+    <!-- price range -->
+    <link rel="stylesheet" type="text/css" href="css/jquery-ui1.css">
+    <!-- fonts -->
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <style>
+        .dropdown-toggle:hover .dropdown-menu {
+            display: block;
+        }
+    </style>
+
+    <link href="~/UI styles/css/Loader.css" rel="stylesheet" />
+    <script src="~/UI styles/js/loader.js"></script>
+
+</head>
+
+<body style="background-color:#eaeded">
+    <div class="se-pre-con"></div>
+    <script>
+        $(window).load(function(){
+   // PAGE IS FULLY LOADED
+   // FADE OUT YOUR OVERLAYING DIV
+   $('#overlay').fadeOut();
+});
+
+    </script>
+    <!-- top-header -->
+    <div class="header-most-top" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">
+        <p style="padding:3px;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);color:darkslategrey">Kannan tyres Offer Zone Top Deals & Discounts</p>
+
+    </div>
+    <!-- //top-header -->
+    <!-- header-bot-->
+    <div class="header-bot" style="background-color: #232f3e;padding-bottom:0px">
+        <div class="header-bot_inner_wthreeinfo_header_mid">
+            <!-- header-bot-->
+            <div class="col-md-4 logo_agile w3-animate-right" style="font-size:40px; animation-duration:2s">
+                <h3>
+                    <a href="~/Home/Index" style="color:white">
+                        @*<div style="float:left">*@
+
+                        @*<span>K</span>annan
+
+        <span>T</span>yres
+        <img src="~/Images/rsz_icn.png" />*@
+                      
+                        <img src="~/Images/rsz_img-20181115-wa0010.jpg" />
+                        @*<img src="~/Images/TG4q.gif" alt="">*@
+
+                        @*</div>*@
+
+                    </a>
+                </h3>
+            </div>
+            <!-- header-bot -->
+            <div class="col-md-8 header w3-animate-left" style=" animation-duration:2s">
+                <!-- header lists -->
+                <ul>
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li style="color:white;">
+
+                            @using (Html.BeginForm("Signout", "Home", FormMethod.Post, new { id = "logoutform" }))
+
+                            {
+                                <a class="active" style="color:white" href="javascript:document.getElementById('logoutform').submit()"><span class="fa fa-sign-out" aria-hidden="true"></span>Sign Out</a>
+
+                            }
+
+                        </li>
+                        if (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com")
+                        {
+                            @*<li style="width:200px;color:white">
+                        <a href="~/Home/SignUp" style="color:white">
+                            <span class="fa fa-pencil-square-o" aria-hidden="true"></span> Sign Up For New Client
+                        </a>
+                    </li>*@
+                        }
+                    }
+                    else
+                    {
+                        <li style="color:white;">
+                            @*<a href="~/Home/SignIn" style="color:white">*@
+
+                            <span  class="fa fa-unlock-alt" data-placement="bottom" tabindex="0" data-toggle="popover" data-trigger="focus" title="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href='http://localhost:8087/Home/SignIn' rel='nofollow' class='nav-action-button' style='padding:10px 10px 10px 10px;text-align:center'><span class='nav-action-inner'><b> Sign In </b></span></a>" aria-hidden="true" data-html="true" data-content="<h6 style='color:black'>New user? <a href='http://localhost:8087/Home/Signup' rel='nofollow' class='nav-action-button' style='padding:10px 10px 10px 10px'><span class='nav-action-inner' style='color:blue'> <b>Start here</b></span></a></h3>"> <span style="color:white;" class="nav-action-button">Sign In</span> </span>
+                            @*<span class="fa fa-unlock-alt" aria-hidden="true"></span> Sign In*@
+                            @*</a>*@
+                        </li>
+
+
+                    }
+                </ul>
+                <!-- //header lists -->
+                <!-- search -->
+                @*@using (@Html.BeginForm())
+            {
+                    <b>Name: </b>
+                    @Html.TextBox("keyword", null, new { id = "txtSearch" })
+                    <input type="submit" value="Search" />
+        }*@
+                <div class="agileits_search w3-animate-buttom " style=" animation-duration:2s;margin-top:0px">
+
+                    <form method="get" action="~/ProductsForSale/Billing">
+                        <input name="keyword" id="txtSearch" type="search" placeholder="How can we help you today?" required="">
+                        <button type="submit" class="btn btn-default" aria-label="Left Align" style=" background-color:#febd69">
+                            <span class="fa fa-search" aria-hidden="true"> </span>
+                        </button>
+                    </form>
+                </div>
+                <div class="top_nav_right">
+                    <div class="wthreecartaits wthreecartaits2 cart cart box_1" style="margin-top:0px;margin-bottom:10px;">
+                        @if (Request.IsAuthenticated && (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com"))
+                        {
+                            <form action="#" method="post" class="last">
+                                <input type="hidden" name="cmd" value="_cart">
+                                <input type="hidden" name="display" value="1">
+                                <button class="w3view-cart" type="submit" name="submit" value="">
+                                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                                </button>
+                            </form>
+                        }
+                        else
+                        {
+                            <a href="http://localhost:8087/Billing/CartList">
+                                <button class="w3view-cart" type="button" value="2">
+                                    <i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
+                                </button>
+                            </a>
+                        }
+                    </div>
+                </div>
+
+                <!-- //search -->
+                <!-- cart details -->
+                <!-- //cart details -->
+                <div class="clearfix"></div>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+
+    <div class="modal fade " tabindex="-1" id="CustModel" data-keyboard="true" data-backdrop="">
+        <div class="modal-dialog modal-sm" style="width:30%">
+            <div class="modal-content " style="width:450px;left:500px">
+
+
+                @*<div class="modal-body">*@
+                <div class="modal-content">
+
+                    <div class="col-md-12 col-sm-7 single-right-left ">
+                        <br />
+                        <div class="grid images_3_of_2">
+                            <div class="flexslider">
+
+                                @*<div class="thumb-image">
+                                        <img src="~/UI styles/images/Easybillingimage.jpg" data-imagezoom="true" class="img-responsive" alt="">
+
+                                    </div>*@
+                                <div class="col-md-12" style="padding:20px 30px 20px 3px">
+                                    <div class="col-md-10"><input type="search" placeholder="Search by Customer token key" class="srch" style="text-align:left; width:100%; padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                    <div class="col-md-2" style="text-align:left"><button type="button" class="btn-success btnsearch"> Search </button></div>
+                                    <script type="text/javascript">
+                                                $(function () {
+                                                    $(".srch").autocomplete({
+
+                                                        source: "http://localhost:8087/Customer/GetInstitutes",
+                                                        minLength: 1
+                                                    });
+                                                });
+                                    </script>
+
+                                </div>
+                                <div class="col-md-12 hidden"><input type="hidden" class="tknno" value="" /></div>
+                                <div class="col-md-5" style="text-align:left"><label> Customer name: </label></div>
+                                <div class="col-md-7"><input type="text" readonly placeholder="Inst./Customer name" class="cnm" value="" style=" width:100%;padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                <div class="col-md-5" style="text-align:left"><label> Email-Id: </label></div>
+                                <div class="col-md-7"><input type="text" readonly placeholder="Email-Id" class="eml" style=" width:100%;padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                <div class="col-md-5" style="text-align:left"><label> Phone number: </label></div>
+                                <div class="col-md-7"><input type="text" readonly placeholder="Phone number" class="phn" value="" style=" width:100%;padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                <div class="col-md-5" style="text-align:left"><label> Address: </label></div>
+                                <div class="col-md-7"><input type="text" readonly placeholder="Address" class="addrss" value="" style=" width:100%;padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                <div class="col-md-5" style="text-align:left"><label> State: </label></div>
+                                <div class="col-md-7"><input type="text" readonly placeholder="State" class="stte" value="" style=" width:100%;padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                <div class="col-md-5" style="text-align:left"><label> Pan number: </label></div>
+                                <div class="col-md-7"><input type="text" readonly placeholder="Pan number" class="pnno" value="" style=" width:100%;padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                <div class="clearfix"></div>
+                            </div>
+
+                            <br /><br />
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+
+                    <button type="button" class="btn btn-primary"
+                            data-dismiss="modal">
+                        Close
+                    </button>
+                    <button type="button" class="btn btn-primary prcd" data-dismiss="modal">
+
+                        Proceed <i class="fa fa-arrow-right"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- shop locator (popup) -->
+    <!-- Button trigger modal(shop-locator) -->
+    <!-- //shop locator (popup) -->
+    <!-- signin Model -->
+    <!-- Modal1 -->
+    <div class="modal fade" id="myModal1" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+
+                <div class="modal-body modal-body-sub_agile">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <div class="main-mailposi">
+                        <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                    </div>
+                    <div class="modal_body_left modal_body_left1">
+                        <h3 class="agileinfo_sign">Sign In </h3>
+                        <p>
+                            Sign In now, Let's start your transaction. Don't have an account?
+                            <a href="#" data-toggle="modal" data-target="#myModal2">
+                                Sign Up Now
+                            </a>
+                        </p>
+                        <form action="#" method="post">
+                            <div class="styled-input agile-styled-input-top">
+                                <input type="text" placeholder="User Name" name="Name" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" placeholder="Password" name="password" required="">
+                            </div>
+                            <input type="submit" value="Sign In">
+                        </form>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+            <!-- //Modal content-->
+        </div>
+    </div>
+    <!-- //Modal1 -->
+    <!-- //signin Model -->
+    <!-- signup Model -->
+    <!-- Modal2 -->
+    <div class="modal fade" id="myModal2" tabindex="-1" role="dialog">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body modal-body-sub_agile">
+                    <div class="main-mailposi">
+                        <span class="fa fa-envelope-o" aria-hidden="true"></span>
+                    </div>
+                    <div class="modal_body_left modal_body_left1">
+                        <h3 class="agileinfo_sign">Sign Up</h3>
+                        <p>
+                            Come join the Kannan tyres! Let's set up your Account.
+                        </p>
+                        <form action="#" method="post">
+                            <div class="styled-input agile-styled-input-top">
+                                <input type="text" placeholder="Name" name="Name" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="email" placeholder="E-mail" name="Email" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" placeholder="Password" name="password" id="password1" required="">
+                            </div>
+                            <div class="styled-input">
+                                <input type="password" placeholder="Confirm Password" name="Confirm Password" id="password2" required="">
+                            </div>
+                            <input type="submit" value="Sign Up">
+                        </form>
+                        <p>
+                            <a href="#">By clicking register, I agree to your terms</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!-- //Modal content-->
+        </div>
+    </div>
+    <!-- //Modal2 -->
+    <!-- //signup Model -->
+    <!-- //header-bot -->
+    <!-- navigation -->
+    <div class="ban-top w3-animate-bottom" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); animation-duration:2s;margin-top:10px">
+        <div class="container">
+            @*<a href="javascript:void(0);" onclick="history.go(-1);" style="float:left;padding-top:1%"><button class="glyphicon glyphicon-backward btn-primary"></button></a>
+            <a href="javascript:void(0);" onclick="history.go(+1);" style="float:left;padding-top:1%"><button class="glyphicon glyphicon-forward btn-primary"></button></a>*@
+            @*<div class="agileits-navi_search">
+                    <form action="#" method="post">
+                        <select id="agileinfo-nav_search" name="agileinfo_search" required="">
+                            <option value="">All Categories</option>
+                             <option value="Hotels">Hotels</option>
+
+                        </select>
+                    </form>
+                </div>*@
+            <div class="top_nav_left ">
+                <nav class="navbar navbar-default" style="border:none; background:none;">
+                    <div class="container-fluid">
+                        <!-- Brand and toggle get grouped for better mobile display -->
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+                                    aria-expanded="false">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse menu--shylock " id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav menu__list">
+                                @if (Request.IsAuthenticated && (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com"))
+                                {
+                                    <li class="dropdown" style="color:black">
+                                        <a href="#" style="color:black" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            Masters
+                                            <i class="fa fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu multi-column columns-3">
+                                            <div class="agile_inner_drop_nav_info">
+                                                <div class="col-sm-4 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+                                                        <li>
+                                                            <a href="~/product" style="color:black">Company</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="~/TyreSize" style="color:black">Tyre size</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="~/Employee" style="color:black">Employee</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-4 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+
+                                                        <li>
+                                                            <a href="~/dealer" style="color:black">Supplier</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="~/#" style="color:black">Vehicle</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="~/#" style="color:black">Products</a>
+                                                        </li>
+                                                        @*<li>
+            <a href="~/customer" style="color:black">Customers</a>
+        </li>
+        <li>
+            <a href="~/Manager" style="color:black">Manager</a>
+        </li>*@
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-4 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+                                                        <li>
+                                                            <a href="~/#" style="color:black">Add item</a>
+                                                        </li>
+                                                        @*<li>
+            <a href="~/Proprietor" style="color:black">Proprietor</a>
+        </li>*@
+
+                                                    </ul>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="~/ProductsForSale" class="nav-stylehead " style="color:black">
+                                            Stock entry
+
+                                        </a>
+
+                                    </li>
+                                    <li class="dropdown" style="color:black">
+                                        <a href="#" style="color:black" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            Stock approval
+                                            <i class="fa fa-caret-down"></i>
+                                        </a>
+                                        <ul class="dropdown-menu multi-column columns-3">
+                                            <div class="agile_inner_drop_nav_info">
+                                                <div class="col-sm-6 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+                                                        <li>
+                                                            <a href="~/ProductsForSale/awatingapproval" style="color:black">Awating approval</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-6 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+
+                                                        <li>
+                                                            <a href="~/ProductsForSale/RateUpdate" style="color:black">Rate update</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </ul>
+                                    </li>
+                              
+                                    <li class="dropdown">
+                                        <a href="#" style="color:black" class="dropdown-toggle nav-stylehead" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                            Transactions
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu multi-column columns-3">
+                                            <div class="agile_inner_drop_nav_info">
+                                                <div class="col-sm-4 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+                                                        <li>
+                                                            <a href="~/ProductsForSale/Create" style="color:black">Purchase Entry</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-4 multi-gd-img">
+                                                    <ul class="multi-column-dropdown">
+                                                        <li>
+                                                            <a href="~/ProductsForSale/Billing" style="color:black">Billing Invoice</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </div>
+
+
+                                                <div class="clearfix"></div>
+                                            </div>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="~/Reports" class="nav-stylehead " style="color:black">
+                                            Reports
+
+                                        </a>
+
+                                    </li>
+                                    <li class="">
+                                        <a class="nav-stylehead" href="~/Billing/PendingShipping" style="color:black">Pending shipping <span style="color:blue"><b> [ @ViewBag.placeorderpending ]</b></span></a>
+
+                                    </li>
+
+                                }
+                                else
+                                {
+                                    <li>
+                                        <a href="~/ProductsForSale/Billing" style="color:black">tyres</a>
+                                    </li>
+                                }
+
+
+
+                                <li class="">
+                                    <a class="nav-stylehead" href="~/Home/Contact" style="color:black">Contact</a>
+                                </li>
+
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- //navigation -->
+    <!-- banner -->
+    <!-- //banner -->
+    @RenderBody()
+    <!-- newsletter -->
+    <!-- //newsletter -->
+    <!-- footer -->
+    <footer style="padding:0; background-color:#9aa5a1">
+        <div class="container">
+            <!-- footer first section -->
+            @*<p class="footer-main">
+                    <span>"Kannan tyres"</span> is a fast service for transaction in GST world. It will guide you to take perfect gst rate with your products..
+                </p>*@
+            <!-- //footer first section -->
+            <!-- footer second section -->
+            @*<div class="w3l-grids-footer">
+                    <div class="col-xs-4 offer-footer">
+                        <div class="col-xs-4 icon-fot">
+                            <span class="fa fa-map-marker" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-xs-8 text-form-footer">
+                            <h3>Track Your Order</h3>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-xs-4 offer-footer">
+                        <div class="col-xs-4 icon-fot">
+                            <span class="fa fa-refresh" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-xs-8 text-form-footer">
+                            <h3>Free & Easy Returns</h3>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="col-xs-4 offer-footer">
+                        <div class="col-xs-4 icon-fot">
+                            <span class="fa fa-times" aria-hidden="true"></span>
+                        </div>
+                        <div class="col-xs-8 text-form-footer">
+                            <h3>Online cancellation </h3>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>*@
+            <!-- //footer second section -->
+            <!-- footer third section -->
+            <div class="footer-info w3-agileits-info">
+                <!-- footer categories -->
+                <div class="col-sm-5 address-right">
+                    <div class="col-xs-6 footer-grids">
+                        @*<h3 style="color:crimson">Categories</h3>
+        <ul>
+            <li>
+                <a href="~/ProductsForSale/Billing" style="color:black">tyres</a>
+            </li>
+
+
+        </ul>*@
+                        <img src="~/Images/IMG-20181116-WA0000.jpg" />
+                    </div>
+                 
+                    <div class="clearfix"></div>
+                </div>
+                <!-- //footer categories -->
+                <!-- quick links -->
+                <div class="col-sm-5 address-right">
+                    <div class="col-xs-6 footer-grids">
+                        <h3 style="color:crimson">Quick Links</h3>
+                        <ul>
+                            <li>
+                                <a href="~/Home/About" style="color:black">About Us</a>
+                            </li>
+                            <li>
+                                <a href="~/Home/Contact" style="color:black">Contact Us</a>
+                            </li>
+                            <li>
+                                <a href="#" style="color:black">Help</a>
+                            </li>
+                            <li>
+                                <a href="#l" style="color:black">Tems & condition</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="col-xs-6 footer-grids">
+                        <h3 style="color:crimson">Get in Touch</h3>
+                        <ul>
+                            <li>
+                                <i class="fa fa-map-marker"></i> Main road, gonikoppal, S.KODAGU.
+                            </li>
+                            <li>
+                                <i class="fa fa-mobile"></i> 08274-247025
+                            </li>
+
+                            <li>
+                                <i class="fa fa-envelope-o"></i>
+                                <a href="mailto:example@mail.com" style="color:black"> mail@example.com</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- //quick links -->
+                <!-- social icons -->
+                <div class="col-sm-2 footer-grids  w3l-socialmk">
+                    <h3 style="color:crimson">Follow Us on</h3>
+                    <div class="social">
+                        <ul>
+                            <li>
+                                <a class="icon fb" href="#">
+                                    <i class="fa fa-facetyre"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="icon tw" href="#">
+                                    <i class="fa fa-twitter"></i>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="icon gp" href="#">
+                                    <i class="fa fa-google-plus"></i>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+                <!-- //social icons -->
+                <div class="clearfix"></div>
+            </div>
+            <!-- //footer third section -->
+            <!-- footer fourth section (text) -->
+            <div class="agile-sometext">
+
+                <!-- //brands -->
+                <!-- payment -->
+                <div class="sub-some child-momu">
+                    <h5 style="color:crimson">Payment Method</h5>
+                    <ul>
+                        <li>
+                            <img src="~/UI styles/images/pay2.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay5.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay1.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay4.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay6.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay3.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay7.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay8.png" alt="">
+                        </li>
+                        <li>
+                            <img src="~/UI styles/images/pay9.png" alt="">
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- //payment -->
+            </div>
+            <!-- //footer fourth section (text) -->
+        </div>
+        <br />
+    </footer>
+    <!-- //footer -->
+    <!-- copyright -->
+
+    <div class="copy-right" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">
+        <div class="container">
+            <p style="color:darkslategrey">
+                <b>
+                    © @DateTime.Now.Year Kannan tyres. All rights reserved | Design & Developed by
+                    <a href="http://elephanttreetech.com" target="_blank" style="color:darkblue"> Elephanttree Tech..</a>
+                </b>
+            </p>
+        </div>
+    </div>
+    <!-- //copyright -->
+    <!-- js-files -->
+    <!-- jquery -->
+    <script src="~/UI styles/js/jquery-2.1.4.min.js"></script>
+    <!-- //jquery -->
+    <!-- popup modal (for signin & signup)-->
+    <script src="~/UI styles/js/jquery.magnific-popup.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.popup-with-zoom-anim').magnificPopup({
+                type: 'inline',
+                fixedContentPos: false,
+                fixedBgPos: true,
+                overflowY: 'auto',
+                closeBtnInside: true,
+                preloader: false,
+                midClick: true,
+                removalDelay: 300,
+                mainClass: 'my-mfp-zoom-in'
+            });
+
+        });
+    </script>
+    <!-- Large modal -->
+    <!-- <script>
+        $('#').modal('show');
+    </script> -->
+    <!-- //popup modal (for signin & signup)-->
+    <!-- cart-js -->
+    <script src="~/UI styles/js/minicart.js"></script>
+    <script>
+        paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+
+        paypalm.minicartk.cart.on('checkout', function (evt) {
+            var items = this.items(),
+                len = items.length,
+                total = 0,
+                i;
+
+            // Count the number of each item in the cart
+            for (i = 0; i < len; i++) {
+                total += items[i].get('quantity');
+            }
+
+            if (total < 1) {
+                alert('The minimum order quantity is 1. Please add more to your shopping cart before checking out');
+                evt.preventDefault();
+            }
+        });
+    </script>
+    <!-- //cart-js -->
+    <!-- price range (top products) -->
+    <script src="~/UI styles/js/jquery-ui.js"></script>
+    <script>
+        //<![CDATA[
+        $(window).load(function () {
+            $("#slider-range").slider({
+                range: true,
+                min: 0,
+                max: 10000,
+                values: [50, 6000],
+                slide: function (event, ui) {
+                    $("#amount").val("Rs." + ui.values[0] + " - Rs." + ui.values[1]);
+
+                }
+
+            });
+            $("#amount").val("Rs." + $("#slider-range").slider("values", 0) + " - Rs." + $("#slider-range").slider("values", 1));
+
+        }); //]]>
+    </script>
+    <!-- //price range (top products) -->
+    <!-- flexisel (for special offers) -->
+    <script src="~/UI styles/js/jquery.flexisel.js"></script>
+    <script>
+        $(window).load(function () {
+            $("#flexiselDemo1").flexisel({
+                visibleItems: 3,
+                animationSpeed: 1000,
+                autoPlay: true,
+                autoPlaySpeed: 3000,
+                pauseOnHover: true,
+                enableResponsiveBreakpoints: true,
+                responsiveBreakpoints: {
+                    portrait: {
+                        changePoint: 480,
+                        visibleItems: 1
+                    },
+                    landscape: {
+                        changePoint: 640,
+                        visibleItems: 2
+                    },
+                    tablet: {
+                        changePoint: 768,
+                        visibleItems: 2
+                    }
+                }
+            });
+
+        });
+    </script>
+    <!-- //flexisel (for special offers) -->
+    <!-- password-script -->
+    <script>
+        window.onload = function () {
+            document.getElementById("password1").onchange = validatePassword;
+            document.getElementById("password2").onchange = validatePassword;
+        }
+
+        function validatePassword() {
+            var pass2 = document.getElementById("password2").value;
+            var pass1 = document.getElementById("password1").value;
+            if (pass1 != pass2)
+                document.getElementById("password2").setCustomValidity("Passwords Don't Match");
+            else
+                document.getElementById("password2").setCustomValidity('');
+            //empty string means no validation error
+        }
+    </script>
+    <!-- //password-script -->
+    <!-- smoothscroll -->
+    <script src="~/UI styles/js/SmoothScroll.min.js"></script>
+    <!-- //smoothscroll -->
+    <!-- start-smooth-scrolling -->
+    <script src="~/UI styles/js/move-top.js"></script>
+    <script src="~/UI styles/js/easing.js"></script>
+    <script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+    </script>
+    <!-- //end-smooth-scrolling -->
+    <!-- smooth-scrolling-of-move-up -->
+    <script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        $('.btnsearch').on('click', function () {
+            var prdcttkn = $('.srch').val();
+
+            if (prdcttkn == "") {
+                prdcttkn = "0000";
+            }
+            $.ajax
+            ({
+                type: 'POST',
+                url: 'http://localhost:8087/Customer/Getcustdetails',
+                dataType: 'json',
+                data: { 'id': prdcttkn },
+
+                success: function (data) {
+                    $('.tknno').val(data.Token_number);
+                    $('.cnm').val(data.Customer_Name);
+                    $('.eml').val(data.Email);
+                    $('.phn').val(data.Phone_number);
+                    $('.addrss').val(data.Address);
+                    $('.stte').val(data.State_Name);
+                    $('.pnno').val(data.Pan_number);
+
+
+                },
+                error: function (ex) {
+                    alert("Sorry something went wrong, Please give proper key and try again...");
+                    $('.tknno').val("");
+                    $('.cnm').val("");
+                    $('.eml').val("");
+                    $('.phn').val("");
+                    $('.addrss').val("");
+                    $('.stte').val("");
+                    $('.pnno').val("");
+                    //var r = jQuery.parseJSON(response.responseText);
+                    //alert("Message: " + r.Message);
+                }
+            });
+            return false;
+        });
+
+        });
+    </script>
+    <!-- //smooth-scrolling-of-move-up -->
+    <!-- for bootstrap working -->
+    <script src="~/UI styles/js/bootstrap.js"></script>
+    <!-- //for bootstrap working -->
+    <!-- //js-files -->
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/5c19aec482491369ba9eaf32/default';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+    </script>
+    <!--End of Tawk.to Script-->
+
+</body>
+
+</html>

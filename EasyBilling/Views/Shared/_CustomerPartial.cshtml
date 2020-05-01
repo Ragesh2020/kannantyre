@@ -1,0 +1,123 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<EasyBilling.Models.Customer>
+
+<div class="wrapper" id="wrapper">
+   
+    <span class="glyphicon glyphicon-th-list" style="float:right" tabindex="0" data-toggle="popover" data-placement="left" data-trigger="focus" title="Add new supplier" data-animation="true" data-html="true" data-content="<a href='http://localhost:8087/customer/Create'><button type='button'><span class='glyphicon glyphicon-plus'></span></button></a>"></span>
+    <!-- first section -->
+
+
+    <script>
+        $(document).ready(function () {
+            $('[data-toggle="popover"]').popover();
+            $('.popover-dismiss').popover({
+                trigger: 'focus'
+            })
+        });
+    </script>
+
+
+    <div class="product-sec1">
+
+        <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 product-men  w3-animate-left">
+
+            @foreach (var cstmrs in Model)
+            {
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                    <div class="men-thumb-item col-xl-5 col-lg-3 col-md-4 col-sm-5 text-sm-left text-center pr-sm-0" style="box-sizing:border-box;line-height:1.0">
+                        <img data-target="#Stockmodel" style="vertical-align:middle;padding:0.25rem" data-toggle="modal" class="morph " src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                    </div>
+                    <div class="item-info-product col-xl-7 col-lg-9 col-md-8 col-sm-7 px-sm-0" style="margin-top:0px">
+                        <div class=" p-4" style="background:#f3f3f9 ; padding:1.0rem !important;box-sizing:border-box;line-height:1.0">
+                            <span class="glyphicon glyphicon-th-list" style="float:right" tabindex="0" data-toggle="popover" data-trigger="focus" title="<a href='http://localhost:8087/customer/Create'><button type='button'><span class='glyphicon glyphicon-plus'></span></button></a><br/><br/><a href='http://localhost:8087/customer/Details//@cstmrs.Token_number' ><button type='button'><span class='glyphicon glyphicon-tasks'></span></button></a><br/><br/><a href='http://localhost:8087/customer/Edit/@cstmrs.Token_number' ><button type='button'><span class='glyphicon glyphicon-edit'></span></button></a><br/><br/><a href='http://localhost:8087/customer/Delete/@cstmrs.Token_number' ><button type='button'><span class='glyphicon glyphicon-trash'></span></button></a>" data-html="true" data-content="<a href='http://localhost:8087/api/Customer/GetCustomerDetailsReport?csdt=@cstmrs.Token_number' target='_blank' ><button type='button'><span class='glyphicon glyphicon-save-file'></span></button></a>"></span>
+
+                            <h3 style="color:#8d3939;font-size:26px;margin-top:0;margin-bottom:0.5rem"><b>@cstmrs.Customer_Name </b><i class="fa fa-flag-checkered mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i></h3>
+                            <div class="w3ls-agent-info border-top pt-4 mb-4" style="padding-top:1.0rem !important;margin-bottom:1.0rem !important;border-top:1px solid #dee2e6 !important">
+                                <ul style="margin:0;padding:0">
+                                    <li style="display:block;font-size:16px">
+                                        <i class="glyphicon glyphicon-user mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i><b>Customer Keycode: @cstmrs.Token_number</b>
+                                    </li>
+                                    <li class="text-dark my-3" style="margin-bottom:1rem !important;margin-top:1rem !important;display:block;font-size:16px">
+                                        <i class="fa fa-phone mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i><b> @cstmrs.Phone_number</b>
+                                    </li>
+                                    <li class="text-dark my-3" style="margin-bottom:1rem !important;margin-top:1rem !important;display:block;font-size:16px">
+                                        <i class="fa fa-address-card mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i><b> @cstmrs.Address</b>
+                                    </li>
+                                    <li class="switch" id="mySelect" style="display:block;font-size:16px">
+                                        Approve to active :
+                                        @if (cstmrs.IsActive == true)
+                                        {
+                                            ViewBag.token = cstmrs.Token_number;
+
+
+                                            <input type="checkbox" checked data-toggle="toggle" data-on="Active" id="chk1" value="@cstmrs.Token_number" onchange="myFunction(this.value);" data-off="Not Active" data-offstyle="danger">
+
+                                        }
+                                        else
+                                        {
+                                            <input type="checkbox" data-toggle="toggle" data-on="Active" id="chk2" value="@cstmrs.Token_number" onchange="myFunction(this.value);" data-off="Not Active" data-offstyle="danger">
+
+                                        }
+                                    </li>
+                                    <br />
+                                    <li style="display:block;font-size:16px">
+                                        <i class="fa fa-envelope mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i>
+                                        <a href="mailto:@cstmrs.Email" class="text-dark"><b> @cstmrs.Email</b></a>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+
+                        @*</div>*@
+                    </div>
+                </div>
+            }
+
+        </div>
+
+
+
+        <div class="clearfix"></div>
+    </div>
+
+    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, keyword = Request.QueryString["keyword"] }), new PagedListRenderOptions()
+    {
+        Display = PagedListDisplayMode.IfNeeded,
+        DisplayPageCountAndCurrentLocation = true,
+        DisplayItemSliceAndTotal = true
+    })
+
+</div>
+
+<script type="text/javascript">
+    function myFunction(val) {
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8087/api/Customer/PostActivate",
+            cache: false,
+            data: JSON.stringify({ Token_number: val }),
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+
+            success: function (data, textStatus, xhr) {
+
+                //alert("Change successfully");
+
+            },
+
+            error: function (xhr, textStatus, errorThrown) {
+
+                alert('Sorry! something error. Please try again');
+
+            }
+
+        });
+
+    }
+</script>

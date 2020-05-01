@@ -1,0 +1,497 @@
+﻿@model EasyBilling.Models.Products_For_Sale
+
+@{
+    ViewBag.Title = "Product creation";
+
+}
+
+<!-- Custom Theme files -->
+<link rel="stylesheet" href="~/UI styles/Products/css/jquery-ui.css" />
+<link href="~/UI styles/Products/css/StyleSheet1.css" rel='stylesheet' type='text/css' />
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<!--fonts-->
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<link href="//fonts.googleapis.com/css?family=Poppins:100,100i,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&amp;subset=devanagari,latin-ext" rel="stylesheet">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<link rel="stylesheet" href="/resources/demos/style.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+@*<link href="//fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700,800" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600" rel="stylesheet">*@
+<!--//fonts-->
+<!--background-->
+
+<div class="modal fade " tabindex="-1" id="loginModal" data-keyboard="true" data-backdrop="">
+    <div class="modal-dialog modal-sm" style="width:30%">
+        <div class="modal-content " style="width:450px">
+            <div class="modal-header" style="background-color:black">
+                <button type="button" style="color:darkorange" class="close" data-dismiss="modal">
+                    &times;
+                </button>
+                <h3 style="color:yellow"><b> Calculation Summary </b></h3>
+
+            </div>
+            @*<div class="modal-body">*@
+            <div class="modal-content">
+
+                <div class="col-md-5 col-sm-7 single-right-left ">
+                    <br />
+                    <div class="grid images_3_of_2">
+                        <div class="flexslider">
+
+                            <div class="thumb-image">
+                                <img src="~/UI styles/Test UI/images/tyre.png" data-imagezoom="true" class="img-responsive" alt="">
+                            </div>
+
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-7 col-sm-9 single-right-left simpleCart_shelfItem">
+                    <br />
+                    <h3><b>All Totals </b></h3>
+
+                    <p>
+
+                        <label><b> Total amount: <span class="item_price ttlamtppup"></span></b></label>
+                        <label>Total tax: <span class="item_price ttltxppup"></span></label>
+                        <label>Amount(Inc.tax): <span class="item_price amtinctxppup"></span></label>
+                        <label>Total discount: <span class="item_price ttldscntppup"></span></label>
+                        <label>Grand total: <span class="item_price grndttlppup"></span></label>
+                    </p>
+
+                </div>
+            </div>
+            @*</div>*@
+            <div class="modal-footer">
+
+                <button type="button" class="btn btn-primary"
+                        data-dismiss="modal">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="ttlamtppup"></div>
+<div class="bckapply w3-animate-top" style="animation-duration:2s">
+    <h1 class="title-agile text-center">New tyre Entry/Purchase...</h1>
+    <br />
+    @*<h1 class="mn">Found Pet Details Form</h1>*@
+    <div class="main-w3layouts-content">
+
+        <div class="w3-agile-login-form">
+            @*@using (Html.BeginForm())
+                {*@
+            <div class="modal fade" tabindex="-1" id="prcdok" data-keyboard="true" data-backdrop="">
+                <div class="modal-dialog modal-sm" style="width:30%">
+                    <div class="modal-content " style="width:450px">
+                        <div class="modal-header" style="background-color:black">
+                            <button type="button" style="color:darkorange" class="close" data-dismiss="modal">
+                                &times;
+                            </button>
+                            <h3 style="color:yellow"><b> Payment Enrollment </b></h3>
+
+                        </div>
+                        @*<div class="modal-body">*@
+                        <div class="modal-content">
+
+                            <div class="col-md-5 col-sm-7 single-right-left ">
+                                <br />
+                                <div class="grid images_3_of_2">
+                                    <div class="flexslider">
+
+                                        <h4><b>Are you sure for payment? </b></h4>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-primary"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" id="submitproceed" class="btn btn-primary"
+                                    data-dismiss="modal">
+                                Proceed
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade " tabindex="-1" id="ProceedModel" data-keyboard="true" data-backdrop="">
+                <div class="modal-dialog modal-sm" style="width:30%">
+                    <div class="modal-content " style="width:450px">
+
+                        @*<div class="modal-body">*@
+                        <div class="modal-content">
+
+                            <div class="col-md-12 col-sm-7 single-right-left ">
+                                <br />
+                                <div class="grid images_3_of_2">
+                                    <div class="flexslider" style="overflow-y:scroll;overflow-x:scroll;height:90px;width:420px">
+
+                                        @*<div class="thumb-image">
+                                                <img src="~/UI styles/images/Easybillingimage.jpg" data-imagezoom="true" class="img-responsive" alt="">
+
+                                            </div>*@
+                                        <div class="col-md-5" style="text-align:left"><label> Cash In Hand: </label></div>
+                                        <div class="col-md-7"><input type="text" placeholder="Enter amount" class="cih" style="padding:0px 0px 0px 0px;color:black" onchange="calpayment()" /></div>
+                                        <div class="col-md-5" style="text-align:left"><label> Pay By Card: </label></div>
+                                        <div class="col-md-7"><input type="text" placeholder="Enter amount" class="pbc" style="padding:0px 0px 0px 0px;color:black" onchange="calpayment()" /></div>
+                                        <div class="col-md-4" style="text-align:left"><label> By Check: </label></div>
+                                        <div class="col-md-4"><input type="text" placeholder="Cheque No." style="padding:0px 0px 0px 0px;color:black" /></div>
+                                        <div class="col-md-4"><input type="text" placeholder="Enter amount" class="pbch" style="padding:0px 0px 0px 0px;color:black" onchange="calpayment()" /></div>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                    <br />
+                                    <div class="col-md-5" style="text-align:left"><label>Total: (Rs.)</label></div>
+                                    <div class="col-md-7"><span class="item_price grndttlppup" style="padding:0px 0px 0px 0px;"></span></div>
+                                    <br /><br />
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-primary"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary prcd" data-toggle="modal" data-target="#prcdok" data-dismiss="modal"
+                                    onclick="calpayment()">
+                                Proceed <i class="fa fa-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="col-md-12 col-sm-7">
+                <div style="float:left" class="col-md-2 col-sm-3">
+                    <input type="checkbox" checked data-toggle="toggle" data-on="Products" id="myCheck" onchange="addbox();" data-off="Purchase" data-offstyle="success">
+                </div>
+                <div class="col-md-3 col-sm-3">
+                    <div class="input-fields-w3ls">
+
+                        <input type="text" placeholder="Purchse number" class="form-control purchno" value="@ViewBag.lstid" disabled />
+
+                    </div>
+                </div>
+                <div style="float:left" class="col-md-3 col-sm-4">
+                    <div class="input-fields-w3ls" id="dlr">
+
+                        @Html.DropDownListFor(model => model.Product_name, new SelectList(@ViewBag.dlr, "Token_number", "Name"),
+                       "---Select Supplier---", new { @class = "form-control dlr", @onchange = "calculate()" })
+
+                    </div>
+
+                </div>
+                <div class="col-md-3 col-sm-2">
+                    <div class="input-fields-w3ls" id="rptshow">
+
+                        <label style="color:#ffd877">Generate report</label>
+                        <input type="checkbox" checked data-toggle="toggle" data-on="Yes" id="rptgnrt" data-off="No" data-offstyle="danger">
+
+                    </div>
+                </div>
+
+
+
+            </div>
+            <br /><br /><br />
+            <div class="col-md-12 col-sm-12 col-xs-12">
+
+                <div class="input-fields-w3ls col-md-4 col-sm-7 col-xs-12;" style="float:right;width:280px">
+                    @{
+                        var crntdt = DateTime.Now.Date.ToLongDateString();
+                    }
+                    <input type="text" placeholder="Date" class="form-control dt" value="@crntdt" disabled />
+
+                </div>
+
+
+            </div>
+            <div id="mainrow">
+                <h3 class="inner-hdng-agileinfo">tyre information</h3>
+                <div class="top-fields-wthree">
+                    <div class="input-fields-w3ls">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control nm", @placeholder = "tyre name" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls5">
+                        @Html.DropDownListFor(model => model.Product_name, new SelectList(@ViewBag.prdct, "Token_Number", "Product_name"),
+                                                        "Select catagory", new { @class = "form-control pp", @onchange = "calculate()" })
+                        @*@Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control", @placeholder = "select product" } })*@
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls4">
+                        @Html.EditorFor(model => model.Tax_rate, new { htmlAttributes = new { @class = "form-control txrt", @placeholder = "Tax rate", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls5">
+                        @Html.EditorFor(model => model.HSN_SAC_Code, new { htmlAttributes = new { @class = "form-control hsn", @placeholder = "HSN Code", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                    </div>
+
+
+                </div>
+                <div class="mid-fields-agileits-w3layouts">
+                    <div class="input-fields-w3ls">
+
+
+                        @Html.EditorFor(model => model.Subcategory, new { htmlAttributes = new { @class = "form-control Subcategory ", @placeholder = "Any subcategory?", @onkeypress = "return autocomplete(event)" } })
+                        @Html.ValidationMessageFor(model => model.Subcategory, "", new { @class = "text-danger" })
+                       
+                    </div>
+                    <div class="input-fields-w3ls hidden">
+                        @*@Html.EditorFor(model => model.Image_path, new { htmlAttributes = new { @class = "form-control Image", @placeholder = "Any image?", @type = "file" } })*@
+
+                        <input type="file" id="Image" class="form-control Image" name="Image" />
+                    </div>
+
+                    <div class="input-fields-w3ls4">
+                        @Html.EditorFor(model => model.Author_name, new { htmlAttributes = new { @class = "form-control Auname", @id = "dscnt", @placeholder = "Company name" } })
+                        @Html.ValidationMessageFor(model => model.Author_name, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls">
+                        @Html.EditorFor(model => model.Publisher_name, new { htmlAttributes = new { @class = "form-control Puname", @placeholder = "Manufacturer name" } })
+                        @Html.ValidationMessageFor(model => model.Publisher_name, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+                <div class="mid-fields-agileits-w3layouts">
+                    <div class="input-fields-w3ls4">
+                        @Html.DropDownListFor(model => model.Sell_On, new List<SelectListItem> {new SelectListItem { Value = "Pieces" , Text = "Pieces" },
+new SelectListItem { Value = "Weight" , Text = "Weight" },
+new SelectListItem { Value = "Plate" , Text = "Plate" }
+   }, "Sell on", new { @class = "form-control sllon" })
+
+                        @*@Html.EditorFor(model => model.Sell_On, new { htmlAttributes = new { @class = "form-control", @placeholder = "sell on" } })*@
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls4">
+                        @Html.EditorFor(model => model.StockIn, new { htmlAttributes = new { @class = " form-control stkin", @placeholder = "Stock In", @onchange = "calculate()", @required = "required" } })
+                        @Html.ValidationMessageFor(model => model.StockIn, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls4">
+                        @Html.EditorFor(model => model.Pieces, new { htmlAttributes = new { @class = "form-control pcs", @placeholder = "Pieces", @type = "text", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls4">
+                        @Html.EditorFor(model => model.Weight, new { htmlAttributes = new { @class = " form-control wt", @placeholder = "Weight", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.HSN_SAC_Code, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="input-fields-w3ls4">
+                        @Html.EditorFor(model => model.Unit, new { htmlAttributes = new { @class = "form-control unt", @placeholder = "Unit" } })
+                        @Html.ValidationMessageFor(model => model.HSN_SAC_Code, "", new { @class = "text-danger" })
+
+                    </div>
+                </div>
+
+                <div class="mid-fields-agileits-w3layouts">
+                    <div class="input-fields-w3ls6">
+                        @Html.EditorFor(model => model.Amount, new { htmlAttributes = new { @class = "form-control amt", @placeholder = "Amount", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.HSN_SAC_Code, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls">
+                        @Html.EditorFor(model => model.Amout_after_tax, new { htmlAttributes = new { @class = "form-control amaftrtx", @placeholder = "Amount(Inc.tax)", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.HSN_SAC_Code, "", new { @class = "text-danger" })
+
+                    </div>
+
+                    <div class="input-fields-w3ls4">
+                        @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control dscnt", @id = "dscnt", @placeholder = "Discount", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.HSN_SAC_Code, "", new { @class = "text-danger" })
+
+                    </div>
+                    <div class="input-fields-w3ls">
+                        @Html.EditorFor(model => model.Total, new { htmlAttributes = new { @class = "form-control ttl", @placeholder = "Total", @onchange = "calculate()" } })
+                        @Html.ValidationMessageFor(model => model.HSN_SAC_Code, "", new { @class = "text-danger" })
+
+                    </div>
+
+                </div>
+                <input type="button" value="+" style="width:80px" class="btn btn-success addfst" />
+                <input type="button" value="-" style="width:80px" class="btn btn-danger removefst" />
+            </div>
+            <div id="orderdetailsItems">
+
+            </div>
+
+            <input type="button" data-target="#loginModal" class="smrry" data-toggle="modal" value="Calculation Summary" style="float:right; width:210px ;
+                 padding:13px 0; margin-top:15px; letter-spacing:1px;border:2px solid #ffd877; font-weight:600;background-color:#ffd877" />
+            <input type="button" data-target="#ProceedModel" class="smrrypymnt" data-toggle="modal" value="Payment" style="float:left; width:210px ;
+                 padding:13px 0; margin-top:15px; letter-spacing:1px;border:2px solid #e5f609; font-weight:600;background-color:#000000;color:#e5f609" />
+
+            <input type="submit" id="submit" value="Submit">
+            @*}*@
+        </div>
+
+    </div>
+
+    <br /><br />
+</div>
+
+<div class="clear"></div>
+<br /><br /><br />
+
+<!-- JavaScript plugins -->
+<script type="text/javascript" src="~/UI styles/Products/js/jquery-2.2.3.min.js"></script>
+
+<script src="~/Scripts/productadd.js"></script>
+<!-- Calendar -->
+<script src="~/UI styles/Products/js/jquery-ui.js"></script>
+<script>
+    $(function () {
+        $("#datepicker,#datepicker1,#datepicker2,#datepicker3").datepicker();
+    });
+</script>
+
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+
+    $('#mainrow').find('.sllon').on('change', function () {
+        var stkin1 = $('#mainrow').find('.stkin').val();
+        var sllupn = $('#mainrow').find('.sllon').val();
+
+        if (sllupn == "Pieces") {
+            $('#mainrow').find('.wt').hide();
+            $('#mainrow').find('.pcs').show();
+            $('#mainrow').find('.unt').val(sllupn);
+
+            $('#mainrow').find('.stkin').val((stkin1 * 1).toFixed(0));
+        } else if (sllupn == "Weight") {
+            $('#mainrow').find('.pcs').hide();
+            $('#mainrow').find('.wt').show();
+            $('#mainrow').find('.unt').val(sllupn);
+            $('#mainrow').find('.stkin').val((stkin1 * 1).toFixed(3));
+        } else if (sllupn == "Plate") {
+            $('#mainrow').find('.wt').hide();
+            $('#mainrow').find('.pcs').show();
+            $('#mainrow').find('.unt').val(sllupn);
+            $('#mainrow').find('.stkin').val((stkin1 * 1).toFixed(0));
+        } else {
+
+        }
+
+
+    });
+
+    $('#mainrow').find('.pp').on('change', function ()
+    {
+        var prdcttkn = $('.pp').val();
+
+        if (prdcttkn == "") {
+            prdcttkn = "0000";
+        }
+        $.ajax
+        ({
+            type: 'POST',
+            url: '@Url.Action("GetProducts")',
+                dataType: 'json',
+                data: { 'id': prdcttkn},
+
+            success: function(data)
+            {
+
+                $('#mainrow').find('.hsn').val(data.HSN_SAC_Code);
+                $('#mainrow').find('.txrt').val(data.Tax_rate);
+                $('#mainrow').find('.txrt').val(parseFloat($('#mainrow').find('.txrt').val()).toFixed(2));
+
+            },
+            error: function(ex)
+            {
+                $('#mainrow').find('.hsn').val('');
+                $('#mainrow').find('.txrt').val('');
+            //var r = jQuery.parseJSON(response.responseText);
+            //alert("Message: " + r.Message);
+            }
+            });
+            return false;
+    });
+
+
+</script>
+<script>
+    $('.smrry, .smrrypymnt').on('click', function () {
+
+        if ($('#mainrow').find('.amt').val() == "") {
+
+            var ttlamtppup = "0.00";
+            var ttltxppup = "0.00";
+            var amtinctxppup = "0.00";
+            var ttldscntppup = "0.00";
+            var grndttlppup = "0.00";
+        } else {
+
+            var ttlamtppup = $('#mainrow').find('.amt').val();
+            var ttltxppup = $('#mainrow').find('.amaftrtx').val() - $('#mainrow').find('.amt').val();
+            var amtinctxppup = $('#mainrow').find('.amaftrtx').val();
+            var ttldscntppup = $('#mainrow').find('.dscnt').val();
+            var grndttlppup = $('#mainrow').find('.ttl').val();
+        }
+        $('#orderdetailsItems div.nwdv').each(function (index, ele) {
+
+            var i = index + 1;
+
+            if ($('.remove' + i).find('.amt').val() != "") {
+                ttlamtppup = (parseFloat(ttlamtppup) + parseFloat($('.remove' + i).find('.amt').val())).toFixed(2);
+                ttltxppup = (parseFloat(ttltxppup) + parseFloat($('.remove' + i).find('.amaftrtx').val() - $('.remove' + i).find('.amt').val())).toFixed(2);
+                amtinctxppup = (parseFloat(amtinctxppup) + parseFloat($('.remove' + i).find('.amaftrtx').val())).toFixed(2);
+                ttldscntppup = (parseFloat(ttldscntppup) + parseFloat($('.remove' + i).find('.dscnt').val())).toFixed(2);
+                grndttlppup = (parseFloat(grndttlppup) + parseFloat($('.remove' + i).find('.ttl').val())).toFixed(2);
+            }
+
+        });
+
+        if (ttlamtppup == "" && ttltxppup == "" && amtinctxppup == "" && ttldscntppup == "" && grndttlppup == "") {
+            $("span.ttlamtppup").text("0.00");
+            $("span.ttltxppup").text("0.00");
+            $("span.amtinctxppup").text("0.00");
+            $("span.ttldscntppup").text("0.00");
+            $("span.grndttlppup").text("0.00");
+        }
+        else {
+            $("span.ttlamtppup").text(ttlamtppup);
+            $("span.ttltxppup").text(ttltxppup);
+            $("span.amtinctxppup").text(amtinctxppup);
+            $("span.ttldscntppup").text(ttldscntppup);
+            $("span.grndttlppup").text(grndttlppup);
+            if ($("input.pbc").val() == "" && $("input.pbch").val() == "") {
+                $("input.cih").val(grndttlppup);
+            }
+        }
+    });
+
+</script>
+<!-- //Calendar -->
+<!--// JavaScript plugins -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
+<script src="~/Scripts/CalculationForProduct.js"></script>

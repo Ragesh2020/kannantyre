@@ -1,0 +1,100 @@
+﻿@model EasyBilling.Models.Marchent_Account
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Marchent_Account</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Marchent_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Marchent_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Telephone_No)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Telephone_No)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GSTIN_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GSTIN_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CIN_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CIN_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UIN_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UIN_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pan_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pan_Number)
+        </dd>
+
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stcd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stcd)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Token_number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

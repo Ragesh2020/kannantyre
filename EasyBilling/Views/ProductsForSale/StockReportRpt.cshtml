@@ -1,0 +1,116 @@
+﻿@model EasyBilling.Models.StockReportClass
+@{
+    ViewBag.Title = "StockReportRpt";
+}
+<style>
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+</style>
+<h2>StockReportRpt</h2>
+
+<select class="form-control form-control-sm" data-val="true" data-val-required="Expenses should be selected" id="ExpensesSelection" name="ExpensesSelection" style="width:30%">
+    <option value="">Select type of stockreport</option>
+    <option value="All">All</option>
+    <option value="Tyre">Tyre</option>
+    <option value="Tube">Tube</option>
+    <option value="Products">Products</option>
+
+
+</select>
+<script type="text/javascript">
+    $('#ExpensesSelection').change(function () {
+
+        if ($("#ExpensesSelection").val().toLowerCase() == "all") {
+            window.location.replace('http://localhost:8087/ProductsForSale/GetStockReportRpt?isall=true');
+        }
+        else if ($("#ExpensesSelection").val().toLowerCase() == "tyre") {
+            $('#frmtyre').removeClass('hide');
+            $('#frmProduct').addClass('hide');
+
+            $('#frmTube').addClass('hide');
+        } else if ($("#ExpensesSelection").val().toLowerCase() == "tube") {
+            $('#frmTube').removeClass('hide');
+            $('#frmProduct').addClass('hide');
+            $('#frmtyre').addClass('hide');
+
+        } else if ($("#ExpensesSelection").val().toLowerCase() == "products") {
+            $('#frmProduct').removeClass('hide');
+
+            $('#frmtyre').addClass('hide');
+            $('#frmTube').addClass('hide');
+        } else {
+            $('#frmProduct').addClass('hide');
+            $('#frmtyre').addClass('hide');
+            $('#frmTube').addClass('hide');
+        }
+    });
+</script>
+
+
+<div class="row">
+    <form method="get" action="~/ProductsForSale/GetStockReportRpt" id="frmProduct" style="width:600px;" class="hide">
+
+        <div class="form-group col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <label for="message-text" class="control-label">Select product type:</label>
+            @Html.DropDownListFor(model => model.Product_type, new List<SelectListItem>
+      {new SelectListItem { Value = "All" , Text = "All" }, new SelectListItem { Value = "Product" , Text = "Product" },
+
+      new SelectListItem { Value = "Services" , Text = "Services" },new SelectListItem { Value = "Raw Material" , Text = "Raw Material" },},
+                                 "Select product type", new {  @class="form-control form-control-sm", @style="width:80%" , @id = "Product_type", @name = "Product_type" })
+
+        </div>
+        <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button type="submit" class="btn-sm">Download</button>
+        </div>
+    </form>
+    <form method="get" action="~/ProductsForSale/GetStockReportRpt" id="frmTube" style="width:600px;" class="hide">
+
+        <div class="form-group col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <label for="message-text" class="control-label">Select product type:</label>
+            @Html.DropDownListFor(model => model.Tubes, new List<SelectListItem>
+      {new SelectListItem { Value = "All" , Text = "All" },},
+                                 "Select tube", new {  @class="form-control form-control-sm", @style="width:80%" , @id = "Tubes", @name = "Tubes" })
+
+        </div>
+        <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button type="submit" class="btn-sm">Download</button>
+        </div>
+    </form>
+    <form method="get" action="~/ProductsForSale/GetStockReportRpt" id="frmtyre" style="width:600px;" class="hide">
+        <div class="form-group col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <label for="message-text" class="control-label">Select tyre make:</label>
+            @Html.DropDownListFor(model => model.Tyre_make, new List<SelectListItem> {new SelectListItem { Value = "All" , Text = "All" },
+           new SelectListItem { Value = "Old" , Text = "Old" },
+              new SelectListItem { Value = "New" , Text = "New" },new SelectListItem { Value = "Resole " , Text = "Resole " } },
+                                 "Select tyre make", new { @class="form-control form-control-sm", @style="width:80%", @id = "Tyre_make", @name = "Tyre_make" })
+
+        </div>
+        <div class="form-group col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <label for="message-text" class="control-label">Select tyre type:</label>
+            @Html.DropDownListFor(model => model.Tyre_type, new List<SelectListItem> {new SelectListItem { Value = "All" , Text = "All" },new SelectListItem { Value = "Tube" , Text = "Tube" },
+new SelectListItem { Value = "Tubeless" , Text = "Tubeless" } },
+                                   "Select tyre type", new {  @class="form-control form-control-sm", @style="width:80%" , @id = "Tyre_type", @name = "Tyre_type" })
+
+        </div>
+        <div class="form-group col-xs-7 col-sm-7 col-md-7 col-lg-7">
+            <label for="message-text" class="control-label">Select tyre feel:</label>
+            @Html.DropDownListFor(model => model.Tyre_feel, new List<SelectListItem> {new SelectListItem { Value = "All" , Text = "All" },new SelectListItem { Value = "Normal" , Text = "Normal" },
+new SelectListItem { Value = "Radial" , Text = "Radial" } },
+                                   "Select tyre feel", new { @class="form-control form-control-sm", @style="width:80%" , @id = "Tyre_feel", @name = "Tyre_feel" })
+
+        </div>
+
+
+        <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+            <button type="submit" class="btn-sm">Download</button>
+        </div>
+
+    </form>
+</div>

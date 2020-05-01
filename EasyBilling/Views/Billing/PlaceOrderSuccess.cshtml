@@ -1,0 +1,179 @@
+﻿
+@model EasyBilling.Models.Customer_shipping_address
+
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+<!--//tags -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="~/UI styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/font-awesome.css" rel="stylesheet">
+<!--pop-up-box-->
+<link href="~/UI styles/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<!--//pop-up-box-->
+<!-- price range -->
+<link rel="stylesheet" type="text/css" href="~/UI styles/css/jquery-ui1.css">
+<!-- fonts -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+
+<!-- top-header -->
+<div class="header-most-top w3-animate-right" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">
+    <div style="text-align:center">
+
+        <h4><b style="color:black"><u>Shipping Journey </u> &nbsp;<img style="text-align:center;" src="~/Images/complete-payment-banner._CB141834354_.gif" /></b></h4>
+    </div>
+
+</div>
+
+
+
+<!-- page -->
+<div class="services-breadcrumb w3-animate-left">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <b style="font-size:21px;font-weight:bold!important;font-family:Arial,sans-serif;text-transform:none;" class="text-success">Payment successfull</b>
+
+                </li>
+                <br />
+                <li>
+                    <b style="font-size:11px;font-family:Arial,sans-serif;text-transform:none"> Item will deliver your shipping address under 7 working days. Thank you. </b>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+<!-- top Products -->
+
+<div class="" style="background-color:white">
+    <br />
+    <div class="container" style="padding-bottom:10px">
+
+
+
+        <!-- //product left -->
+        <!-- product right -->
+        <div class="agileinfo-ads-display col-md-12 w3l-rightpro">
+            <div class="wrapper" id="wrapper">
+                <div style="color:black;padding-bottom:15px;">
+                    <h4><b>Order details</b></h4>
+                 
+                </div>
+                <div class="product-sec1">
+
+                    <div class="col-md-6 col-sm-6 col-xs-6 col-lg-6 product-men  w3-animate-left" style="font-family:Arial,sans-serif;font-size:15px;line-height:19px">
+                        <div><strong><u>Shipping Address</u> </strong></div>
+
+                        <ul style="list-style-type:none">
+
+                            <li>
+                                <span>@Model.First_name</span> <span>@Model.Last_name</span>
+
+                            </li>
+
+                            <li>
+                                <span>
+                                    @Model.Address_Line1
+                                </span>
+                            </li>
+                            @if (Model.Address_Line2 != "")
+                            {
+                                <li>
+                                    <span>@Model.Address_Line2</span>
+                                </li>
+
+                            }
+
+                            <li>
+                                <span>@Model.Town_City,</span>  <span>@Model.State-</span>  <span>@Model.Pin_code</span>
+                            </li>
+                            <li>
+                                <span>India</span>
+                            </li>
+                            <li>
+                                <span>@Model.Phone_number</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-2 col-lg-2 product-men  w3-animate-left" style="font-family:Arial,sans-serif;font-size:15px;line-height:19px">
+                        <div><strong><u>Payment method</u></strong></div>
+
+
+                        <ul style="list-style-type:none">
+
+                            <li>
+
+                                <span>@ViewBag.payment</span>
+                            </li>
+
+
+                        </ul>
+                    </div>
+
+                    <div class="col-md-4 col-sm-4 col-xs-4 col-lg-4 product-men  w3-animate-left" style="text-align:right;font-family:Arial,sans-serif;font-size:15px;line-height:19px">
+                        <div style="text-align:center"><strong style="text-align:center"><u>Order Summary</u></strong></div>
+                        @{
+
+                            if (@ViewBag.item != null)
+                            {
+
+                                var item = @ViewBag.item;
+
+                                <ul style="list-style-type:none">
+
+                                    <li class="col-md-12">
+                                        <span style="float:left"> Item's Name:</span>
+                                        <span style="float:right">@item.Name</span>
+                                    </li>
+                                    <li class="col-md-12">
+                                        <span style="float:left"> Price:</span>
+                                        <span style="float:right">Rs. @item.Total</span>
+                                    </li>
+                                    <li class="col-md-12" style="color:darkslategrey;">
+                                        <b>
+                                            <span style="float:left"> Total:</span>
+                                            <span style="float:right"> Rs.@item.Total</span>
+                                        </b>
+                                    </li>
+                                </ul>
+                            }
+                            if (@ViewBag.itemcart != null)
+                            {
+                                <ul style="list-style-type:none">
+                                    <li class="col-md-12">
+                                        <span style="float:left"> Subtotal:</span>
+                                       
+                                        <span style="float:right">Rs. @ViewBag.itemcart</span>
+                                    </li>
+                                    <li class="col-md-12" style="color:darkslategrey;">
+                                        <b>
+                                            <span style="float:left"> Total:</span>
+                                            <span style="float:right">Rs. @ViewBag.itemcart</span>
+                                        </b>
+                                    </li>
+                                </ul>
+                                    }
+                                    }
+                            </div>
+                    <div class="clearfix"></div>
+                </div>
+
+
+            </div>
+        </div>
+       
+        <!-- //product right -->
+    </div>
+  
+</div>
+<!-- //top products -->
+<!-- popup modal (for signin & signup)-->

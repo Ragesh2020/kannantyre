@@ -1,0 +1,813 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EasyBillingModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Barcode_Master">
+    <Key>
+      <PropertyRef Name="Barcode_Number" />
+    </Key>
+    <Property Name="Barcode_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Billing_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Billing_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <NavigationProperty Name="Billing_Master" Relationship="Self.FK_Barcode_Master_Billing_Master" FromRole="Barcode_Master" ToRole="Billing_Master" />
+  </EntityType>
+  <EntityType Name="Billing_Detail">
+    <Key>
+      <PropertyRef Name="Billing_details_number" />
+    </Key>
+    <Property Name="Billing_details_number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Billing_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Billing_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Product_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Pieces" Type="Int32" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Taxable_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount_percent" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Sub_Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Billing_Master" Relationship="Self.FK_Billing_Details_Billing_Details" FromRole="Billing_Details" ToRole="Billing_Master" />
+  </EntityType>
+  <EntityType Name="Billing_Master">
+    <Key>
+      <PropertyRef Name="Token_Number" />
+    </Key>
+    <Property Name="Token_Number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Billing_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Customer_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tax_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Total_tax" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate_including_tax" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount_percent" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total_discount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Barcode_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Barcode_photo" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="Payment_Statement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Barcode_Master" Relationship="Self.FK_Barcode_Master_Billing_Master" FromRole="Billing_Master" ToRole="Barcode_Master" />
+    <NavigationProperty Name="Billing_Details" Relationship="Self.FK_Billing_Details_Billing_Details" FromRole="Billing_Master" ToRole="Billing_Details" />
+    <NavigationProperty Name="Stockouts" Relationship="Self.FK_Stockout_Billing_Master" FromRole="Billing_Master" ToRole="Stockout" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Customer_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Alternate_phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Second_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Pan_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Credit_Card_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Credit_limit" Type="Double" Nullable="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Applied_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Approve_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="New_customer" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="State1" Relationship="Self.FK_Customer_State" FromRole="Customer" ToRole="State" />
+  </EntityType>
+  <EntityType Name="Customer_shipping_address">
+    <Key>
+      <PropertyRef Name="Customer_token_number" />
+    </Key>
+    <Property Name="Customer_token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="First_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Last_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address_Line1" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address_Line2" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Town_City" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Pin_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsUser" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dealer">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Dealer_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Isactive" Type="Boolean" Nullable="false" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="State1" Relationship="Self.FK_Dealer_State" FromRole="Dealer" ToRole="State" />
+    <NavigationProperty Name="Products_For_Sale" Relationship="Self.FK_Products_For_Sale_Dealer" FromRole="Dealer" ToRole="Products_For_Sale" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Office_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GST_number" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Pan_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Employee_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Employee_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Designation" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Joining_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Contact_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Salary" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Leaving_date" Type="DateTime" Precision="0" />
+    <Property Name="login_required" Type="Boolean" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Image_path" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Item_Tube">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tube_size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Company_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Item_Tube_Products" FromRole="Item_Tube" ToRole="Products" />
+    <Property Name="Item_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Size_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Tyre_size" Relationship="EasyBillingModel.FK_Item_Tube_Tyre_size" FromRole="Item_Tube" ToRole="Tyre_size" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Item_Tyre">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Item_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_feel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Company_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Company_name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_size" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_Item_Tyre_Products" FromRole="Item_Tyre" ToRole="Products" />
+    <NavigationProperty Name="Tyre_size1" Relationship="Self.FK_Item_Tyre_Tyre_size" FromRole="Item_Tyre" ToRole="Tyre_size" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK_Item_Tyre_Vehicle" FromRole="Item_Tyre" ToRole="Vehicle" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Manager_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State_Code" Type="Int32" />
+    <Property Name="Pan_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Verification_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Marchent_Account">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Marchent_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Telephone_No" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="GSTIN_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CIN_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="UIN_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="State_Code" Type="Int32" />
+    <Property Name="Pan_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Verification_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="License" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="State" Relationship="Self.FK_Marchent_Account_State" FromRole="Marchent_Account" ToRole="State" />
+  </EntityType>
+  <EntityType Name="Marchent_account_payment_detail">
+    <Key>
+      <PropertyRef Name="GLCODE" />
+    </Key>
+    <Property Name="GLCODE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Account_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Card_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Marchent_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Other_Product">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Product_type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Product_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Placed_Order">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Item_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Pieces" Type="Int32" Nullable="false" />
+    <Property Name="Orderplaced" Type="Boolean" Nullable="false" />
+    <Property Name="Customer_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsUser" Type="Boolean" Nullable="false" />
+    <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Ispaid" Type="Boolean" Nullable="false" />
+    <Property Name="Approve_Date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="Token_Number" />
+    </Key>
+    <Property Name="Token_Number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Product_Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Item_Tube" Relationship="Self.FK_Item_Tube_Products" FromRole="Products" ToRole="Item_Tube" />
+    <NavigationProperty Name="Item_Tyre" Relationship="Self.FK_Item_Tyre_Products" FromRole="Products" ToRole="Item_Tyre" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Products_For_Sale">
+    <Key>
+      <PropertyRef Name="Token_Number" />
+    </Key>
+    <Property Name="Token_Number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Product_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_Size" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Supplier_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Supplier_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Purchase_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Pieces" Type="Int32" Nullable="false" />
+    <Property Name="Selling_Price" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Amout_after_tax" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Approve_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Approve" Type="Boolean" Nullable="false" />
+    <Property Name="Administrator_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Administrator_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Delivery_contact_number" Type="Int64" Nullable="false" />
+    <Property Name="Delivery_address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Item_tyre_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Item_tyre_Id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Purchase_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Dealer" Relationship="Self.FK_Products_For_Sale_Dealer" FromRole="Products_For_Sale" ToRole="Dealer" />
+    <Property Name="Tyre_make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_feel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="requestsend" Type="Boolean" />
+    <Property Name="Selling_CGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Selling_SGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CGST_SGST_CHECK" Type="Boolean" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Approve_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Approve_user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Rate_update_user_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Rate_update_user_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Proprietor">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Proprietor_name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Email_Id" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State_Code" Type="Int32" />
+    <Property Name="Pan_Number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Verification_code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Purchase_detail">
+    <Key>
+      <PropertyRef Name="Purchase_details_number" />
+    </Key>
+    <Property Name="Purchase_details_number" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Purchase_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Purcahse_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Product_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Pieces" Type="Int32" Nullable="false" />
+    <Property Name="Quantity" Type="Decimal" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Taxable_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Tax_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tax" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount_percent" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Sub_Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <NavigationProperty Name="Purchase_Master" Relationship="Self.FK_Purchase_details_Purchase_Master" FromRole="Purchase_details" ToRole="Purchase_Master" />
+  </EntityType>
+  <EntityType Name="Purchase_Invoice">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Purchase_invoice_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Stock_entry_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Purchase_Master">
+    <Key>
+      <PropertyRef Name="Token_Number" />
+    </Key>
+    <Property Name="Token_Number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Purchase_Number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Dealer_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tax_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Total_tax" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate_including_tax" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount_percent" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total_discount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total_amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="UTGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Narration" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Purchase_details" Relationship="Self.FK_Purchase_details_Purchase_Master" FromRole="Purchase_Master" ToRole="Purchase_details" />
+    <NavigationProperty Name="Stocks" Relationship="Self.FK_Stock_Purchase_Master" FromRole="Purchase_Master" ToRole="Stock" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="State_Code" />
+    </Key>
+    <Property Name="State_Code" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="State_Identity" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CGST" Type="Boolean" Nullable="false" />
+    <Property Name="SGST" Type="Boolean" Nullable="false" />
+    <Property Name="UTGST" Type="Boolean" Nullable="false" />
+    <Property Name="IGST" Type="Boolean" Nullable="false" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_State" FromRole="State" ToRole="Customer" />
+    <NavigationProperty Name="Dealers" Relationship="Self.FK_Dealer_State" FromRole="State" ToRole="Dealer" />
+    <NavigationProperty Name="Marchent_Account" Relationship="Self.FK_Marchent_Account_State" FromRole="State" ToRole="Marchent_Account" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Stock_Id" />
+    </Key>
+    <Property Name="Stock_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Purchase_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Purcahse_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Remodify_Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Product_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Remodify_pcs" Type="Int32" Nullable="false" />
+    <Property Name="Pieces" Type="Int32" Nullable="false" />
+    <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Purchase_Master" Relationship="Self.FK_Stock_Purchase_Master" FromRole="Stock" ToRole="Purchase_Master" />
+  </EntityType>
+  <EntityType Name="Stockout">
+    <Key>
+      <PropertyRef Name="Stock_out_Id" />
+    </Key>
+    <Property Name="Stock_out_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Billing_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Billing_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Product_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Pieces" Type="Int32" Nullable="false" />
+    <Property Name="CGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Sub_Total" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Billing_Master" Relationship="Self.FK_Stockout_Billing_Master" FromRole="Stockout" ToRole="Billing_Master" />
+  </EntityType>
+  <EntityType Name="Tax_Group">
+    <Key>
+      <PropertyRef Name="Tax_Token" />
+    </Key>
+    <Property Name="Tax_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tax_Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tax_Rate" Type="Double" Nullable="false" />
+    <Property Name="GL_CODE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Temp_placedorder">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Item_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Pieces" Type="Int32" />
+    <Property Name="Customer_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="IsUser" Type="Boolean" Nullable="false" />
+    <Property Name="Order_Date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Transaction_amount_detail">
+    <Key>
+      <PropertyRef Name="Token_Number" />
+    </Key>
+    <Property Name="Token_Number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Marchent_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Purchase_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Purchase_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Sale_invoice_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Sale_invoice_number" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="GL_CODE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Card_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Cheque_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Tyre_size">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Tyre_size1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="With_tube" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Item_Tyre" Relationship="Self.FK_Item_Tyre_Tyre_size" FromRole="Tyre_size" ToRole="Item_Tyre" />
+    <NavigationProperty Name="Item_Tube" Relationship="EasyBillingModel.FK_Item_Tube_Tyre_size" FromRole="Tyre_size" ToRole="Item_Tube" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Alternate_phone_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="Int32" />
+    <Property Name="State_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Second_Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="Marchent_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Applied_date" Type="DateTime" Nullable="false" Precision="0" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Token_number" />
+    </Key>
+    <Property Name="Token_number" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Vehicle_type" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_make" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Item_Tyre" Relationship="Self.FK_Item_Tyre_Vehicle" FromRole="Vehicle" ToRole="Item_Tyre" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="User_Id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="User_name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_Barcode_Master_Billing_Master">
+    <End Role="Billing_Master" Type="Self.Billing_Master" Multiplicity="0..1" />
+    <End Role="Barcode_Master" Type="Self.Barcode_Master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billing_Master">
+        <PropertyRef Name="Token_Number" />
+      </Principal>
+      <Dependent Role="Barcode_Master">
+        <PropertyRef Name="Billing_Token_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Billing_Details_Billing_Details">
+    <End Role="Billing_Master" Type="Self.Billing_Master" Multiplicity="0..1" />
+    <End Role="Billing_Details" Type="Self.Billing_Detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billing_Master">
+        <PropertyRef Name="Token_Number" />
+      </Principal>
+      <Dependent Role="Billing_Details">
+        <PropertyRef Name="Billing_Token_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stockout_Billing_Master">
+    <End Role="Billing_Master" Type="Self.Billing_Master" Multiplicity="0..1" />
+    <End Role="Stockout" Type="Self.Stockout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billing_Master">
+        <PropertyRef Name="Token_Number" />
+      </Principal>
+      <Dependent Role="Stockout">
+        <PropertyRef Name="Billing_Token_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State_Code" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dealer_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="Dealer" Type="Self.Dealer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State_Code" />
+      </Principal>
+      <Dependent Role="Dealer">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products_For_Sale_Dealer">
+    <End Role="Dealer" Type="Self.Dealer" Multiplicity="0..1" />
+    <End Role="Products_For_Sale" Type="Self.Products_For_Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealer">
+        <PropertyRef Name="Token_number" />
+      </Principal>
+      <Dependent Role="Products_For_Sale">
+        <PropertyRef Name="Supplier_token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Tube_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Item_Tube" Type="Self.Item_Tube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Token_Number" />
+      </Principal>
+      <Dependent Role="Item_Tube">
+        <PropertyRef Name="Company_token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Tyre_Products">
+    <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+    <End Role="Item_Tyre" Type="Self.Item_Tyre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Token_Number" />
+      </Principal>
+      <Dependent Role="Item_Tyre">
+        <PropertyRef Name="Company_token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Tyre_Tyre_size">
+    <End Role="Tyre_size" Type="Self.Tyre_size" Multiplicity="0..1" />
+    <End Role="Item_Tyre" Type="Self.Item_Tyre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tyre_size">
+        <PropertyRef Name="Token_number" />
+      </Principal>
+      <Dependent Role="Item_Tyre">
+        <PropertyRef Name="Tyre_token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item_Tyre_Vehicle">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+    <End Role="Item_Tyre" Type="Self.Item_Tyre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Token_number" />
+      </Principal>
+      <Dependent Role="Item_Tyre">
+        <PropertyRef Name="Vehicle_token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Marchent_Account_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="Marchent_Account" Type="Self.Marchent_Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State_Code" />
+      </Principal>
+      <Dependent Role="Marchent_Account">
+        <PropertyRef Name="State_Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase_details_Purchase_Master">
+    <End Role="Purchase_Master" Type="Self.Purchase_Master" Multiplicity="0..1" />
+    <End Role="Purchase_details" Type="Self.Purchase_detail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase_Master">
+        <PropertyRef Name="Token_Number" />
+      </Principal>
+      <Dependent Role="Purchase_details">
+        <PropertyRef Name="Purchase_Token_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Purchase_Master">
+    <End Role="Purchase_Master" Type="Self.Purchase_Master" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase_Master">
+        <PropertyRef Name="Token_Number" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="Purchase_Token_number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EasyBillingEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Barcode_Masters" EntityType="Self.Barcode_Master" />
+    <EntitySet Name="Billing_Details" EntityType="Self.Billing_Detail" />
+    <EntitySet Name="Billing_Masters" EntityType="Self.Billing_Master" />
+    <EntitySet Name="Customers" EntityType="Self.Customer" />
+    <EntitySet Name="Customer_shipping_addresses" EntityType="Self.Customer_shipping_address" />
+    <EntitySet Name="Dealers" EntityType="Self.Dealer" />
+    <EntitySet Name="Employees" EntityType="Self.Employee" />
+    <EntitySet Name="Item_Tubes" EntityType="Self.Item_Tube" />
+    <EntitySet Name="Item_Tyres" EntityType="Self.Item_Tyre" />
+    <EntitySet Name="Managers" EntityType="Self.Manager" />
+    <EntitySet Name="Marchent_Accounts" EntityType="Self.Marchent_Account" />
+    <EntitySet Name="Marchent_account_payment_details" EntityType="Self.Marchent_account_payment_detail" />
+    <EntitySet Name="Other_Products" EntityType="Self.Other_Product" />
+    <EntitySet Name="Placed_Orders" EntityType="Self.Placed_Order" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <EntitySet Name="Products_For_Sales" EntityType="Self.Products_For_Sale" />
+    <EntitySet Name="Proprietors" EntityType="Self.Proprietor" />
+    <EntitySet Name="Purchase_details" EntityType="Self.Purchase_detail" />
+    <EntitySet Name="Purchase_Invoices" EntityType="Self.Purchase_Invoice" />
+    <EntitySet Name="Purchase_Masters" EntityType="Self.Purchase_Master" />
+    <EntitySet Name="States" EntityType="Self.State" />
+    <EntitySet Name="Stocks" EntityType="Self.Stock" />
+    <EntitySet Name="Stockouts" EntityType="Self.Stockout" />
+    <EntitySet Name="Tax_Groups" EntityType="Self.Tax_Group" />
+    <EntitySet Name="Temp_placedorder" EntityType="Self.Temp_placedorder" />
+    <EntitySet Name="Transaction_amount_details" EntityType="Self.Transaction_amount_detail" />
+    <EntitySet Name="Tyre_sizes" EntityType="Self.Tyre_size" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+    <AssociationSet Name="FK_Barcode_Master_Billing_Master" Association="Self.FK_Barcode_Master_Billing_Master">
+      <End Role="Billing_Master" EntitySet="Billing_Masters" />
+      <End Role="Barcode_Master" EntitySet="Barcode_Masters" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Billing_Details_Billing_Details" Association="Self.FK_Billing_Details_Billing_Details">
+      <End Role="Billing_Master" EntitySet="Billing_Masters" />
+      <End Role="Billing_Details" EntitySet="Billing_Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stockout_Billing_Master" Association="Self.FK_Stockout_Billing_Master">
+      <End Role="Billing_Master" EntitySet="Billing_Masters" />
+      <End Role="Stockout" EntitySet="Stockouts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_State" Association="Self.FK_Customer_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Customer" EntitySet="Customers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dealer_State" Association="Self.FK_Dealer_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Dealer" EntitySet="Dealers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products_For_Sale_Dealer" Association="Self.FK_Products_For_Sale_Dealer">
+      <End Role="Dealer" EntitySet="Dealers" />
+      <End Role="Products_For_Sale" EntitySet="Products_For_Sales" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Tube_Products" Association="Self.FK_Item_Tube_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Item_Tube" EntitySet="Item_Tubes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Tyre_Products" Association="Self.FK_Item_Tyre_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Item_Tyre" EntitySet="Item_Tyres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Tyre_Tyre_size" Association="Self.FK_Item_Tyre_Tyre_size">
+      <End Role="Tyre_size" EntitySet="Tyre_sizes" />
+      <End Role="Item_Tyre" EntitySet="Item_Tyres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Tyre_Vehicle" Association="Self.FK_Item_Tyre_Vehicle">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="Item_Tyre" EntitySet="Item_Tyres" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Marchent_Account_State" Association="Self.FK_Marchent_Account_State">
+      <End Role="State" EntitySet="States" />
+      <End Role="Marchent_Account" EntitySet="Marchent_Accounts" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase_details_Purchase_Master" Association="Self.FK_Purchase_details_Purchase_Master">
+      <End Role="Purchase_Master" EntitySet="Purchase_Masters" />
+      <End Role="Purchase_details" EntitySet="Purchase_details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Purchase_Master" Association="Self.FK_Stock_Purchase_Master">
+      <End Role="Purchase_Master" EntitySet="Purchase_Masters" />
+      <End Role="Stock" EntitySet="Stocks" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item_Tube_Tyre_size" Association="EasyBillingModel.FK_Item_Tube_Tyre_size">
+      <End Role="Tyre_size" EntitySet="Tyre_sizes" />
+      <End Role="Item_Tube" EntitySet="Item_Tubes" />
+    </AssociationSet>
+    <EntitySet Name="Temp_Stock" EntityType="EasyBillingModel.Temp_Stock" />
+  </EntityContainer>
+  <Association Name="FK_Item_Tube_Tyre_size">
+    <End Type="EasyBillingModel.Tyre_size" Role="Tyre_size" Multiplicity="0..1" />
+    <End Type="EasyBillingModel.Item_Tube" Role="Item_Tube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tyre_size">
+        <PropertyRef Name="Token_number" />
+      </Principal>
+      <Dependent Role="Item_Tube">
+        <PropertyRef Name="Size_token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Temp_Stock">
+    <Key>
+      <PropertyRef Name="Token_Number" />
+    </Key>
+    <Property Name="Token_Number" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Product_Token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="true" />
+    <Property Name="Product_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_Size" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Supplier_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Supplier_name" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Purchase_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="CGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="SGST" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Pieces" Type="Int32" Nullable="false" />
+    <Property Name="Selling_Price" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Amout_after_tax" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Total" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+    <Property Name="Approve_date" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Approve" Type="Boolean" Nullable="false" />
+    <Property Name="Administrator_Token_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Administrator_name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Delivery_contact_number" Type="Int64" Nullable="false" />
+    <Property Name="Delivery_address" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Item_tyre_token" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Item_tyre_Id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Purchase_number" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_Token" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Vehicle_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_make" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_feel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Tyre_type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Mac_id" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+    <Property Name="requestsend" Type="Boolean" />
+  </EntityType>
+</Schema>

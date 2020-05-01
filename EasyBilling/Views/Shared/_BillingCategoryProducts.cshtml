@@ -1,0 +1,194 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<EasyBilling.Models.Products_For_Sale>
+
+<div class="wrapper" id="wrapper">
+    <!-- first section -->
+    <div class="product-sec1">
+        @{
+            var count = 0;
+        }
+        @foreach (var prdcts in Model)
+        {
+            <div class="modal fade" tabindex="-1" id="loginModal" data-keyboard="true" data-backdrop="true">
+                <div class="modal-dialog modal-sm" style="position:absolute; width:40%;height:70%; top:80px;left:500px">
+                    <div class="modal-content " style="width:400px">
+                        <div class="modal-header" style="background-color:darkgray">
+                            <button type="button" class="close" data-dismiss="modal">
+                                &times;
+                            </button>
+                            <h4 class="modal-title loginmodelhdttl" style="color:black"><b> Summary of @prdcts.Name </b></h4>
+                        </div>
+                        @*<div class="modal-body">*@
+                        <div class="modal-content">
+
+                            <div class="col-md-5 col-sm-7 single-right-left ">
+                                <br />
+                                <div class="grid images_3_of_2">
+                                    <div class="flexslider">
+
+                                        <div class="thumb-image">
+                                            <img src="~/UI styles/Test UI/images/tyre.png" data-imagezoom="true" class="img-responsive" alt="">
+                                        </div>
+
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-7 col-sm-9 single-right-left simpleCart_shelfItem">
+                                <br />
+                                <h3 class="loginmodelbodytitl"><b>@prdcts.Name </b></h3>
+
+                                <p>
+                                    <label>
+                                        <span class="item_price loginmodelbodytotl">Rs. @prdcts.Total</span>
+                                    </label>
+
+                                    <label>Discount: <span class="item_price loginmodelbodydis">Rs. @prdcts.Discount</span></label>
+                                    <label>Other Details</label>
+                                </p>
+                                <div class="single-infoagile">
+                                    <ul>
+                                        <li>
+                                            Product code: <span class="loginmodelbodyprdctcd"> @prdcts.Product_Code </span>
+                                        </li>
+                                        <li>
+                                            HSN/SAC code: <span class="loginmodelbodyhsn"> @prdcts.HSN_SAC_Code </span>
+                                        </li>
+                                        <li>
+                                            Sell on: <span class="loginmodelbodysellon"> @prdcts.Sell_On </span>
+                                        </li>
+                                        <li>
+                                            Tax rate: <span class="loginmodelbodytxrt"> @prdcts.Tax_rate </span> (%)
+                                        </li>
+
+                                    </ul>
+                                    <p>
+
+                                        <label>In Stock: <span class="item_price loginmodelbodypcs">@prdcts.Pieces </span> (Pieces)</label>
+
+                                    </p>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        @*</div>*@
+                        <div class="modal-footer">
+
+                            <button type="button" class="btn btn-primary"
+                                    data-dismiss="modal">
+                                Close
+                            </button>
+
+                            <button type="button" class="btn btn-primary loginmodelbodydtlbtn">
+                                More details
+                            </button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-xs-4 product-men">
+                <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                    @*@Html.Action("SearchPeople", new { keyword = "" })*@
+                    <div class="men-thumb-item">
+                        <img src="~/UI styles/Test UI/images/tyre.png" @*data-target="#loginModal" data-toggle="modal"*@ class="morph" alt="Easy Billing">
+
+                        <div class="men-cart-pro">
+                            <div class="inner-men-cart-pro">
+                                <a @*data-target="#loginModal" data-toggle="modal"*@ href="http://localhost:8087/ProductsForSale/Details/@prdcts.Token_Number" class="link-product-add-cart">Quick View</a>
+
+
+                            </div>
+                        </div>
+
+                        @*<span class="product-new-top">New</span>*@
+                    </div>
+                    <div class="item-info-product ">
+                        <div class="caption" style="text-align:center">
+                            <h4>
+                                <a @*data-target="#loginModal" data-toggle="modal"*@ href="http://localhost:8087/ProductsForSale/Details/@prdcts.Token_Number">@prdcts.Name</a>
+
+                            </h4>
+                        </div>
+                        <div class="info-product-price">
+                            <span class="item_price" style="color:brown">Rs. @prdcts.Total</span>
+
+                            @*<del>$1020.00</del>*@
+                        </div>
+                        <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                            <form action="#" method="post">
+                                <fieldset>
+                                    <input type="hidden" name="cmd" value="_cart" />
+                                    <input type="hidden" name="add" value="1" />
+                                    <input type="hidden" name="business" value=" " />
+                                    @if (@prdcts.Sell_On == "Pieces" || @prdcts.Sell_On == "Plate")
+                                    {
+                                        <input type="hidden" name="quantity" value="1" />
+                                    }
+                                    else
+                                    {
+                                        <input type="hidden" name="quantity" value="1" />
+                                    }
+                                    <input type="hidden" name="item_name" value="@prdcts.Name" />
+
+                                    <input type="hidden" name="amount" value="@prdcts.Amout_after_tax" />
+                                    <input type="hidden" name="discount_amount" value="@prdcts.Discount" />
+                                    <input type="hidden" name="tax" value="@prdcts.Tax_rate" />
+                                    <input type="hidden" name="token" value="@prdcts.Token_Number" />
+                                    <input type="hidden" name="tokencust" class="tknno" value="" />
+                                    <input type="hidden" name="sellon" value="@prdcts.Sell_On" />
+                                    <input type="hidden" name="currency_code" value="INR" />
+                                    <input type="hidden" name="return" value=" " />
+                                    <input type="hidden" name="cancel_return" value=" " />
+                                    @*<input type="submit" name="submit" value="Add to cart" class="button btnaddtocrt" />*@
+                                    @if (Request.IsAuthenticated && (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com"))
+                                    {
+
+                                        @*<button type="submit" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                                Add to cart
+                                                <i class="fa fa-cart-plus" aria-hidden="true" style="float:right; text-align:center"></i>
+                                            </button>*@
+                                        <button type="submit" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:lightslategray">
+                                            Add to cart
+                                            <i class="fa fa-cart-plus" aria-hidden="true" style="float:right; text-align:center"></i>
+                                        </button>
+                                    }
+                                    else
+                                    {
+                                        <a href="~/ProductsForSale/Details/@prdcts.Token_Number">
+                                            <button type="button" class="btnaddtocrt" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                                View details
+                                                <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                            </button>
+                                        </a>
+                                    }
+                                </fieldset>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            count++;
+            if (count == 3)
+            {
+                <div class="col-md-12 col-sm-12 col-xs-12 product-men"><br /></div>
+                count = 0;
+            }
+        }
+
+        <div class="clearfix"></div>
+    </div>
+    @Html.PagedListPager(Model, Page => Url.Action("Billing", new { Page, keyword = Request.QueryString["keyword"] }), new PagedListRenderOptions()
+    {
+        Display = PagedListDisplayMode.IfNeeded,
+        DisplayPageCountAndCurrentLocation = true,
+        DisplayItemSliceAndTotal = true
+    })
+</div>

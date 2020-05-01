@@ -1,0 +1,237 @@
+﻿@model IEnumerable<EasyBilling.Models.BalanceSheetClass>
+@{
+    ViewBag.Title = "BalanceSheet";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+<h6>Current balance sheet <br /> As on Week Day, DD-MM-YYYY, HH:MM</h6>
+
+<div class="form-row center-block">
+    <div class="col-md-12">
+        <div style="margin:5px 5px 5px 5px">
+            <div class="col-md-1">
+                From
+            </div>
+            @using (Html.BeginForm())
+            {
+
+                @*int dtcnt = 0;
+                <input type="date" name="SDate"  />*@
+
+
+                //foreach (var item in Model)
+                //{
+                //dtcnt++;
+                //if (dtcnt == Model.Count())
+                //{
+
+                <div class="col-md-3">
+                    <input type="date" name="SDate" class = "form-control form-control-sm PD" max= @DateTime.Now />
+                    @*@Html.EditorFor(modelItem => item.SDate, new { htmlAttributes = new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now } })*@
+
+                </div>
+                    <div class="col-md-1">
+                        To
+                    </div>
+                    <div class="col-md-3">
+                        <input type="date" name="EDate" class="form-control form-control-sm ED" max=@DateTime.Now />
+                        @*@Html.EditorFor(modelItem => item.EDate, new { htmlAttributes = new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now } })*@
+
+                    </div>
+                    //}
+                @*}*@
+                @*<div class="col-md-3 form-actions" style="margin:4px 4px 4px 4px">
+                <input type="submit" class="btn btn-sm btn-primary" value="GO" />
+                <button id="ClearId" type="reset" class="btn btn-sm btn-primary">Clear</button>
+
+            </div>*@
+                <div class="form-actions no-color">
+                    <input type="submit" value="Go" class="btn btn-sm btn-primary" />
+
+                </div>
+            }
+            @*<form method="post" action="http://localhost:8087/ProductsForSale/BalanceSheet">
+            <div class="col-md-3" style="margin:4px 4px 4px 4px">
+                <input type="submit" class="btn btn-sm btn-primary" value="GO" />
+                <button id="ClearId" type="reset" class="btn btn-sm btn-primary">Clear</button>
+
+            </div>
+            @{
+                int dtcnt = 0;
+            }
+            @foreach (var item in Model)
+            {
+                dtcnt++;
+                if (dtcnt == 1)
+                {
+                    <div class="col-md-3">
+                        @Html.EditorFor(modelItem => item.SDate, new { htmlAttributes = new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now } })
+
+                    </div>
+                    <div class="col-md-1">
+                        To
+                    </div>
+                    <div class="col-md-3">
+                        @Html.EditorFor(modelItem => item.EDate, new { htmlAttributes = new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now } })
+
+                    </div>
+                }
+            }
+            <div class="col-md-3" style="margin:4px 4px 4px 4px">
+                <input type="submit" class="btn btn-sm btn-primary" value="GO" />
+                <button id="ClearId" type="reset" class="btn btn-sm btn-primary">Clear</button>
+
+            </div>
+        </form>*@
+        </div>
+
+    </div>
+   
+
+    <div style="background-color:white;margin:10px 10px 10px 10px" class="pre-scrollable">
+
+        <table class="table table-bordered">
+            <tr>
+                <th scope="col">
+                    <label>Income details</label>
+                </th>
+                <th scope="col">
+                    <label>Income Amount</label>
+                </th>
+
+                <th scope="col">
+                    <label>Expenses Details</label>
+                </th>
+                <th scope="col">
+                    <label>Expenses Amount</label>
+                </th>
+
+            </tr>
+            @{
+                int count = 0;
+            }
+            @foreach (var item in Model)
+            {
+            <tr >
+                @if (@item.Order_Amount_paid.ToString() != "0")
+                {
+                    if (@item.Order_Amount_paid.ToString() != "0.00")
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Order_Details)
+                        </td>
+
+                        <td>
+
+                            @Html.DisplayFor(modelItem => item.Order_Amount_paid)
+
+                        </td>
+                    }
+                }
+                else if (@item.Billing_Amount_paid.ToString() != "0")
+                {
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Billing_Details)
+                    </td>
+
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Billing_Amount_paid)
+
+                    </td>
+                }
+                else if (@item.Purchase_Total_amount.ToString() != "0")
+                {
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Purchase_Number)
+
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.Purchase_Total_amount)
+
+                    </td>
+                }
+                else if (@item.ExpenseTotal.ToString() != "0")
+                {
+                    <td></td>
+                    <td></td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Expense_Details)
+
+                    </td>
+                    <td>
+
+                        @Html.DisplayFor(modelItem => item.ExpenseTotal)
+
+                    </td>
+                }
+
+            </tr>
+            }
+            @{
+                int ttlcnt = 0;
+            }
+            @foreach (var item in Model)
+            {
+                ttlcnt++;
+                if (ttlcnt == Model.Count())
+                {
+                    <tr>
+                        <td>
+                            Total income CGST
+                        </td>
+                        <td>
+                            @item.TotalincomeCGST
+                          
+                        </td>
+                        <td>
+                          
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Total income SGST
+                        </td>
+                        <td>
+                            @item.TotalincomeSGST
+                        </td>
+                        <td>
+                           
+                        </td>
+                        <td>
+                           
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Income total
+                        </td>
+                        <td>
+                            @item.TotalIncmBalance
+                        </td>
+                        <td>
+                            Expense total
+                        </td>
+                        <td>
+                            @item.TotalExpBalance
+                        </td>
+                    </tr>
+                }
+            }
+                </table>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

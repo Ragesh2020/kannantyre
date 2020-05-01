@@ -1,0 +1,785 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="EasyBillingModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Barcode Master">
+    <Key>
+      <PropertyRef Name="Barcode Number" />
+    </Key>
+    <Property Name="Barcode Number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Billing Number" Type="nvarchar(max)" />
+    <Property Name="Billing Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Image" Type="image" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Billing Details">
+    <Key>
+      <PropertyRef Name="Billing details number" />
+    </Key>
+    <Property Name="Billing details number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Billing Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Billing number" Type="nvarchar(max)" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Product Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Pieces" Type="int" Nullable="false" />
+    <Property Name="Amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Taxable amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount percent" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Sub Total" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Product name" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Billing Master">
+    <Key>
+      <PropertyRef Name="Token Number" />
+    </Key>
+    <Property Name="Token Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Billing Number" Type="nvarchar(max)" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Customer Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tax token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Total tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate including tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount percent" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total discount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Narration" Type="nvarchar(max)" />
+    <Property Name="Barcode Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Barcode photo" Type="image" Nullable="false" />
+    <Property Name="Payment Statement" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Customer">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Customer Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" />
+    <Property Name="Phone number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Alternate phone number" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="int" />
+    <Property Name="State Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Second Address" Type="nvarchar(max)" />
+    <Property Name="Pan number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Credit Card number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Credit limit" Type="float" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Applied date" Type="date" Nullable="false" />
+    <Property Name="Approve date" Type="date" Nullable="false" />
+    <Property Name="New customer" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Customer shipping address">
+    <Key>
+      <PropertyRef Name="Customer token number" />
+    </Key>
+    <Property Name="Customer token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="First name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Last name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address Line1" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address Line2" Type="nvarchar" MaxLength="250" />
+    <Property Name="Town/City" Type="nvarchar" MaxLength="250" />
+    <Property Name="State" Type="nvarchar" MaxLength="50" />
+    <Property Name="Pin code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsUser" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Dealer">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Dealer code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Office number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Phone number" Type="nvarchar" MaxLength="50" />
+    <Property Name="GST number" Type="nvarchar" MaxLength="150" />
+    <Property Name="Pan number" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="int" />
+    <Property Name="State Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Isactive" Type="bit" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Employee Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Employee name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Designation" Type="nvarchar" MaxLength="250" />
+    <Property Name="Joining date" Type="date" Nullable="false" />
+    <Property Name="Contact number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email id" Type="nvarchar" MaxLength="250" />
+    <Property Name="Salary" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Leaving date" Type="date" />
+    <Property Name="login required" Type="bit" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="Image path" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Item Tube">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Item Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Size token" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tube size" Type="nvarchar" MaxLength="50" />
+    <Property Name="Company token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Company name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="50" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Item Tyre">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Item Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre make" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre feel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Company token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Company name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre token" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre size" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vehicle token" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vehicle type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Manager">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Manager name" Type="nvarchar(max)" />
+    <Property Name="Email Id" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="State Code" Type="int" />
+    <Property Name="Pan Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Verification code" Type="nvarchar(max)" />
+    <Property Name="State Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Marchent Account">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Marchent name" Type="nvarchar(max)" />
+    <Property Name="Email Id" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Telephone No" Type="nvarchar" MaxLength="50" />
+    <Property Name="GSTIN Number" Type="nvarchar(max)" />
+    <Property Name="CIN Number" Type="nvarchar(max)" />
+    <Property Name="UIN Number" Type="nvarchar(max)" />
+    <Property Name="State Code" Type="int" />
+    <Property Name="Pan Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Verification code" Type="nvarchar(max)" />
+    <Property Name="State Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="License" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="Marchent account payment details">
+    <Key>
+      <PropertyRef Name="GLCODE" />
+    </Key>
+    <Property Name="GLCODE" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Account name" Type="nvarchar(max)" />
+    <Property Name="Card number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Marchent token" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Other Product">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Product id" Type="nvarchar" MaxLength="250" />
+    <Property Name="Product name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Product type" Type="nvarchar" MaxLength="250" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Placed Order">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Item token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Pieces" Type="int" Nullable="false" />
+    <Property Name="Orderplaced" Type="bit" Nullable="false" />
+    <Property Name="Customer token" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsUser" Type="bit" Nullable="false" />
+    <Property Name="Order Date" Type="date" Nullable="false" />
+    <Property Name="Ispaid" Type="bit" Nullable="false" />
+    <Property Name="Approve Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Products">
+    <Key>
+      <PropertyRef Name="Token Number" />
+    </Key>
+    <Property Name="Token Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Product Code" Type="nvarchar" MaxLength="50" />
+    <Property Name="Product name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Products For Sale">
+    <Key>
+      <PropertyRef Name="Token Number" />
+    </Key>
+    <Property Name="Token Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Product Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Product name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tyre token" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre Size" Type="nvarchar" MaxLength="250" />
+    <Property Name="Supplier token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Supplier name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Purchase Price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Pieces" Type="int" Nullable="false" />
+    <Property Name="Selling Price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Amout after tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Approve date" Type="date" Nullable="false" />
+    <Property Name="Approve" Type="bit" Nullable="false" />
+    <Property Name="Administrator Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Administrator name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Delivery contact number" Type="bigint" Nullable="false" />
+    <Property Name="Delivery address" Type="nvarchar" MaxLength="300" />
+    <Property Name="Item tyre token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Item tyre Id" Type="nvarchar" MaxLength="250" />
+    <Property Name="Purchase number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Vehicle Token" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vehicle type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="Tyre make" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre feel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="requestsend" Type="bit" />
+    <Property Name="Selling CGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Selling SGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST-SGST-CHECK" Type="bit" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Approve user id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Approve user name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Rate update user id" Type="nvarchar" MaxLength="50" />
+    <Property Name="Rate update user name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Proprietor">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Proprietor name" Type="nvarchar(max)" />
+    <Property Name="Email Id" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="State Code" Type="int" />
+    <Property Name="Pan Number" Type="nvarchar" MaxLength="50" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Verification code" Type="nvarchar(max)" />
+    <Property Name="State Name" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Purchase details">
+    <Key>
+      <PropertyRef Name="Purchase details number" />
+    </Key>
+    <Property Name="Purchase details number" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Purchase Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Purcahse number" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Product Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Product name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Pieces" Type="int" Nullable="false" />
+    <Property Name="Quantity" Type="numeric" Precision="18" Scale="3" Nullable="false" />
+    <Property Name="Amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Taxable amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Tax Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount percent" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Sub Total" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Purchase Invoice">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Purchase invoice number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Stock entry token" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Purchase Master">
+    <Key>
+      <PropertyRef Name="Token Number" />
+    </Key>
+    <Property Name="Token Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Purchase Number" Type="nvarchar(max)" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Dealer Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tax token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Total tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Rate including tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Discount percent" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total discount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="IGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="UTGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Narration" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="State">
+    <Key>
+      <PropertyRef Name="State Code" />
+    </Key>
+    <Property Name="State Code" Type="int" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="State Identity" Type="nvarchar" MaxLength="50" />
+    <Property Name="CGST" Type="bit" Nullable="false" />
+    <Property Name="SGST" Type="bit" Nullable="false" />
+    <Property Name="UTGST" Type="bit" Nullable="false" />
+    <Property Name="IGST" Type="bit" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Stock">
+    <Key>
+      <PropertyRef Name="Stock Id" />
+    </Key>
+    <Property Name="Stock Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Purchase Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Purcahse number" Type="nvarchar(max)" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Remodify Date" Type="date" Nullable="false" />
+    <Property Name="Product Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Remodify pcs" Type="int" Nullable="false" />
+    <Property Name="Pieces" Type="int" Nullable="false" />
+    <Property Name="CGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Product name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Stockout">
+    <Key>
+      <PropertyRef Name="Stock out Id" />
+    </Key>
+    <Property Name="Stock out Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Billing Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Billing number" Type="nvarchar(max)" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Product Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Pieces" Type="int" Nullable="false" />
+    <Property Name="CGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Sub Total" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Tax Group">
+    <Key>
+      <PropertyRef Name="Tax Token" />
+    </Key>
+    <Property Name="Tax Token" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Tax Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tax Rate" Type="float" Nullable="false" />
+    <Property Name="GL CODE" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+  </EntityType>
+  <EntityType Name="Temp_placedorder">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Item token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Pieces" Type="int" />
+    <Property Name="Customer token" Type="nvarchar" MaxLength="250" />
+    <Property Name="IsUser" Type="bit" Nullable="false" />
+    <Property Name="Order Date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Temp_Stock">
+    <Key>
+      <PropertyRef Name="Token Number" />
+    </Key>
+    <Property Name="Token Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Product Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Product name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Tyre token" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre Size" Type="nvarchar" MaxLength="250" />
+    <Property Name="Supplier token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Supplier name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Date" Type="date" Nullable="false" />
+    <Property Name="Purchase Price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="CGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="SGST" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Pieces" Type="int" Nullable="false" />
+    <Property Name="Selling Price" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Amout after tax" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Total" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Approve date" Type="date" Nullable="false" />
+    <Property Name="Approve" Type="bit" Nullable="false" />
+    <Property Name="Administrator Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Administrator name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Delivery contact number" Type="bigint" Nullable="false" />
+    <Property Name="Delivery address" Type="nvarchar" MaxLength="300" />
+    <Property Name="Item tyre token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Item tyre Id" Type="nvarchar" MaxLength="250" />
+    <Property Name="Purchase number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Vehicle Token" Type="nvarchar" MaxLength="50" />
+    <Property Name="Vehicle type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Description" Type="nvarchar" MaxLength="300" />
+    <Property Name="Tyre make" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre feel" Type="nvarchar" MaxLength="50" />
+    <Property Name="Tyre type" Type="nvarchar" MaxLength="50" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="requestsend" Type="bit" />
+  </EntityType>
+  <EntityType Name="Transaction amount details">
+    <Key>
+      <PropertyRef Name="Token Number" />
+    </Key>
+    <Property Name="Token Number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Marchent Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Purchase Token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Purchase number" Type="nvarchar(max)" />
+    <Property Name="Sale invoice token" Type="nvarchar" MaxLength="250" />
+    <Property Name="Sale invoice number" Type="nvarchar(max)" />
+    <Property Name="GL CODE" Type="nvarchar" MaxLength="250" />
+    <Property Name="Amount" Type="numeric" Precision="18" Scale="2" Nullable="false" />
+    <Property Name="Card number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Cheque number" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Tyre size">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Tyre size" Type="nvarchar" MaxLength="50" />
+    <Property Name="With tube" Type="bit" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" />
+    <Property Name="Password" Type="nvarchar" MaxLength="250" />
+    <Property Name="Phone number" Type="nvarchar" MaxLength="50" />
+    <Property Name="Alternate phone number" Type="nvarchar" MaxLength="50" />
+    <Property Name="State" Type="int" />
+    <Property Name="State Name" Type="nvarchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar(max)" />
+    <Property Name="Second Address" Type="nvarchar(max)" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="Marchent Token number" Type="nvarchar" MaxLength="250" />
+    <Property Name="Applied date" Type="date" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Token number" />
+    </Key>
+    <Property Name="Token number" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Vehicle type" Type="nvarchar" MaxLength="250" />
+    <Property Name="Vehicle make" Type="nvarchar" MaxLength="250" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="Mac id" Type="nvarchar" MaxLength="250" />
+    <Property Name="User Id" Type="nvarchar" MaxLength="50" />
+    <Property Name="User name" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <Association Name="FK_Barcode Master_Billing Master">
+    <End Role="Billing Master" Type="Self.Billing Master" Multiplicity="0..1" />
+    <End Role="Barcode Master" Type="Self.Barcode Master" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billing Master">
+        <PropertyRef Name="Token Number" />
+      </Principal>
+      <Dependent Role="Barcode Master">
+        <PropertyRef Name="Billing Token number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Billing Details_Billing Details">
+    <End Role="Billing Master" Type="Self.Billing Master" Multiplicity="0..1" />
+    <End Role="Billing Details" Type="Self.Billing Details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billing Master">
+        <PropertyRef Name="Token Number" />
+      </Principal>
+      <Dependent Role="Billing Details">
+        <PropertyRef Name="Billing Token number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Customer_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State Code" />
+      </Principal>
+      <Dependent Role="Customer">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Dealer_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="Dealer" Type="Self.Dealer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State Code" />
+      </Principal>
+      <Dependent Role="Dealer">
+        <PropertyRef Name="State" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item Tube_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Item Tube" Type="Self.Item Tube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Token Number" />
+      </Principal>
+      <Dependent Role="Item Tube">
+        <PropertyRef Name="Company token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item Tube_Tyre size">
+    <End Role="Tyre size" Type="Self.Tyre size" Multiplicity="0..1" />
+    <End Role="Item Tube" Type="Self.Item Tube" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tyre size">
+        <PropertyRef Name="Token number" />
+      </Principal>
+      <Dependent Role="Item Tube">
+        <PropertyRef Name="Size token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item Tyre_Products">
+    <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+    <End Role="Item Tyre" Type="Self.Item Tyre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Products">
+        <PropertyRef Name="Token Number" />
+      </Principal>
+      <Dependent Role="Item Tyre">
+        <PropertyRef Name="Company token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item Tyre_Tyre size">
+    <End Role="Tyre size" Type="Self.Tyre size" Multiplicity="0..1" />
+    <End Role="Item Tyre" Type="Self.Item Tyre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Tyre size">
+        <PropertyRef Name="Token number" />
+      </Principal>
+      <Dependent Role="Item Tyre">
+        <PropertyRef Name="Tyre token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Item Tyre_Vehicle">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="0..1" />
+    <End Role="Item Tyre" Type="Self.Item Tyre" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Token number" />
+      </Principal>
+      <Dependent Role="Item Tyre">
+        <PropertyRef Name="Vehicle token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Marchent Account_State">
+    <End Role="State" Type="Self.State" Multiplicity="0..1" />
+    <End Role="Marchent Account" Type="Self.Marchent Account" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="State">
+        <PropertyRef Name="State Code" />
+      </Principal>
+      <Dependent Role="Marchent Account">
+        <PropertyRef Name="State Code" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Products For Sale_Dealer">
+    <End Role="Dealer" Type="Self.Dealer" Multiplicity="0..1" />
+    <End Role="Products For Sale" Type="Self.Products For Sale" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Dealer">
+        <PropertyRef Name="Token number" />
+      </Principal>
+      <Dependent Role="Products For Sale">
+        <PropertyRef Name="Supplier token" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Purchase details_Purchase Master">
+    <End Role="Purchase Master" Type="Self.Purchase Master" Multiplicity="0..1" />
+    <End Role="Purchase details" Type="Self.Purchase details" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase Master">
+        <PropertyRef Name="Token Number" />
+      </Principal>
+      <Dependent Role="Purchase details">
+        <PropertyRef Name="Purchase Token number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stock_Purchase Master">
+    <End Role="Purchase Master" Type="Self.Purchase Master" Multiplicity="0..1" />
+    <End Role="Stock" Type="Self.Stock" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Purchase Master">
+        <PropertyRef Name="Token Number" />
+      </Principal>
+      <Dependent Role="Stock">
+        <PropertyRef Name="Purchase Token number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Stockout_Billing Master">
+    <End Role="Billing Master" Type="Self.Billing Master" Multiplicity="0..1" />
+    <End Role="Stockout" Type="Self.Stockout" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Billing Master">
+        <PropertyRef Name="Token Number" />
+      </Principal>
+      <Dependent Role="Stockout">
+        <PropertyRef Name="Billing Token number" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="EasyBillingModelStoreContainer">
+    <EntitySet Name="Barcode Master" EntityType="Self.Barcode Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Billing Details" EntityType="Self.Billing Details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Billing Master" EntityType="Self.Billing Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Customer shipping address" EntityType="Self.Customer shipping address" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Dealer" EntityType="Self.Dealer" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employee" EntityType="Self.Employee" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item Tube" EntityType="Self.Item Tube" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Item Tyre" EntityType="Self.Item Tyre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Manager" EntityType="Self.Manager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marchent Account" EntityType="Self.Marchent Account" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Marchent account payment details" EntityType="Self.Marchent account payment details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Other Product" EntityType="Self.Other Product" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Placed Order" EntityType="Self.Placed Order" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Products For Sale" EntityType="Self.Products For Sale" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Proprietor" EntityType="Self.Proprietor" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase details" EntityType="Self.Purchase details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase Invoice" EntityType="Self.Purchase Invoice" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Purchase Master" EntityType="Self.Purchase Master" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Stockout" EntityType="Self.Stockout" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tax Group" EntityType="Self.Tax Group" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temp_placedorder" EntityType="Self.Temp_placedorder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Temp_Stock" EntityType="Self.Temp_Stock" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Transaction amount details" EntityType="Self.Transaction amount details" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Tyre size" EntityType="Self.Tyre size" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Vehicle" EntityType="Self.Vehicle" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Barcode Master_Billing Master" Association="Self.FK_Barcode Master_Billing Master">
+      <End Role="Billing Master" EntitySet="Billing Master" />
+      <End Role="Barcode Master" EntitySet="Barcode Master" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Billing Details_Billing Details" Association="Self.FK_Billing Details_Billing Details">
+      <End Role="Billing Master" EntitySet="Billing Master" />
+      <End Role="Billing Details" EntitySet="Billing Details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Customer_State" Association="Self.FK_Customer_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="Customer" EntitySet="Customer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Dealer_State" Association="Self.FK_Dealer_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="Dealer" EntitySet="Dealer" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item Tube_Products" Association="Self.FK_Item Tube_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Item Tube" EntitySet="Item Tube" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item Tube_Tyre size" Association="Self.FK_Item Tube_Tyre size">
+      <End Role="Tyre size" EntitySet="Tyre size" />
+      <End Role="Item Tube" EntitySet="Item Tube" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item Tyre_Products" Association="Self.FK_Item Tyre_Products">
+      <End Role="Products" EntitySet="Products" />
+      <End Role="Item Tyre" EntitySet="Item Tyre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item Tyre_Tyre size" Association="Self.FK_Item Tyre_Tyre size">
+      <End Role="Tyre size" EntitySet="Tyre size" />
+      <End Role="Item Tyre" EntitySet="Item Tyre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Item Tyre_Vehicle" Association="Self.FK_Item Tyre_Vehicle">
+      <End Role="Vehicle" EntitySet="Vehicle" />
+      <End Role="Item Tyre" EntitySet="Item Tyre" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Marchent Account_State" Association="Self.FK_Marchent Account_State">
+      <End Role="State" EntitySet="State" />
+      <End Role="Marchent Account" EntitySet="Marchent Account" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Products For Sale_Dealer" Association="Self.FK_Products For Sale_Dealer">
+      <End Role="Dealer" EntitySet="Dealer" />
+      <End Role="Products For Sale" EntitySet="Products For Sale" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Purchase details_Purchase Master" Association="Self.FK_Purchase details_Purchase Master">
+      <End Role="Purchase Master" EntitySet="Purchase Master" />
+      <End Role="Purchase details" EntitySet="Purchase details" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stock_Purchase Master" Association="Self.FK_Stock_Purchase Master">
+      <End Role="Purchase Master" EntitySet="Purchase Master" />
+      <End Role="Stock" EntitySet="Stock" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Stockout_Billing Master" Association="Self.FK_Stockout_Billing Master">
+      <End Role="Billing Master" EntitySet="Billing Master" />
+      <End Role="Stockout" EntitySet="Stockout" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

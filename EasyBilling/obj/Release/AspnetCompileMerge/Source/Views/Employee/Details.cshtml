@@ -1,0 +1,58 @@
+﻿@model EasyBilling.Models.Employee
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Employee</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Employee_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Employee_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Designation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Designation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Contact_number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Contact_number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_id)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Update", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

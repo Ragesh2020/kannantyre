@@ -1,0 +1,183 @@
+﻿@model EasyBilling.Models.Other_expense
+
+@{
+    ViewBag.Title = "OtherExpenses";
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+<h2>Products expenses</h2>
+
+<script>
+    jQuery(document).ready(function ($) {
+        var employeeTable = $('#employeeTable').DataTable({
+            ajax: {
+                url: "/api/expenses/GetAllOtherExpenses",
+                dataSrc: '',
+            },
+            columns: [
+
+                { data: 'Other_expense_type' },
+                { data: 'Other_expense_amount' },
+
+            ]
+        });
+
+        var saveEmployee = function (e) {
+            var chkempty = false;
+
+            if ($('#Other_expense_amount').val() == 0) {
+                $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                $('#modaltest').find('.msg').text("Amount for expense should not zero or empty");
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+                chkempty = true;
+            }
+
+            if (chkempty == false) {
+
+                var formData = {};
+
+                var url = '/api/expenses/PostOtherExpensesSave';
+                var type = 'POST'
+
+                formData["Other_expense_type"] = $('#Other_expense_type').val();
+                formData["Other_expense_amount"] = $('#Other_expense_amount').val();
+
+                $.ajax({
+                    url: url, data: JSON.stringify(formData),
+                    contentType: 'application/json', type: type,
+                    success: function () {
+                        employeeTable.ajax.reload();
+
+                        setTimeout(function () {
+                            $('#employeeFormModal').find('.modal-footer .alert').hide();
+                            $('#employeeFormModal').modal('hide');
+                            $('#image').attr('src', 'http://localhost:8087/Images/rsz_success.jpg');
+                            $('#modaltest').find('.msg').text("Product expenses successfully submitted");
+                            $('#modaltest').modal('toggle');
+                            $('#modaltest').modal('show');
+                        }, 500);
+                        $('#Other_expense_amount').val('');
+
+                    },
+                    error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        //alert(responseText.Message);
+                        $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text(responseText.Message);
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        //alertElnot.show();
+                    }
+                });
+            }
+        }
+
+        $('body').on('click', '#employeeFormSubmit', saveEmployee);
+    });
+</script>
+@*<form class="frmmain">*@
+<div class="form-group row">
+    <label for="staticEmail" class="col-sm-2 col-form-label">Expense type</label>
+    <div class="col-sm-3">
+        @Html.EditorFor(model => model.Other_expense_type, new { htmlAttributes = new { @class = "form-control form-control-sm", @required = "@required", @placeholder = "Expense type" } })
+        @Html.ValidationMessageFor(model => model.Other_expense_type, "", new { @class = "text-danger" })
+    </div>
+</div>
+    <div class="form-group row">
+        <label for="staticEmail" class="col-sm-2 col-form-label">Expense amount</label>
+        <div class="col-sm-3">
+
+            @Html.EditorFor(model => model.Other_expense_amount, new { htmlAttributes = new { @class = "form-control form-control-sm", value = "0", @required = "@required", @placeholder = "Expense amount" } })
+            @Html.ValidationMessageFor(model => model.Other_expense_amount, "", new { @class = "text-danger" })
+
+        </div>
+    </div>
+
+    <div class="form-group row">
+        <label for="inputPassword" class=" col-sm-2 col-form-label"></label>
+        <div class="col-sm-3">
+            <button type="button" id="employeeFormSubmit" class="btn btn-sm btn-success" title="submit">
+                Submit
+
+            </button>
+
+        </div>
+    </div>
+
+    @*</form>*@
+    <div id="modaltest" class="modal fade">
+        <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <img id="image" src="~/Images/Alert-Logo.jpg" />
+                <div class="modal-body msg" style="border:none; text-align:center;">
+
+                </div>
+                <div class="modal-footer" style="border:none">
+                    <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+
+
+
+        .hide {
+            display: none;
+        }
+
+        .show {
+            display: block;
+        }
+    </style>
+
+    <style>
+
+        .employeeTableWrap {
+            padding-right: 10px !important;
+            padding-left: 10px !important;
+            margin-right: auto;
+            margin-left: auto;
+        }
+
+        .no-padding {
+            padding: 0 !important;
+        }
+
+        .no-margin {
+            margin: 0 !important;
+        }
+    </style>
+
+    <div class="container-fluid employeeTableWrap">
+
+        <div class="card shadow mb-4">
+
+
+            <div class="card-body">
+                <div class="table-responsive employeeTable">
+                    <table id="employeeTable" class="table table-bordered" width="100%" cellspacing="0">
+                        <thead>
+                            <tr>
+
+                                <th>Expense Type</th>
+                                <th>Expense amount</th>
+
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+    <script src="~/UI styles/Dashboard/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>

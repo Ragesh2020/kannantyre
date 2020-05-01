@@ -1,0 +1,163 @@
+﻿@model IEnumerable<EasyBilling.Models.RetrieveAllClass>
+@{
+    ViewBag.Title = " Retrieve quotation/Convert to bill";
+}
+
+
+<form id="selectionForm">
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-2">
+            <input type="radio" class="radio" value="RETREP" name="isselection" id="isselection1" />
+            Retrieve/Reprint
+        </div>
+        <div class="col-md-4">
+            <input type="radio" class="radio" value="RETCONVBILL" checked name="isselection" id="isselection2" />
+            Retrieve quotation/Convert to bill
+        </div>
+        <div class="col-md-3">
+            <input type="radio" class="radio" value="RETRESOLECONVBILL" name="isselection" id="isselection3" />
+            Retrieve resole/Convert to bill
+        </div>
+        <div class="col-md-3" style="text-align:right">
+            <input type="radio" class="radio" value="RETPENBILL" name="isselection" id="isselection4" />
+            Retrieve payment/ Pending bill
+        </div>
+    </div>
+</form>
+<br />
+
+<form action="~/ProductsForsale/RetrieveConverToBill" method="post">
+    <div class="row" style="margin-top:25px">
+        <div class="col-md-3">
+            <input type="search" class="srchitems" id="srchitems" name="srchitems" placeholder="Search" />
+        </div>
+        <div class="col-md-6">
+            To: <input type="date" class="Sdate" id="Sdate" name="Sdate" />  &nbsp;&nbsp; From: <input type="date" class="Edate" id="Edate" name="Edate" />
+        </div>
+        <div class="col-md-3">
+            <input type="submit" name="Sbmt_srch" value="GO" />  <input type="reset" value="Clear" />
+        </div>
+    </div>
+</form>
+<script>
+    $('#selectionForm').on('change', '#isselection1,#isselection2,#isselection3,#isselection4', function calculate() {
+
+        var selectedId = $('#selectionForm').find('[name=isselection]:checked').val();
+        if (selectedId == "RETREP") {
+            window.location.replace("http://localhost:8087/ProductsForSale/Retrieve");
+        } else if (selectedId == "RETCONVBILL") {
+
+            window.location.replace("http://localhost:8087/ProductsForSale/RetrieveConverToBill");
+
+        } else if (selectedId == "RETRESOLECONVBILL") {
+
+            window.location.replace("http://localhost:8087/ProductsForSale/RetrieveResoleConverToBill");
+
+        } else if (selectedId == "RETPENBILL") {
+
+            window.location.replace("http://localhost:8087/ProductsForSale/RetrievePaymentConverToBill");
+
+        } else {
+
+        }
+
+    });
+
+</script>
+<div style="background-color:white;margin:10px 10px 10px 10px" class="pre-scrollable">
+
+    <table class="table table-bordered">
+        <tr>
+            <th scope="col">
+                <label>Type of bill</label>
+            </th>
+            <th scope="col">
+                <label>Order number</label>
+            </th>
+
+            <th scope="col">
+                <label>Order date</label>
+            </th>
+            <th scope="col">
+                <label>Customer name</label>
+            </th>
+            <th scope="col">
+                <label>Amount on quotation</label>
+            </th>
+            <th scope="col">
+                <label>Amount today</label>
+            </th>
+            <th scope="col">Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+        <tr id="tr_@item.Tokennumber">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.billtype)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.orderNumber)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.orderDate)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.customerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountOnQuotation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+
+            <td>
+                @{
+                    var value = @item.orderNumber;
+                    var url = @item.orderNumber + ".pdf";
+                }
+
+                <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;">
+                <a style="color:white" href="#">Convert to bill</a>
+                </button>
+
+            </td>
+
+        </tr>
+
+                    }
+
+    </table>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function Check() {
+        alert("yfgf");
+        window.open('http://localhost:8087/ProductsForSale/GetBillingListRptForPrint?Bllno=' + $("#orderval").val(), "_blank");
+    };
+</script>
+<div id="modaltest" class="modal fade">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img id="image" src="~/Images/Alert-Logo.jpg" />
+            <div class="modal-body msg" style="border:none; text-align:center;">
+
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

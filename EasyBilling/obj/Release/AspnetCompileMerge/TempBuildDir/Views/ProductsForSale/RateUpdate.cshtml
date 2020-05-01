@@ -1,0 +1,252 @@
+﻿@model IEnumerable<EasyBilling.Models.Products_For_Sale>
+
+@{
+    ViewBag.Title = "RateUpdate";
+}
+
+<h2>Rate Update</h2>
+<form id="selectionForm">
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-2">
+            <input type="radio" class="radio" value="itmtyre" checked name="isselection" id="isselection1" />
+            Item tyre
+        </div>
+        <div class="col-md-2">
+            <input type="radio" class="radio" value="itmtube" name="isselection" id="isselection2" />
+            Item tube
+        </div>
+        <div class="col-md-2">
+            <input type="radio" class="radio" value="prdct" name="isselection" id="isselection3" />
+            Product
+        </div>
+        <div class="col-md-6" style="text-align:right">
+            <input type="radio" class="radio" value="issellingprc" name="issellingprc" id="issellingprc" />
+            Retrieve all recent updates
+        </div>
+    </div>
+</form>
+
+<script>
+    var url = window.location.pathname;
+    if (url == "/ProductsForSale/RateUpdate/id=issellingprc")
+    {
+        $("#issellingprc").prop("checked", true);
+    }
+    if (url == "/ProductsForSale/RateUpdate/id=prdct")
+    {
+        $("#isselection3").prop("checked", true);
+    } else if (url == "/ProductsForSale/RateUpdate/id=itmtyre") {
+        $("#isselection1").prop("checked", true);
+    }
+    else if (url == "/ProductsForSale/RateUpdate/id=itmtube") {
+        $("#isselection2").prop("checked", true);
+    } else
+    {
+        $("#isselection1").prop("checked", false);
+        $("#isselection2").prop("checked", false);
+        $("#isselection3").prop("checked", false);
+    }
+    $('#selectionForm').on('change', '#isselection1,#isselection2,#isselection3', function calculate() {
+
+        var selectedId = $('#selectionForm').find('[name=isselection]:checked').val();
+        //if (selectedId == "itmtyre")
+        //{
+        $.ajax({
+            type: "GET",
+            url: "http://kannantyres.com/ProductsForSale/RateUpdate/id=" + selectedId,
+
+
+            success: function (data, textStatus, xhr) {
+
+                //confirm("You are requested to leave current state. PLease");
+                if (confirm('You are requested to leave current state. PLease confirm')) {
+                    window.location.replace("http://kannantyres.com/ProductsForSale/RateUpdate/id=" + selectedId);
+
+                } else {
+
+                }
+
+            },
+
+            error: function (xhr, textStatus, errorThrown) {
+                $('#modaltest').find('.msg').text("Sorry! something error. Please try again");
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+               // alert('Sorry! something error. Please try again');
+
+            }
+
+        });
+
+    });
+    $('#selectionForm').on('change', '#issellingprc', function calculate() {
+
+        var selectedId = $('#selectionForm').find('[name=issellingprc]:checked').val();
+
+        $.ajax({
+            type: "GET",
+            url: "http://kannantyres.com/ProductsForSale/RateUpdate/id=" + selectedId,
+
+            success: function (data, textStatus, xhr) {
+                if (confirm('You are requested to remove all recent updates. PLease confirm')) {
+                    window.location.replace("http://kannantyres.com/ProductsForSale/RateUpdate/id=" + selectedId);
+
+                } else {
+
+                }
+
+            },
+
+            error: function (xhr, textStatus, errorThrown) {
+                $('#modaltest').find('.msg').text("Sorry! something error. Please try again");
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+                // alert('Sorry! something error. Please try again');
+
+            }
+
+        });
+
+    });
+</script>
+<div style="background-color:white;margin:10px 10px 10px 10px" class="pre-scrollable">
+
+    <table class="table table-bordered">
+        <tr>
+            <th scope="col">
+                <label>Item id/product id</label>
+            </th>
+            <th scope="col">
+                <label>Details</label>
+            </th>
+
+            <th scope="col" colspan="3">
+                <label>Supplier rate</label>
+            </th>
+            <th scope="col" colspan="3">
+                <label>Selling rate</label>
+            </th>
+
+
+            <th scope="col">Action</th>
+        </tr>
+        @{
+            int count = 0;
+        }
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr id="tr_@count">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Item_tyre_Id)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_name) - @Html.DisplayFor(modelItem => item.Tyre_Size)- @Html.DisplayFor(modelItem => item.Tyre_type)- @Html.DisplayFor(modelItem => item.Tyre_feel)- @Html.DisplayFor(modelItem => item.Tyre_make)- @Html.DisplayFor(modelItem => item.Vehicle_type)
+                </td>
+
+
+
+                <td>
+                    <label>Total</label>
+                    @Html.DisplayFor(modelItem => item.Purchase_Price)
+                </td>
+                <td>
+                    <label>CGST</label>
+                    @Html.DisplayFor(modelItem => item.CGST)
+
+                </td>
+                <td>
+                    <label>SGST</label>
+                    @Html.DisplayFor(modelItem => item.SGST)
+
+                </td>
+                <td id="upselling">
+                    <input type="hidden" id="Token_Number_@count" value="@item.Token_Number" />
+                    <label>Total</label>
+                    @Html.EditorFor(modelItem => item.Selling_Price, new { htmlAttributes = new { @class = "form-control form-control-sm ", @min = "0" ,@max = "7", @id = "Up_Selling_Price_" + @count, @name = "Up_Selling_Price_" + @count } })
+                    @Html.ValidationMessageFor(modelItem => item.Selling_Price)
+                    @*<input type="text" id="Up_Selling_Price_@count" name="Up_Selling_Price_@count" />*@
+                </td>
+                <td>
+                    <label>CGST</label>
+                    @Html.EditorFor(modelItem => item.Selling_CGST, new { htmlAttributes = new { @class = "form-control form-control-sm ", @id = "Up_CGST_" + @count, @name = "Up_CGST_" + @count } })
+                    @*<input type="text" id="Up_CGST_@count" name="Up_CGST_@count" />*@
+
+                </td>
+                <td>
+                    <label>SGST</label>
+                    @Html.EditorFor(modelItem => item.Selling_SGST, new { htmlAttributes = new { @class = "form-control form-control-sm ", @id = "Up_SGST_" + @count, @name = "Up_SGST_" + @count } })
+                    @*<input type="text" id="Up_SGST_@count" name="Up_SGST_@count" />*@
+
+                </td>
+                <td>
+
+                    <button type="button" onclick="myFunction(@count)" style="color:white;background-color: #EC5252;border: 1px solid transparent;">Update rate</button>
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    function myFunction(val) {
+        var Token_number = $('#Token_Number_' + val).val();
+        var UpSellingp = $('#Up_Selling_Price_' + val).val();
+        var Upcgst = $('#Up_CGST_' + val).val();
+        var Upsgst = $('#Up_SGST_' + val).val();
+
+        $.ajax({
+            type: "POST",
+            url: "http://kannantyres.com/api/Product/PostRateUpdate",
+            cache: false,
+            data: JSON.stringify({ Token_number: Token_number, UpSellingp: UpSellingp, Upcgst: Upcgst, Upsgst: Upsgst }),
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+
+            success: function (data, textStatus, xhr) {
+                $('#modaltest').find('.msg').text("Rate updated successfully. Thank you.");
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+                // alert("Rate updated successfully. Thank you.");
+                setTimeout(function () {
+                    location.reload();
+                }, 2000);
+               
+            },
+
+            error: function (xhr, errorType, exception) {
+                var responseText;
+                var txtend = ".";
+                responseText = jQuery.parseJSON(xhr.responseText);
+                $('#modaltest').find('.msg').text(responseText.Message);
+                $('#modaltest').modal('toggle');
+                $('#modaltest').modal('show');
+               // alert(responseText.Message);
+               
+            }
+        });
+
+    }
+</script>
+<div id="modaltest" class="modal fade">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img src="~/Images/Alert-Logo.jpg" />
+            <div class="modal-body msg" style="border:none; text-align:center;">
+
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,31 @@
+﻿
+@{
+    ViewBag.Title = "BalanceSheet";
+}
+
+<h4>BalanceSheet</h4>
+<hr />
+<form class="form-row center-block">
+    <div class="col-md-12" >
+        <div style="margin:5px 5px 5px 5px">
+            <select name="selectionForExecution" id="drpdwn">
+                <option value="Purchase">Purchase</option>
+              
+                <option value="Order">Order</option>
+            </select>
+            <button id="selectionbasedId" type="button" class="btn btn-sm btn-primary">Go</button>
+          
+        </div>
+
+    </div>
+    <script>
+        $('#selectionbasedId').on('click', function () {
+            if ($('[name=selectionForExecution]').val() == "Purchase") {
+                window.open('http://localhost:8087/ProductsForSale/GetPurchaseBalancesheetRpt');
+            }
+            else if ($('[name=selectionForExecution]').val() == "Order") {
+                window.open('http://localhost:8087/ProductsForSale/GetOrderBalancesheetRpt');
+            } 
+        });
+    </script>
+</form>

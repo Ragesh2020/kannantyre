@@ -1,0 +1,90 @@
+﻿@model EasyBilling.Models.Manager
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details of manager</h2>
+
+<div>
+    
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Manager_name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Manager_name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Email_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Email_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Mobile)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Mobile)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pan_Number)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pan_Number)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Verification_code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Verification_code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.State_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.State_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Update", new { id = Model.Token_number }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

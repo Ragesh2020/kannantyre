@@ -1,0 +1,305 @@
+﻿@using PagedList;
+@using PagedList.Mvc;
+
+@model IPagedList<EasyBilling.Models.Customer>
+@{
+    ViewBag.Title = "Customer list";
+
+}
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+<!--//tags -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="~/UI styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/font-awesome.css" rel="stylesheet">
+<!--pop-up-box-->
+<link href="~/UI styles/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<!--//pop-up-box-->
+<!-- price range -->
+<link rel="stylesheet" type="text/css" href="~/UI styles/css/jquery-ui1.css">
+<!-- fonts -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+<script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+@*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>*@
+
+<!-- top-header -->
+<div class="header-most-top w3-animate-right" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">
+    <p style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">Customer List</p>
+</div>
+
+
+
+<!-- page -->
+<div class="services-breadcrumb w3-animate-left">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="~/">Home</a>
+                    <i>|</i>
+                </li>
+                <li>Customer List </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+<!-- top Products -->
+
+<div class="">
+    <br />
+    <div class="container">
+        <!-- tittle heading -->
+        <!-- //tittle heading -->
+        <!-- product left -->
+        <div class="side-bar col-md-3 w3-animate-right" style="box-shadow:0px 0px 15px 0px #D6D6D6">
+            <a href="http://localhost:8087/api/Customer/GetCustomerListReport" target="_blank">Customer Report <span class="glyphicon glyphicon-registration-mark"></span></a>
+            <br />
+            <div class="search-hotel">
+
+                <h3 class="agileits-sear-head">Search Here...</h3>
+                <script type="text/javascript">
+                    $(function () {
+                        $("#txtSearch1").autocomplete({
+                            source: 'http://localhost:8087/Customer/GetInstitutes',
+                            minLength: 1
+                        });
+                    });
+                </script>
+
+                <form method="get" action="~/Customer/">
+                    <input type="search" placeholder="Customer Key..." name="keyword" required="" id="txtSearch1">
+                    <input type="submit" value=" ">
+                </form>
+            </div>
+            <style>
+                .collapsible {
+                    background-color: #777;
+                    color: white;
+                    cursor: pointer;
+                    padding: 15px;
+                    width: 100%;
+                    border: none;
+                    text-align: left;
+                    outline: none;
+                    font-size: 13px;
+                }
+
+                    .active1, .collapsible:hover {
+                        background-color: #555;
+                    }
+
+                    .collapsible:after {
+                        content: '\002B';
+                        color: white;
+                        font-weight: bold;
+                        float: right;
+                        margin-left: 5px;
+                    }
+
+                .active1:after {
+                    content: "\2212";
+                }
+
+                .content {
+                    padding: 0 18px;
+                    padding-top: 2%;
+                    max-height: 0;
+                    overflow: hidden;
+                    transition: max-height 0.2s ease-out;
+                    background-color: #f1f1f1;
+                }
+            </style>
+            <div class="left-side">
+                <h3 class="agileits-sear-head">Categories</h3>
+                @using (Ajax.BeginForm("Filter", "Customer", new AjaxOptions
+                {
+                    HttpMethod = "GET", // HttpMethod to use, GET or POST
+                    UpdateTargetId = "wrapper", // ID of the HTML element to update
+                    InsertionMode = InsertionMode.Replace
+                }))
+                {
+                    <ul style="padding-bottom:0px;font-weight:700!important">
+
+                        <input type="hidden" name="key" value="all" />
+                        <button type="submit" class="collapsible">All</button>
+
+                    </ul>
+                }
+                @using (Ajax.BeginForm("Filter", "Customer", new AjaxOptions
+                {
+                    HttpMethod = "GET", // HttpMethod to use, GET or POST
+                    UpdateTargetId = "wrapper", // ID of the HTML element to update
+                    InsertionMode = InsertionMode.Replace
+                }))
+                {
+                    <ul style="padding-bottom:0px;font-weight:700!important">
+
+                        <input type="hidden" name="key" value="false" />
+                        <button type="submit" class="collapsible">Non active list</button>
+
+                    </ul>
+                }
+
+                @using (Ajax.BeginForm("Filter", "Customer", new AjaxOptions
+                {
+                    HttpMethod = "GET", // HttpMethod to use, GET or POST
+                    UpdateTargetId = "wrapper", // ID of the HTML element to update
+                    InsertionMode = InsertionMode.Replace
+                }))
+                {
+                    <ul style="padding-bottom:0px;font-weight:700!important">
+
+                        <input type="hidden" name="key" value="falsetrue" />
+                        <button type="submit" class="collapsible">Pending Customers</button>
+
+                    </ul>
+                }
+
+
+
+                <script>
+                    var coll = document.getElementsByClassName("collapsible");
+                    var i;
+
+                    for (i = 0; i < coll.length; i++) {
+                        coll[i].addEventListener("click", function () {
+                            this.classList.toggle("active1");
+                            var content = this.nextElementSibling;
+                            if (content.style.maxHeight) {
+                                content.style.maxHeight = null;
+                            } else {
+                                content.style.maxHeight = content.scrollHeight + "px";
+                            }
+                        });
+                    }
+                </script>
+            </div>
+            <!-- price range -->
+            <!-- //deals -->
+        </div>
+        <!-- //product left -->
+        <!-- product right -->
+        <div class="agileinfo-ads-display col-md-9 w3l-rightpro">
+            <div class="wrapper" id="wrapper">
+                <span class="glyphicon glyphicon-th-list" style="float:right" tabindex="0" data-toggle="popover" data-placement="left" data-trigger="focus" title="Add new customer" data-animation="true" data-html="true" data-content="<a href='http://localhost:8087/customer/Create'><button type='button'><span class='glyphicon glyphicon-plus'></span></button></a>"></span>
+                <!-- first section -->
+                <div class="product-sec1">
+
+                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12 product-men  w3-animate-left">
+
+                        @foreach (var cstmrs in Model)
+                        {
+                            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12  men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                                <div class="men-thumb-item col-xl-5 col-lg-3 col-md-4 col-sm-5 text-sm-left text-center pr-sm-0" style="box-sizing:border-box;line-height:1.0">
+                                    <img data-target="#Stockmodel" style="vertical-align:middle;padding:0.25rem" data-toggle="modal" class="morph " src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                                </div>
+                                <div class="item-info-product col-xl-7 col-lg-9 col-md-8 col-sm-7 px-sm-0" style="margin-top:0px">
+                                    <div class=" p-4" style="background:#f3f3f9 ; padding:1.0rem !important;box-sizing:border-box;line-height:1.0">
+                                        <span class="glyphicon glyphicon-th-list" style="float:right" tabindex="0" data-toggle="popover" data-trigger="focus" title="<a href='http://localhost:8087/customer/Create'><button type='button'><span class='glyphicon glyphicon-plus'></span></button></a><br/><br/><a href='http://localhost:8087/customer/Details//@cstmrs.Token_number' ><button type='button'><span class='glyphicon glyphicon-tasks'></span></button></a><br/><br/><a href='http://localhost:8087/customer/Edit/@cstmrs.Token_number' ><button type='button'><span class='glyphicon glyphicon-edit'></span></button></a><br/><br/><a href='http://localhost:8087/customer/Delete/@cstmrs.Token_number' ><button type='button'><span class='glyphicon glyphicon-trash'></span></button></a>" data-html="true" data-content="<a href='http://localhost:8087/api/Customer/GetCustomerDetailsReport?csdt=@cstmrs.Token_number' target='_blank' ><button type='button'><span class='glyphicon glyphicon-save-file'></span></button></a>"></span>
+
+                                        <h3 style="color:#8d3939;font-size:26px;margin-top:0;margin-bottom:0.5rem"><b>@cstmrs.Customer_Name </b><i class="fa fa-flag-checkered mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i></h3>
+                                        <div class="w3ls-agent-info border-top pt-4 mb-4" style="padding-top:1.0rem !important;margin-bottom:1.0rem !important;border-top:1px solid #dee2e6 !important">
+                                            <ul style="margin:0;padding:0">
+                                                <li style="display:block;font-size:16px">
+                                                    <i class="glyphicon glyphicon-user mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i><b>Customer Keycode: @cstmrs.Token_number</b>
+                                                </li>
+                                                <li class="text-dark my-3" style="margin-bottom:1rem !important;margin-top:1rem !important;display:block;font-size:16px">
+                                                    <i class="fa fa-phone mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i><b> @cstmrs.Phone_number</b>
+                                                </li>
+                                                <li class="text-dark my-3" style="margin-bottom:1rem !important;margin-top:1rem !important;display:block;font-size:16px">
+                                                    <i class="fa fa-address-card mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i><b> @cstmrs.Address</b>
+                                                </li>
+                                                <li class="switch" id="mySelect" style="display:block;font-size:16px">
+                                                    @if (cstmrs.IsActive == true)
+                                                    {
+                                                        ViewBag.token = cstmrs.Token_number;
+
+
+                                                        <input type="checkbox" checked data-toggle="toggle" data-on="Active" id="chk1" value="@cstmrs.Token_number" onchange="myFunction(this.value);" data-off="Not Active" data-offstyle="danger">
+
+                                                    }
+                                                    else
+                                                    {
+                                                        <input type="checkbox" data-toggle="toggle" data-on="Active" id="chk2" value="@cstmrs.Token_number" onchange="myFunction(this.value);" data-off="Not Active" data-offstyle="danger">
+
+                                                    }
+                                                </li>
+                                                <br />
+                                                <li style="display:block;font-size:16px">
+                                                    <i class="fa fa-envelope mr-2" style="color:#4caf50;font-weight:900;margin-right:0.5rem !important;font-style:normal"></i>
+                                                    <a href="mailto:@cstmrs.Email" class="text-dark"><b> @cstmrs.Email</b></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    @*</div>*@
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+
+
+
+                    <div class="clearfix"></div>
+                </div>
+
+                @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, keyword = Request.QueryString["keyword"] }), new PagedListRenderOptions()
+                {
+                    Display = PagedListDisplayMode.IfNeeded,
+                    DisplayPageCountAndCurrentLocation = true,
+                    DisplayItemSliceAndTotal = true
+                })
+            </div>
+        </div>
+        <!-- //product right -->
+    </div>
+</div>
+<!-- //top products -->
+<!-- popup modal (for signin & signup)-->
+
+<script type="text/javascript">
+    function myFunction(val) {
+
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8087/api/Customer/PostActivate",
+            cache: false,
+            data: JSON.stringify({ Token_number: val }),
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+
+            success: function (data, textStatus, xhr) {
+
+                //alert("Change successfully");
+
+            },
+
+            error: function (xhr, textStatus, errorThrown) {
+
+                alert('Sorry! something error. Please try again');
+
+            }
+
+        });
+
+    }
+</script>

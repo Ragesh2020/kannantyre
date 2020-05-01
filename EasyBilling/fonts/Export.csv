@@ -1,0 +1,4 @@
+Token_Number,Product_Code,Product_name,Date,Mac_id,User_Id,User_name,Item_Tube,Item_Tyre
+de9e73f9-f764-4175-90f0-adcc17345b3e,,CORSA,01-03-19 0:30,A0B3CC7724D8,,,System.Collections.Generic.HashSet`1[EasyBilling.Models.Item_Tube],System.Collections.Generic.HashSet`1[EasyBilling.Models.Item_Tyre]
+e0eba0d6-5695-42f3-97d6-355d9427b057,,continental,16-03-19 23:40,A0B3CC7724D8,,,System.Collections.Generic.HashSet`1[EasyBilling.Models.Item_Tube],System.Collections.Generic.HashSet`1[EasyBilling.Models.Item_Tyre]
+,,,,,,,,

@@ -1,0 +1,114 @@
+﻿@model IEnumerable<EasyBilling.Models.BillingAll>
+
+@{
+    ViewBag.Title = "Billing List";
+    WebGrid grid = new WebGrid(source: Model, canSort: false, rowsPerPage: 6);
+
+
+}
+
+<style>
+
+    th, td {
+        padding: 5px;
+    }
+
+    th {
+        background-color: rgb(248, 248, 248);
+    }
+
+    #gridT, #gridT tr {
+        border: 1px solid #0D857B;
+    }
+
+    #subT, #subT tr {
+        /*border: 1px solid #f3f3f3;*/
+        border: 1px solid #000000;
+    }
+
+    #subT {
+        margin: 0px 0px 0px 10px;
+        padding: 5px;
+        width: 95%;
+    }
+
+        #subT th {
+            font-size: 12px;
+        }
+
+    .hoverEff {
+        cursor: pointer;
+    }
+
+        .hoverEff:hover {
+            background-color: rgb(248, 242, 242);
+        }
+
+    .expand {
+        background-image: url(/Images/pm.png);
+        background-position-x: -22px;
+        background-repeat: no-repeat;
+    }
+
+    .collapse {
+        background-image: url(/Images/pm.png);
+        background-position-x: -2px;
+        background-repeat: no-repeat;
+    }
+</style>
+<div id="main" style="padding:25px; background-color:white;">
+    <form method="get" action="~/Billing/BillSpecific">
+        <input type="text" name="INVid" />
+        <input type="submit" value="Submit" />
+    </form>
+    </div>
+
+    <div id="main" style="padding:25px; background-color:white;">
+        @grid.GetHtml(
+                                                 htmlAttributes: new { id = "gridT", width = "100%" },
+                                                 columns: grid.Columns(
+                                                         grid.Column("Billingmast.Billing_Number", "Bill Number"),
+                                                         grid.Column(header: "Date", format: (item) => string.Format("{0:dd-MM-yyyy}", item.Billingmast.Date)),
+                                                         grid.Column("Billingmast.Total_tax", "Total Tax"),
+
+                                                          grid.Column("Billingmast.Total_amount", "Total amount"),
+
+                                                           grid.Column(format: (item) =>
+                                                           {
+                                                               WebGrid subGrid = new WebGrid(source: item.BillingDet);
+                                                               return subGrid.GetHtml(
+                                                                   htmlAttributes: new { id = "subT" },
+                                                                   columns: subGrid.Columns(
+                                                                            //  subGrid.Column("Product_Token", "Product Token"),
+                                                                            subGrid.Column("Product_name", "Product name"),
+                                                                           subGrid.Column("Pieces", "Pieces"),
+
+                                                                           subGrid.Column("Quantity", "Quantity"),
+                                                                           subGrid.Column("Tax", "Tax"),
+                                                               subGrid.Column("Amount", "Amount")
+
+
+                                                                           )
+                                                                       );
+                                                           }, header: " Billing Details")
+
+                                                     //grid.Column(format: (item) =>
+                                                     //{
+                                                     //    WebGrid subGrid1 = new WebGrid(source: item.stck);
+                                                     //    return subGrid1.GetHtml(
+                                                     //        htmlAttributes: new { id = "subT" },
+                                                     //        columns: subGrid1.Columns(
+                                                     //                subGrid1.Column("Stock_Id", "Stock Id"),
+                                                     //                 // subGrid1.Column("Product_Token", "Product Token"),
+                                                     //                 subGrid1.Column("Product_name", "Product name"),
+                                                     //                subGrid1.Column("Pieces", "Pieces"),
+                                                     //                subGrid1.Column("Quantity", "Quantity"),
+                                                     //                subGrid1.Column("Tax", "Tax"),
+                                                     //                subGrid1.Column("Sub_Total", "Amount")
+
+                                                     //            )
+                                                     //        );
+                                                     //}, header: " Stocks")
+                                                     )
+                                                 )
+    </div>

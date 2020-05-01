@@ -1,0 +1,138 @@
+﻿@model EasyBilling.Models.Customer
+
+<link href="~/UI styles/Suppliers/css/style.css" rel="stylesheet" type="text/css" media="all" /><!--style_sheet-->
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900" rel="stylesheet"><!--online_fonts-->
+<link href="//fonts.googleapis.com/css?family=Lato" rel="stylesheet"><!--online_fonts-->
+
+
+    <div class="Suppliercss1">
+     
+        <div class="w3ls-main">
+            <div class="w3ls-main">
+                <span class="glyphicon glyphicon-th-list" tabindex="0" data-toggle="popover" data-trigger="focus" title="<a href='http://localhost:8087/Customer/Create'><button type='button'><span class='glyphicon glyphicon-plus'></span></button></a><br/><br/><a href='http://localhost:8087/Customer'><button type='button'><span class='glyphicon glyphicon-list-alt'></span></button></a><br/><br/><a href='http://localhost:8087/Customer/Edit/@Model.Token_number' ><button type='button'><span class='glyphicon glyphicon-edit'></span></button></a>" data-html="true" data-content="<a href='http://localhost:8087/Customer/Delete/@Model.Token_number' ><button type='button'><span class='glyphicon glyphicon-trash'></span></button></a>"></span>
+                <h2 class="h2">Customer</h2>
+
+                <div class="w3ls-form">
+
+                    <ul class="fields">
+                        <div class="Refer_w3l">
+                            <h3 class="h3">Customer details</h3>
+                            @Html.HiddenFor(model => model.Token_number)
+                            <li>
+                                <label class="w3ls-opt">Customer Name<span class="w3ls-star"> * </span></label>
+                                <div class="w3ls-name">
+                                    @Html.EditorFor(model => model.Customer_Name, new
+                        {
+                            htmlAttributes = new { @type = "text", @placeholder = "Name", @readonly = "readonly" }
+                        })
+                                    @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+                                    @*<input type="text" name="username" placeholder="first name" required=" " />*@
+                                </div>
+                            </li>
+
+                            <li>
+                                <div class="mail">
+                                    <label class="w3ls-opt">e-mail<span class="w3ls-star"> * </span></label>
+                                    <span class="w3ls-text w3ls-name">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @type = "email", @placeholder = "Email-Id", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        @*<input type="email" name="email" placeholder="enter your e-mail" required="" />*@
+                                    </span>
+                                </div>
+                            </li>
+                            <li>
+                                <label class="w3ls-opt">Phone number</label>
+                                <span class="w3ls-text w3ls-name">
+                                    @Html.EditorFor(model => model.Phone_number, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @placeholder = "Phone number",
+                                @readonly = "readonly"
+                            }
+                        })
+                                    @Html.ValidationMessageFor(model => model.Phone_number, "", new { @class = "text-danger" })
+                                    @*<input type="text" name="phone number" placeholder="phone number" required="" />*@
+                                </span>
+                            </li>
+                            <li>
+                                <label class="w3ls-opt">Alt.Phone number</label>
+                                <span class="w3ls-text w3ls-name">
+                                    @Html.EditorFor(model => model.Alternate_phone_number, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @placeholder = "Alternate phone number",
+                                @readonly = "readonly"
+                            }
+                        })
+                                    @Html.ValidationMessageFor(model => model.Alternate_phone_number, "", new { @class = "text-danger" })
+                                    @*<input type="text" name="phone number" placeholder="phone number" required="" />*@
+                                </span>
+                            </li>
+                            <li>
+                                <label class="w3ls-opt">Address</label>
+                                <span class="w3ls-input" style="width: 70%;">
+                                    @Html.TextAreaFor(model => model.Address, new
+                        {
+                            @style = "width: 70%;",
+                            @placeholder = "Address",
+                            @readonly = "readonly"
+                        })
+                                    @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                                </span>
+                                @*<span class="w3ls-input" style="width: 70%;"><textarea style="width: 70%;" placeholder=""></textarea></span>*@
+
+                            </li>
+                            <li>
+                                <label class="w3ls-opt">Branch address</label>
+                                <span class="w3ls-input" style="width: 70%;">
+                                    @Html.TextAreaFor(model => model.Second_Address, new
+                        {
+                            @style = "width: 70%;",
+                            @placeholder = "Branch address",
+                            @readonly = "readonly"
+                        })
+                                    @Html.ValidationMessageFor(model => model.Second_Address, "", new { @class = "text-danger" })
+                                </span>
+                                @*<span class="w3ls-input" style="width: 70%;"><textarea style="width: 70%;" placeholder=""></textarea></span>*@
+
+                            </li>
+                        </div>
+                        <div class="Refer_w3l">
+                            <h3 class="h3">Referral details</h3>
+                            <li>
+                                <label class="w3ls-opt">Pan number<span class="w3ls-star"> * </span></label>
+                                <div class="w3ls-name">
+                                    @Html.EditorFor(model => model.Pan_number, new { htmlAttributes = new { @placeholder = "Pan card number", @readonly = "readonly" } })
+                                    @Html.ValidationMessageFor(model => model.Pan_number, "", new { @class = "text-danger" })
+                                    @*<input type="text" name="username" placeholder="Supplier Code" required="" />*@
+                                </div>
+                            </li>
+                            <li>
+                                <div class="mail">
+                                    <label class="w3ls-opt">State Code<span class="w3ls-star"> * </span></label>
+                                    <span class="w3ls-text w3ls-name">
+
+                                        @Html.EditorFor(model => model.stcd, new { htmlAttributes = new { @placeholder = "State", @readonly = "readonly" } })
+                                        @Html.ValidationMessageFor(model => model.stcd, "", new { @class = "text-danger" })
+
+                                        @*<input type="" name="email" placeholder="State Code" required="" />*@
+                                    </span>
+                                </div>
+                            </li>
+
+                        </div>
+
+                    </ul>
+                    <div class="clear"></div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+

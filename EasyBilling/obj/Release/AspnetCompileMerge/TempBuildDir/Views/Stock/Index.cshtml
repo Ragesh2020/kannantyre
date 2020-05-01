@@ -1,0 +1,49 @@
+﻿@model IEnumerable<EasyBilling.Models.Stock>
+
+@{
+    ViewBag.Title = "Stock";
+}
+
+<h2>Stock Report</h2>
+<div><a href="~/api/Stock/GetStockInhands?stckid=0" target="_blank"> View stock list report </a></div>
+
+<table class="table">
+    <tr>
+        <th>
+            <label>Report</label>
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pieces)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Quantity)
+        </th>
+
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+    <tr>
+        <td>
+            <div><a href="~/api/Stock/GetStockInhands?stckid=@item.Stock_Id" target="_blank"> Generate report </a></div>
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_name)
+
+        </td>
+
+        <td>
+            @Html.DisplayFor(modelItem => item.Pieces)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quantity)
+        </td>
+
+
+    </tr>
+    }
+
+</table>

@@ -1,0 +1,884 @@
+﻿
+@{
+    ViewBag.Title = "Reports";
+
+}
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+<!--//tags -->
+
+<link href="http://localhost:8087/UI styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="http://localhost:8087/UI styles/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="http://localhost:8087/UI styles/css/font-awesome.css" rel="stylesheet">
+
+<!--pop-up-box-->
+<link href="http://localhost:8087/UI styles/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<!--//pop-up-box-->
+<!-- price range -->
+<link rel="stylesheet" type="text/css" href="http://localhost:8087/UI styles/css/jquery-ui1.css">
+<!-- fonts -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+<!-- top-header -->
+<div class="header-most-top w3-animate-buttom" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); animation-duration:2s">
+    <p style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">All Reports(Inventory, Company profit,Invoice,Purchase and masters also )</p>
+</div>
+
+
+
+<!-- page -->
+<div class="services-breadcrumb w3-animate-buttom" style="animation-duration:2s">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="~/">Home</a>
+                    <i>|</i>
+                </li>
+                <li>Reports</li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+@if (@ViewBag.Success != null)
+{
+    <div style="text-align:center" id="scc"><label class="label-success" style="text-align:right"> @ViewBag.Success</label></div>
+}
+@if (@ViewBag.Error != null)
+{
+    <div style="text-align:center"><label class="label-danger" style="text-align:right"> @ViewBag.Error</label></div>
+}
+
+<!-- top Products -->
+@*<div class="ads-grid">*@
+<div class="w3-animate-top" style="animation-duration:2s">
+    <br />
+    <div class="container">
+
+        <div class="side-bar col-md-3" style="box-shadow:0px 0px 15px 0px #D6D6D6">
+            <div class="search-hotel">
+                <h3 class="agileits-sear-head">Generate Report...</h3>
+
+                <script type="text/javascript">
+    $(function () {
+
+        $(".txtSearch1").autocomplete({
+            source: '@Url.Action("GetInvoice")',
+            minLength: 1
+        });
+         $(".txtSearch2").autocomplete({
+            source: '@Url.Action("GetPurchase")',
+            minLength: 1
+        });
+    });
+                </script>
+
+                @*<form >*@
+
+                <label>Invc.: &nbsp;</label><input type="checkbox" style="height:2px; width:10px" checked data-toggle="toggle" data-on="OK" id="BillCheck" onchange="addbox1();" data-off="No" data-offstyle="danger"> &nbsp;&nbsp;
+
+                <label>Purch.: &nbsp;</label><input type="checkbox" data-toggle="toggle" data-on="OK" id="Prchchk" onchange="addbox1();" data-off="No" data-offstyle="danger">
+
+                <br /><br />
+                <input type="search" placeholder="Invoice/Purchase Number..." name="term" required="" class="txtSearch1">
+                <input type="search" placeholder="Invoice/Purchase Number..." name="term" required="" class="txtSearch2">
+                <input type="button" value=" " class="getpurchbill" target="popup" style="width:40px;background:url('http://localhost:8087/UI styles/images/search.png') no-repeat 13px 11px #1accfd;height:39px;border:none;">
+                @*</form>*@
+                <script>
+                    if ($('#BillCheck').is(":checked")) {
+                        $('#Prchchk').attr("disabled", true);
+                        $('#Prchchk').attr("checked", false);
+                        $('.txtSearch2').hide();
+                        $('.txtSearch1').show();
+                    } else {
+                        $('#Prchchk').attr("disabled", false);
+                        $('#Prchchk').attr("checked", true);
+
+                        $('.txtSearch1').hide();
+                    }
+                    $('.txtSearch2').hide();
+                    $('#BillCheck').change(function addbox1() {
+                        if ($('#BillCheck').is(":checked")) {
+                            $('#Prchchk').attr("disabled", true);
+                            $('#Prchchk').attr("checked", false);
+                            $('.txtSearch2').hide();
+                            $('.txtSearch1').show();
+                        } else {
+                            $('#Prchchk').attr("disabled", false);
+                            $('#Prchchk').attr("checked", true);
+
+                            $('.txtSearch1').hide();
+                        }
+                    });
+                    $('#Prchchk').change(function addbox1() {
+                        if ($('#Prchchk').is(":checked")) {
+                            $('#BillCheck').attr("disabled", true);
+                            $('#BillCheck').attr("checked", false);
+                            $('.txtSearch2').show();
+                            $('.txtSearch1').hide();
+                        } else {
+                            $('#BillCheck').attr("disabled", false);
+                            $('#BillCheck').attr("checked", true);
+                            $('.txtSearch2').hide();
+
+                        }
+                    });
+
+                    $('.getpurchbill').click(function () {
+
+                        if ($('#BillCheck').is(":checked")) {
+                            window.open('http://localhost:8087/api/Billing/GetBillingListReport?Bllno=' + $('.txtSearch1').val(), 'name', 'width=600,height=400');
+                        }
+                        if ($('#Prchchk').is(":checked")) {
+                            window.open('http://localhost:8087/api/Purchase/GetPurchaseListReport?prdctno=' + $('.txtSearch2').val(), 'name', 'width=600,height=400');
+                        }
+
+                    });
+
+
+
+                </script>
+            </div>
+
+        </div>
+
+        <div class="agileinfo-ads-display col-md-9 w3l-rightpro">
+            <div class="wrapper">
+                <!-- first section -->
+                <div class="product-sec1">
+
+                    <div class="modal fade " tabindex="-1" id="Marchentmodel" data-keyboard="true" data-backdrop="">
+                        <div class="modal-dialog modal-sm" style="width:30%">
+                            <div class="modal-content " style="width:450px">
+                                <div class="modal-header" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" style="color:black"><b> Company report </b></h4>
+                                </div>
+                                @*<div class="modal-body">*@
+                                <div class="modal-content">
+
+                                    <div class="col-md-12 col-sm-7 single-right-left ">
+                                        <br />
+                                        <div class="grid images_3_of_2">
+                                            <div class="flexslider">
+
+                                                <div class="col-md-12" style="padding:20px 30px 10px 3px; ">
+                                                    <div class="col-md-6"><label>Details: &nbsp;</label><input type="checkbox" checked data-toggle="toggle" data-on="OK" id="myCheck" onchange="addbox();" data-off="No" data-offstyle="danger"></div>
+                                                    <div class="col-md-6"><label>Profit: &nbsp;&nbsp;&nbsp;</label><input type="checkbox" checked data-toggle="toggle" data-on="OK" id="prft" onchange="addbox();" data-off="No" data-offstyle="danger"></div>
+
+                                                </div>
+
+                                                <div class="col-md-12" style="padding:10px 30px 20px 3px; ">
+                                                    <div class="col-md-6"><label>From: &nbsp;</label><input class="form-control" id="frmdt" type="date" value="" onblur="if (this.value == '') {this.value = 'dd-mm-yyyy';}"></div>
+                                                    <div class="col-md-6"><label>To: &nbsp;</label><input class="form-control" id="lstdt" type="date" value="" onblur="if (this.value == '') {this.value = 'dd-mm-yyyy';}"></div>
+
+
+                                                </div>
+                                                <script>
+
+                                                    if ($('#myCheck').is(":checked")) {
+                                                        $('#prft').attr("disabled", true);
+                                                        $('#frmdt').attr("disabled", true);
+                                                        $('#lstdt').attr("disabled", true);
+
+                                                    } else {
+                                                        $('#prft').attr("disabled", false);
+                                                        $('#frmdt').attr("disabled", false);
+                                                        $('#lstdt').attr("disabled", false);
+
+                                                    }
+                                                    $('#myCheck').change(function addbox() {
+
+
+                                                        if ($('#myCheck').is(":checked")) {
+                                                            $('#prft').attr("disabled", true);
+                                                            $('#frmdt').attr("disabled", true);
+                                                            $('#lstdt').attr("disabled", true);
+
+                                                        } else {
+                                                            $('#prft').attr("disabled", false);
+                                                            $('#frmdt').attr("disabled", false);
+                                                            $('#lstdt').attr("disabled", false);
+
+                                                        }
+                                                    });
+
+
+
+                                                </script>
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <br /><br />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary prcd" data-toggle="modal" data-target="#prcdok" data-dismiss="modal">
+
+                                        Proceed <i class="fa fa-arrow-right"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade " tabindex="-1" id="Suppliermodel" data-keyboard="true" data-backdrop="">
+                        <div class="modal-dialog modal-sm" style="width:30%">
+                            <div class="modal-content " style="width:450px">
+
+                                <div class="modal-header" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" style="color:black"><b> Supplier report </b></h4>
+                                </div>
+                                @*<div class="modal-body">*@
+                                <div class="modal-content">
+
+                                    <div class="col-md-12 col-sm-7 single-right-left ">
+                                        <br />
+                                        <div class="grid images_3_of_2">
+                                            <div class="flexslider">
+                                                <div class="col-md-12" style="padding:20px 30px 10px 3px; ">
+                                                    <div class="col-md-6"><label>All supplier: &nbsp;</label><input type="checkbox" checked data-toggle="toggle" data-on="OK" id="supplierCheck" onchange="addbox();" data-off="No" data-offstyle="danger"></div>
+
+                                                </div>
+
+                                                <div class="col-md-12" style="padding:20px 30px 20px 3px; ">
+                                                    <div class="col-md-10"><input type="search" placeholder="Search by Supplier token key" class="srchsupplier" style="text-align:left; width:100%; padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $(".srchsupplier").autocomplete({
+
+                                                                source: "http://localhost:8087/Reports/GetSuppliers",
+                                                                minLength: 1
+                                                            });
+                                                        });
+                                                        if ($('#supplierCheck').is(":checked")) {
+                                                            $('.srchsupplier').attr("disabled", true);
+
+                                                        } else {
+
+                                                            $('.srchsupplier').attr("disabled", false);
+                                                        }
+                                                        $('#supplierCheck').change(function addbox() {
+                                                           
+                                                            if ($('#supplierCheck').is(":checked")) {
+                                                                $('.srchsupplier').attr("disabled", true);
+
+                                                            } else {
+
+                                                                $('.srchsupplier').attr("disabled", false);
+                                                            }
+                                                        });
+
+                                                    </script>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <br /><br />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary prcdsupplier" target="popup">
+
+                                        Proceed <i class="fa fa-arrow-right"></i>
+                                    </button>
+                                    <script>
+                                        $('.prcdsupplier').click(function () {
+
+                                            if ($('#supplierCheck').is(":checked")) {
+                                                window.open('http://localhost:8087/api/Dealer/GetDealerListReport','name','width=600,height=400');
+
+                                            } else {
+                                                if ($('.srchsupplier').val().toString() != null && $('.srchsupplier').val().toString() != "") {
+                                                    window.open('http://localhost:8087/api/Dealer/GetDealerDetailsReport?dldt=' + (($('.srchsupplier').val()).toString()),'name','width=600,height=400');
+                                                } else {
+
+                                                    alert("Please give proper supplier token key");
+                                                }
+                                            }
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade " tabindex="-1" id="Institutemodel" data-keyboard="true" data-backdrop="">
+                        <div class="modal-dialog modal-sm" style="width:30%">
+                            <div class="modal-content " style="width:450px">
+
+                                <div class="modal-header" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" style="color:black"><b> Customer report </b></h4>
+                                </div>
+                                @*<div class="modal-body">*@
+                                <div class="modal-content">
+
+                                    <div class="col-md-12 col-sm-7 single-right-left ">
+                                        <br />
+                                        <div class="grid images_3_of_2">
+                                            <div class="flexslider">
+                                                <div class="col-md-12" style="padding:20px 30px 10px 3px; ">
+                                                    <div class="col-md-6"><label>All Customers: &nbsp;</label><input type="checkbox" checked data-toggle="toggle" data-on="OK" id="instituteCheck" onchange="addbox();" data-off="No" data-offstyle="danger"></div>
+
+                                                </div>
+
+                                                <div class="col-md-12" style="padding:20px 30px 20px 3px; ">
+                                                    <div class="col-md-10"><input type="search" placeholder="Search by Institute/customer token key" class="srchInstitute" style="text-align:left; width:100%; padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $(".srchInstitute").autocomplete({
+
+                                                                source: "http://localhost:8087/Reports/GetInstitutes",
+                                                                minLength: 1
+                                                            });
+                                                        });
+                                                        if ($('#instituteCheck').is(":checked")) {
+                                                            $('.srchInstitute').attr("disabled", true);
+
+                                                        } else {
+
+                                                            $('.srchInstitute').attr("disabled", false);
+                                                        }
+                                                        $('#instituteCheck').change(function addbox() {
+                                                            if ($('#instituteCheck').is(":checked")) {
+                                                                $('.srchInstitute').attr("disabled", true);
+
+                                                            } else {
+
+                                                                $('.srchInstitute').attr("disabled", false);
+                                                            }
+                                                        });
+
+                                                    </script>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <br /><br />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary prcdInstitute" target="popup">
+
+                                        Proceed <i class="fa fa-arrow-right"></i>
+                                    </button>
+                                    <script>
+                                        $('.prcdInstitute').click(function () {
+
+                                            if ($('#instituteCheck').is(":checked")) {
+                                                window.open('http://localhost:8087/api/Customer/GetCustomerListReport', 'name', 'width=600,height=400');
+
+                                            } else {
+                                                if ($('.srchInstitute').val().toString() != null && $('.srchInstitute').val().toString() != "") {
+                                                    window.open('http://localhost:8087/api/Customer/GetCustomerDetailsReport?csdt=' + (($('.srchInstitute').val()).toString()), 'name', 'width=600,height=400');
+                                                } else {
+
+                                                    alert("Please give proper Institute/customer token key");
+                                                }
+                                            }
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade " tabindex="-1" id="Stockmodel" data-keyboard="true" data-backdrop="">
+                        <div class="modal-dialog modal-sm" style="width:30%">
+                            <div class="modal-content " style="width:450px">
+
+                                <div class="modal-header" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" style="color:black"><b> Stock report </b></h4>
+                                </div>
+                                @*<div class="modal-body">*@
+                                <div class="modal-content">
+
+                                    <div class="col-md-12 col-sm-7 single-right-left ">
+                                        <br />
+                                        <div class="grid images_3_of_2">
+                                            <div class="flexslider">
+                                                <div class="col-md-12" style="padding:20px 30px 10px 3px; ">
+                                                    <div class="col-md-6"><label>All stocks: &nbsp;</label><input type="checkbox" checked data-toggle="toggle" data-on="OK" id="StocksCheck" onchange="addbox();" data-off="No" data-offstyle="danger"></div>
+
+                                                </div>
+
+                                                <div class="col-md-12" style="padding:20px 30px 20px 3px; ">
+                                                    <div class="col-md-10"><input type="search" placeholder="Your Stock Id" class="srchStock" style="text-align:left; width:100%; padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $(".srchStock").autocomplete({
+
+                                                                source: "http://localhost:8087/Reports/GetStocks",
+                                                                minLength: 1
+                                                            });
+                                                        });
+                                                        if ($('#StocksCheck').is(":checked")) {
+                                                            $('.srchStock').attr("disabled", true);
+
+                                                        } else {
+
+                                                            $('.srchStock').attr("disabled", false);
+                                                        }
+                                                        $('#StocksCheck').change(function addbox() {
+                                                            if ($('#StocksCheck').is(":checked")) {
+                                                                $('.srchStock').attr("disabled", true);
+
+                                                            } else {
+
+                                                                $('.srchStock').attr("disabled", false);
+                                                            }
+                                                        });
+
+                                                    </script>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <br /><br />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary prcdstks" target="popup">
+
+                                        Proceed <i class="fa fa-arrow-right"></i>
+                                    </button>
+                                    <script>
+                                        $('.prcdstks').click(function () {
+
+                                            if ($('#StocksCheck').is(":checked")) {
+                                                window.open('http://localhost:8087/api/stock/GetStockInhands?stckid=' + 0, 'name', 'width=600,height=400');
+
+                                            } else {
+                                                if ($.isNumeric($('.srchStock').val())) {
+                                                    if ($('.srchStock').val().toString() != null && $('.srchStock').val().toString() != "") {
+                                                        window.open('http://localhost:8087/api/stock/GetStockInhands?stckid=' + $('.srchStock').val(), 'name', 'width=600,height=400');
+                                                    } else {
+                                                        alert("Please give stock Id");
+                                                    }
+                                                } else {
+                                                    alert("Please give proper stock Id");
+                                                }
+                                            }
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade " tabindex="-1" id="Purchasemodel" data-keyboard="true" data-backdrop="">
+                        <div class="modal-dialog modal-sm" style="width:30%">
+                            <div class="modal-content " style="width:450px">
+
+                                <div class="modal-header" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" style="color:black"><b> Purchase report </b></h4>
+                                </div>
+                                @*<div class="modal-body">*@
+                                <div class="modal-content">
+
+                                    <div class="col-md-12 col-sm-7 single-right-left ">
+                                        <br />
+                                        <div class="grid images_3_of_2">
+                                            <div class="flexslider">
+                                                <div class="col-md-12" style="padding:20px 30px 10px 3px; ">
+                                                    <div class="col-md-6"><label>All purchase numbers: &nbsp;</label><input type="checkbox" checked data-toggle="toggle" data-on="OK" id="PurchCheck" onchange="addbox();" data-off="No" data-offstyle="danger"></div>
+
+                                                </div>
+
+                                                <div class="col-md-12" style="padding:20px 30px 20px 3px; ">
+                                                    <div class="col-md-10"><input type="search" placeholder="Your purchase number" class="srchPurch" style="text-align:left; width:100%; padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $(".srchPurch").autocomplete({
+
+                                                                source: "http://localhost:8087/Reports/GetPurchase",
+                                                                minLength: 1
+                                                            });
+                                                        });
+                                                        if ($('#PurchCheck').is(":checked")) {
+                                                            $('.srchPurch').attr("disabled", true);
+
+                                                        } else {
+
+                                                            $('.srchPurch').attr("disabled", false);
+                                                        }
+                                                        $('#PurchCheck').change(function addbox() {
+                                                            if ($('#PurchCheck').is(":checked")) {
+                                                                $('.srchPurch').attr("disabled", true);
+
+                                                            } else {
+
+                                                                $('.srchPurch').attr("disabled", false);
+                                                            }
+                                                        });
+
+                                                    </script>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <br /><br />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary prcdPurch" target="popup">
+
+                                        Proceed <i class="fa fa-arrow-right"></i>
+                                    </button>
+                                    <script>
+                                        $('.prcdPurch').click(function () {
+
+                                            if ($('#PurchCheck').is(":checked")) {
+                                                alert("All purchase report comming soon...");
+                                                //window.open('http://localhost:8087/api/Purchase/GetPurchaseListReport?prdctno=' + 0, 'name', 'width=600,height=400');
+
+                                            } else {
+
+                                                if ($('.srchPurch').val().toString() != null && $('.srchPurch').val().toString() != "") {
+                                                    window.open('http://localhost:8087/api/Purchase/GetPurchaseListReport?prdctno=' + $('.srchPurch').val(), 'name', 'width=600,height=400');
+                                                } else {
+                                                    alert("Please give purchase number...");
+                                                }
+
+                                            }
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal fade " tabindex="-1" id="Invoicemodel" data-keyboard="true" data-backdrop="">
+                        <div class="modal-dialog modal-sm" style="width:30%">
+                            <div class="modal-content " style="width:450px">
+
+                                <div class="modal-header" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    <button type="button" class="close" data-dismiss="modal">
+                                        &times;
+                                    </button>
+                                    <h4 class="modal-title" style="color:black"><b> Invoice report </b></h4>
+                                </div>
+                                @*<div class="modal-body">*@
+                                <div class="modal-content">
+
+                                    <div class="col-md-12 col-sm-7 single-right-left ">
+                                        <br />
+                                        <div class="grid images_3_of_2">
+                                            <div class="flexslider">
+                                                <div class="col-md-12" style="padding:20px 30px 10px 3px; ">
+                                                    <div class="col-md-6"><label>All invoice numbers: &nbsp;</label><input type="checkbox" checked data-toggle="toggle" data-on="OK" id="InvCheck" onchange="addbox();" data-off="No" data-offstyle="danger"></div>
+
+                                                </div>
+
+                                                <div class="col-md-12" style="padding:20px 30px 20px 3px; ">
+                                                    <div class="col-md-10"><input type="search" placeholder="Your invoice number" class="srchInv" style="text-align:left; width:100%; padding:0px 0px 0px 0px;color:black; border:none;background:none;border-bottom:2px solid rgb(185, 185, 185);margin-bottom:11px;font-family:'Source Sans Pro', sans-serif" /></div>
+                                                    <script type="text/javascript">
+                                                        $(function () {
+                                                            $(".srchInv").autocomplete({
+
+                                                                source: "http://localhost:8087/Reports/GetInvoice",
+                                                                minLength: 1
+                                                            });
+                                                        });
+                                                        if ($('#InvCheck').is(":checked")) {
+                                                            $('.srchInv').attr("disabled", true);
+
+                                                        } else {
+
+                                                            $('.srchInv').attr("disabled", false);
+                                                        }
+                                                        $('#InvCheck').change(function addbox() {
+                                                            if ($('#InvCheck').is(":checked")) {
+                                                                $('.srchInv').attr("disabled", true);
+
+                                                            } else {
+
+                                                                $('.srchInv').attr("disabled", false);
+                                                            }
+                                                        });
+
+                                                    </script>
+
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <br /><br />
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="modal-footer">
+
+                                    <button type="button" class="btn btn-primary"
+                                            data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary prcdInv" target="popup">
+
+                                        Proceed <i class="fa fa-arrow-right"></i>
+                                    </button>
+                                    <script>
+                                        $('.prcdInv').click(function () {
+
+                                            if ($('#InvCheck').is(":checked")) {
+                                                alert("All invoice report comming soon...");
+                                                //window.open('http://localhost:8087/api/Billing/GetBillingListReport?Bllno=' + 0, 'name', 'width=600,height=400');
+
+                                            } else {
+
+                                                if ($('.srchInv').val().toString() != null && $('.srchInv').val().toString() != "") {
+                                                    window.open('http://localhost:8087/api/Billing/GetBillingListReport?Bllno=' + $('.srchInv').val(), 'name', 'width=600,height=400');
+                                                } else {
+                                                    alert("Please give invoice number...");
+                                                }
+
+                                            }
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                            <div class="men-thumb-item">
+                                <img data-target="#Marchentmodel" data-toggle="modal" class="morph" src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                            </div>
+                            <div class="item-info-product ">
+                                <div class="caption" style="text-align:center">
+                                    <h4>
+                                        <a data-target="#Marchentmodel" data-toggle="modal">Company Report</a>
+
+                                    </h4>
+                                </div>
+
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+
+                                    <button type="button" class="btnaddtocrt" data-target="#Marchentmodel" data-toggle="modal" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        View details
+                                        <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                            <div class="men-thumb-item">
+                                <img data-target="#Suppliermodel" data-toggle="modal" class="morph" src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                            </div>
+                            <div class="item-info-product ">
+                                <div class="caption" style="text-align:center">
+                                    <h4>
+                                        <a data-target="#Suppliermodel" data-toggle="modal">Supplier Report</a>
+
+                                    </h4>
+                                </div>
+
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+
+                                    <button type="button" class="btnaddtocrt" data-target="#Suppliermodel" data-toggle="modal" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        View details
+                                        <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                            <div class="men-thumb-item">
+                                <img data-target="#Institutemodel" data-toggle="modal" class="morph" src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                            </div>
+                            <div class="item-info-product ">
+                                <div class="caption" style="text-align:center">
+                                    <h4>
+                                        <a data-target="#Institutemodel" data-toggle="modal">Customer Report</a>
+
+                                    </h4>
+                                </div>
+
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+
+                                    <button type="button" class="btnaddtocrt" data-target="#Institutemodel" data-toggle="modal" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        View details
+                                        <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                            <div class="men-thumb-item">
+                                <img data-target="#Stockmodel" data-toggle="modal" class="morph" src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                            </div>
+                            <div class="item-info-product ">
+                                <div class="caption" style="text-align:center">
+                                    <h4>
+                                        <a data-target="#Stockmodel" data-toggle="modal">Stock Report</a>
+
+                                    </h4>
+                                </div>
+
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+
+                                    <button type="button" class="btnaddtocrt" data-target="#Stockmodel" data-toggle="modal" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        View details
+                                        <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                            <div class="men-thumb-item">
+                                <img data-target="#Purchasemodel" data-toggle="modal" class="morph" src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                            </div>
+                            <div class="item-info-product ">
+                                <div class="caption" style="text-align:center">
+                                    <h4>
+                                        <a data-target="#Purchasemodel" data-toggle="modal">Purchase Report</a>
+
+                                    </h4>
+                                </div>
+
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+
+                                    <button type="button" class="btnaddtocrt" data-target="#Purchasemodel" data-toggle="modal" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        View details
+                                        <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xs-4 product-men">
+                        <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+
+                            <div class="men-thumb-item">
+                                <img data-target="#Invoicemodel" class="morph" data-toggle="modal" src="~/UI styles/Test UI/images/tyre.png" alt="Easy Billing">
+
+                            </div>
+
+                            <div class="item-info-product ">
+                                <div class="caption" style="text-align:center">
+                                    <h4>
+                                        <a data-target="#Invoicemodel" data-toggle="modal">Invoice Report</a>
+
+                                    </h4>
+                                </div>
+
+                                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+
+                                    <button type="button" class="btnaddtocrt" data-target="#Invoicemodel" data-toggle="modal" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        View details
+                                        <i class="fa fa-eye" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </div>
+
+            </div>
+        </div>
+        <!-- //product right -->
+    </div>
+</div>
+<!-- //top products -->
+<!-- popup modal (for signin & signup)-->

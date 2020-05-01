@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6c25848c5c99449b93423f6e9dc1a3ce" Name="Diagram1">
+        <EntityTypeShape EntityType="EasyBillingModel.Barcode_Master" Width="1.5" PointX="10" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Billing_Detail" Width="1.5" PointX="10" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Billing_Master" Width="1.5" PointX="7.75" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Customer" Width="1.5" PointX="3" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Customer_shipping_address" Width="1.5" PointX="12.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Dealer" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Employee" Width="1.5" PointX="7.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Item_Tube" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Item_Tyre" Width="1.5" PointX="3" PointY="20.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Manager" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Marchent_Account" Width="1.5" PointX="3" PointY="13.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Marchent_account_payment_detail" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Other_Product" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Placed_Order" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Product" Width="1.5" PointX="0.75" PointY="18.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Products_For_Sale" Width="1.5" PointX="5.25" PointY="7.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Proprietor" Width="1.5" PointX="14.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Purchase_detail" Width="1.5" PointX="15" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Purchase_Invoice" Width="1.5" PointX="11.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Purchase_Master" Width="1.5" PointX="12.75" PointY="3.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.State" Width="1.5" PointX="0.75" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Stock" Width="1.5" PointX="15" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Stockout" Width="1.5" PointX="10" PointY="8.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Tax_Group" Width="1.5" PointX="13.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Temp_placedorder" Width="1.5" PointX="15.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Transaction_amount_detail" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Tyre_size" Width="1.5" PointX="0.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.User" Width="1.5" PointX="17.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="EasyBillingModel.Vehicle" Width="1.5" PointX="0.75" PointY="24.5" IsExpanded="true" />
+        <AssociationConnector Association="EasyBillingModel.FK_Barcode_Master_Billing_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Billing_Details_Billing_Details" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Stockout_Billing_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Customer_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Dealer_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Products_For_Sale_Dealer" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Item_Tube_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Item_Tyre_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Item_Tyre_Tyre_size" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Item_Tyre_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Products_For_Sale_Item_Tyre" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Marchent_Account_State" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Products_For_Sale_Products" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Products_For_Sale_Tyre_size" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Products_For_Sale_Vehicle" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Purchase_details_Purchase_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Stock_Purchase_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="EasyBillingModel.FK_Item_Tube_Tyre_size" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

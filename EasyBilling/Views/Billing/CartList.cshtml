@@ -1,0 +1,277 @@
+﻿@model IEnumerable<EasyBilling.Models.Temp_placedorder>
+
+
+<div class="container" style="background-color:white;padding:10px 10px 10px 10px">
+    <div class="privacy about" style="padding:1em 0;background-color:white">
+
+        @if (Model.Count() > 0)
+        {
+            <div style="float:right" class="btndiv">
+
+
+                <a href="~/Billing/DeliveryAddress">
+
+
+                    <button type="button" style="background-color:#f3d078; height:80%;text-align:center;margin:0;border:0;font-family:Arial,sans-serif"> Continue for payment </button>
+
+
+                </a>
+
+
+            </div>
+        }
+
+            <div class="checkout-right">
+                <h4>
+                    Your shopping cart contains:
+
+                </h4>
+
+                <table class="timetable_sub table-responsive">
+                    <thead>
+                        <tr>
+
+                            <th>Product Name</th>
+                            <th>Quantity</th>
+                            <th>Price(Rs.)</th>
+                            <th>Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var items in Model)
+                        {
+                            <tr class="rem1">
+
+                                <td class="invert">@items.Productname</td>
+                                <td class="invert">
+                                    <div class="quantity">
+                                        <div class="quantity-select">
+                                            <div class="entry value-minus">&nbsp;</div>
+                                            <div class="entry value">
+                                                <span>@items.Pieces</span>
+                                            </div>
+                                            <div class="entry value-plus active">&nbsp;</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="invert tkn hidden">@items.Token_number</td>
+                                <td class="invert prchid hidden">@items.Primaryprice</td>
+                                <td class="invert prc">@items.price</td>
+                                <td class="invert" style="text-align:center">
+                                    <div class="rem">
+                                        <button type="button" class="closewhole">
+                                            <span class="glyphicon glyphicon-remove "></span>
+                                        </button>
+                                    </div>
+
+                                </td>
+                            </tr>
+                        }
+
+
+                    </tbody>
+
+                </table>
+                @if (Model.Count() == 0)
+                {
+                    <br />
+                    <div class="col-md-12 col-sm-12 col-xs-12" style="text-align:center;color:red"> No items are there. Add tyres? <a href="http://localhost:8087/ProductsForSale/Billing">tyres</a></div>
+                }
+
+            </div>
+
+
+    </div>
+
+</div>
+
+<!-- //home -->
+<!-- Common js -->
+<script src="js/jquery-2.2.3.min.js"></script>
+<!--// Common js -->
+<!-- cart-js -->
+<script src="js/minicart.js"></script>
+<script>
+        chr.render();
+
+        chr.cart.on('new_checkout', function (evt) {
+            var items, len, i;
+
+            if (this.subtotal() > 0) {
+                items = this.items();
+
+                for (i = 0, len = items.length; i < len; i++) {}
+            }
+        });
+</script>
+<!-- //cart-js -->
+<!--quantity-->
+<script>
+        $('.value-plus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) + 1;
+
+            var divUpdprc = $(this).parents('tr').find('td.prchid');
+
+            var newValprc = ((divUpdprc.text() * 1).toFixed(2) * newVal).toFixed(2);
+            var prce= $(this).parents('tr').find('td.prc');
+            var val = $(this).parents('tr').find('td.tkn').text();
+            $.ajax({
+                type: "POST",
+                url: "http://localhost:8087/api/Billing/Postadding",
+                cache: false,
+                data: JSON.stringify({ Token_number: val, Pieces: newVal }),
+                contentType: "application/json; charset=utf-8",
+                traditional: true,
+
+                success: function (data, textStatus, xhr) {
+                    divUpd.text(newVal);
+
+                    prce.text(newValprc);
+
+                },
+
+                error: function (xhr, textStatus, errorThrown) {
+
+                    alert('Sorry! You have highest number of pieces of this tyre');
+
+                }
+
+            });
+        });
+
+        $('.value-minus').on('click', function () {
+            var divUpd = $(this).parent().find('.value'),
+                newVal = parseInt(divUpd.text(), 10) - 1;
+           
+
+            var divUpdprc = $(this).parents('tr').find('td.prchid');
+
+            var newValprc = ((divUpdprc.text() * 1).toFixed(2) * newVal).toFixed(2);
+            var prce = $(this).parents('tr').find('td.prc');
+            
+            var val = $(this).parents('tr').find('td.tkn').text();
+            if (newVal >= 1) {
+                $.ajax({
+                    type: "POST",
+                    url: "http://localhost:8087/api/Billing/Postadding",
+                    cache: false,
+                    data: JSON.stringify({ Token_number: val, Pieces: newVal }),
+                    contentType: "application/json; charset=utf-8",
+                    traditional: true,
+
+                    success: function (data, textStatus, xhr) {
+                        if (newVal >= 1) divUpd.text(newVal);
+                        if (newVal >= 1) prce.text(newValprc);
+
+                    },
+
+                    error: function (xhr, textStatus, errorThrown) {
+
+                        alert('Sorry! You have highest number of pieces of this tyre');
+
+                    }
+
+                });
+            }
+        });
+</script>
+<!--quantity-->
+<!-- FadeOut-Script -->
+<script>
+        $(document).ready(function (c) {
+            $('.closewhole').on('click', function (c) {
+                var val = $(this).parents('tr').find('td.tkn').text();
+                var rem=$(this).parents('tr');
+                    $.ajax({
+                        type: "DELETE",
+                        url: "http://localhost:8087/api/Billing/Delete",
+                        cache: false,
+                        data: JSON.stringify({ Token_number: val}),
+                        contentType: "application/json; charset=utf-8",
+                        traditional: true,
+
+                        success: function (data, textStatus, xhr) {
+
+                            rem.fadeOut('slow', function (c) {
+                                rem.remove();
+                            });
+
+                        },
+
+                        error: function (xhr, textStatus, errorThrown) {
+
+                            alert('Sorry!Something went wrong. Please try again.');
+
+                        }
+
+                    });
+               
+            });
+        });
+</script>
+
+<!--// FadeOut-Script -->
+<!-- dropdown nav -->
+<script>
+        $(document).ready(function () {
+            $(".dropdown").hover(
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideDown("fast");
+                    $(this).toggleClass('open');
+                },
+                function () {
+                    $('.dropdown-menu', this).stop(true, true).slideUp("fast");
+                    $(this).toggleClass('open');
+                }
+            );
+        });
+</script>
+<!-- //dropdown nav -->
+<!--search jQuery-->
+<script src="js/main.js"></script>
+<!--search jQuery-->
+<!-- Scrolling Nav JavaScript -->
+<script src="js/scrolling-nav.js"></script>
+<!-- //fixed-scroll-nav-js -->
+<!--//scripts-->
+<!-- start-smooth-scrolling -->
+<script src="js/move-top.js"></script>
+<script src="js/easing.js"></script>
+<script>
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+
+                $('html,body').animate({
+                    scrollTop: $(this.hash).offset().top
+                }, 1000);
+            });
+        });
+</script>
+<!-- //end-smooth-scrolling -->
+<!-- smooth-scrolling-of-move-up -->
+<script>
+        $(document).ready(function () {
+            /*
+            var defaults = {
+                containerID: 'toTop', // fading element id
+                containerHoverID: 'toTopHover', // fading element hover id
+                scrollSpeed: 1200,
+                easingType: 'linear'
+            };
+            */
+
+            $().UItoTop({
+                easingType: 'easeOutQuart'
+            });
+
+        });
+</script>
+<script src="js/SmoothScroll.min.js"></script>
+<!-- //smooth-scrolling-of-move-up -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="js/bootstrap.js"></script>

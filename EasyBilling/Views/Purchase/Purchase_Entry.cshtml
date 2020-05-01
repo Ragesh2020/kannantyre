@@ -1,0 +1,369 @@
+﻿@model EasyBilling.Models.Purchase_Master
+@{
+    /**/
+
+    ViewBag.Title = "Purchase entry";
+
+
+}
+<h2>Purchase Entry</h2>
+<script src="https://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<div class="container">
+    <div class="master">
+
+        <table class="table table-responsive ">
+            <tr class="success">
+                <td>Purchase No</td>
+                <td>
+                    <input type="text" id="purchaseNo" class="purchaseNo form-control" value="@ViewBag.lstid" disabled />
+                    <span class="error">Order no required</span>
+                </td>
+
+                <td>Generate report <input type="checkbox" class="chkrpt" id="chkrpt" checked /> </td>
+                <td>Date</td>
+                <td>
+                    <input type="date" id="orderDate" class="orderDate form-control" name="orderDate" />
+                    <span class="error">Valid order date required (ex: MM-dd-yyyy)</span>
+                </td>
+
+            </tr>
+
+
+            <tr class="warning">
+                <td>Tax group</td>
+                <td>
+                    <select id="taxselection" class="pc form-control" onchange="taxselection(this)">
+                        <option value="1">Single tax</option>
+                        <option value="2">Multiple tax</option>
+                    </select>
+                    <span class="error">Invalid selection</span>
+
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.txgrp, new SelectList(ViewBag.txgrp, "Tax_Rate", "Tax_Name"), "------select tax group--------", new
+                    {
+                        @id = "sngltaxes",
+                        @class = "sngltaxes form-control",
+                        @onchange = "taxformation(this.value)",
+                    })
+                    <span class="error">Select tax-group</span>
+
+                </td>
+                <td>Dealer</td>
+                <td>
+                    @Html.DropDownListFor(model => model.dlr, new SelectList(ViewBag.dlr, "Token_number", "Name"), "--------select dealer---------", new { @class = "dlr form-control" })
+                    <span class="error">Valid order date required (ex: MM-dd-yyyy)</span>
+
+                </td>
+                @*<td>Description</td>
+                    <td colspan="3">
+                        <textarea id="description" class="form-control"></textarea>
+                    </td>*@
+            </tr>
+        </table>
+    </div>
+    <div class="details">
+        @*<h2>
+                Order items
+            </h2>*@
+        <div style="width:1100px;  height: 130px;  overflow: scroll;">
+            <table class="table table-responsive">
+                <tr class="success">
+                    <td colspan="9"><label> Product</label></td>
+                    <td colspan="17" class="hidden"><label> Description</label></td>
+                    <td colspan="7"><label> Pieces</label></td>
+                    <td colspan="7"><label> Quantity</label></td>
+                    <td colspan="7"><label> Amount</label></td>
+                    <td colspan="7"><label> Taxable amount</label></td>
+                    <td colspan="9" id="txgrpnm"><label> Tax gr.</label></td>
+                    <td colspan="7"><label> Discount per</label></td>
+                    <td colspan="7"><label> Discount</label></td>
+                    <td colspan="9"><label> Total</label></td>
+                    <td>&nbsp;</td>
+                </tr>
+
+                <tr class="mycontainer" id="mainrow" style="background-color:antiquewhite">
+                    <td>
+                        @Html.DropDownListFor(model => model.txgrp, new SelectList(ViewBag.prdct, "Token_Number", "Product_name"), "-select product-", new
+                        {
+                            @id = "taxselection1",
+                            @class = "pc form-control",
+                            onchange = "taxselection1(this)",
+                            style = " width:350%"
+                        })
+                        @*<select id="productCategory" class="pc form-control" onchange="LoadProduct(this)">
+                                <option>Select</option>
+
+                            </select>*@
+                        <span class="error">Select product</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td class="hidden">
+                        @*<input type="" class=" form-control" style=" width:500%" />*@
+                        @Html.TextAreaFor(model => model.Narration, new { @class = "dscrption form-control", @id = "dscrption", rows = "2", style = " width:1500%" })
+
+                    </td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+                    <td class="hidden"></td>
+
+
+
+                    <td>
+                        <input type="number" id="pcs" class="pcs form-control" onkeydown="calpcs()" onchange="formation()" style=" width:300%" />
+                        <span class="error">Valid pieces number required</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" id="quantty" onchange="formation()" class="quantty form-control" style=" width:300%" />
+                        <span class="error">Valid quantity required</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" id="rate1" class="rate1 form-control" onchange="formation()" style=" width:300%" />
+                        <span class="error">Valid rate required</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" id="txableRate" class="txableRate form-control" onchange="formation()" style=" width:300%" />
+                        <span class="error">Valid rate required</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td id="txgrpdta">
+                        @Html.DropDownListFor(model => model.txgrp, new SelectList(ViewBag.txgrp, "Tax_Rate", "Tax_Name"), "-select tax group-", new
+                        {
+                            @class = "pc1 form-control",
+                            @id = "taxes",
+                            @onchange = "taxformation(this.value)",
+                            style = " width:450%"
+                        })
+                        @*<select id="productCategory" class="pc form-control" onchange="LoadProduct(this)">
+                                <option>Select</option>
+
+                            </select>*@
+                        <span class="error">Select tax-group</span>
+                    </td>
+                    <td id="txgrpnm1"></td>
+                    <td id="txgrpnm2"></td>
+                    <td id="txgrpnm3"></td>
+                    <td id="txgrpnm4"></td>
+                    <td id="txgrpnm5"></td>
+                    <td id="txgrpnm6"></td>
+                    <td id="txgrpnm7"></td>
+                    <td id="txgrpnm8"></td>
+                    <td>
+                        <input type="number" id="disper" class="disper form-control" onchange="formationfordiscount()" style=" width:300%" />
+                        <span class="error">valid discount percent</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" id="discount" class="discount form-control" onchange="formation()" style=" width:300%" />
+                        <span class="error">Valid discount required</span>
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="number" id="totalRate" class="totalRate rate form-control" onchange="formation()" style=" width:600%" />
+
+                    </td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td>
+                        <input type="button" id="add" value="add" style="width:80px" class="btn btn-success" />
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+        <br />
+        <div id="orderItems" style="width:1100px; height: 200px; overflow: scroll;">
+            <table class="table table-responsive" id="orderdetailsItems"></table>
+            <span id="orderItemError" style="color:red"></span>
+        </div>
+
+        <div style="padding:10px 0; text-align:right">
+            <table class="table table-responsive">
+                <caption style="float:right"><h3> Calculation summary</h3></caption>
+                <tr>
+                    <td> <label><b>Taxable amount:</b></label> <label id="ttlamt"> </label></td>
+                </tr>
+                <tr>
+                    <td> <label><b>Total tax:</b></label> <label id="ttltx"> </label></td>
+                </tr>
+                <tr>
+                    <td> <label><b>Amount(including tax):</b></label> <label id="incldtx"> 7000.00</label></td>
+                </tr>
+                <tr>
+                    <td> <label><b>Total Discount:</b></label> <label id="ttldcnt"> </label></td>
+                </tr>
+                <tr>
+                    <td> <label><b>Grand total:</b></label> <label id="ttl"> </label></td>
+                </tr>
+
+
+            </table>
+            <hr />
+            <input id="submit" type="button" value="Save Order" class="btn btn-warning" style="padding:10px 20px" />
+        </div>
+    </div>
+</div>
+<link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+
+<script src="~/Scripts/myScripts.js"></script>
+
+<script>
+    $("#sngltaxes").show();
+    $("#txgrpnm").hide();
+    $("#txgrpnm1").hide();
+    $("#txgrpnm2").hide();
+    $("#txgrpnm3").hide();
+    $("#txgrpnm4").hide();
+    $("#txgrpnm5").hide();
+    $("#txgrpnm6").hide();
+    $("#txgrpnm7").hide();
+    $("#txgrpnm8").hide();
+    $("#txgrpdta").hide();
+    function taxselection(element) {
+
+        if (element.value == '2')
+        //.....................^.......
+        {
+            $("#sngltaxes").hide();
+            $("#txgrpnm").show();
+            $("#txgrpdta").show();
+            $("#txgrpnm1").show();
+            $("#txgrpnm2").show();
+            $("#txgrpnm3").show();
+            $("#txgrpnm4").show();
+            $("#txgrpnm5").show();
+            $("#txgrpnm6").show();
+            $("#txgrpnm7").show();
+            $("#txgrpnm8").show();
+            taxformation($('#taxes').val());
+        }
+        else {
+            $("#sngltaxes").show();
+            $("#txgrpnm").hide();
+            $("#txgrpnm1").hide();
+            $("#txgrpnm2").hide();
+            $("#txgrpnm3").hide();
+            $("#txgrpnm4").hide();
+            $("#txgrpnm5").hide();
+            $("#txgrpnm6").hide();
+            $("#txgrpnm7").hide();
+            $("#txgrpnm8").hide();
+            $("#txgrpdta").hide();
+            taxformation($('#sngltaxes').val());
+        }
+
+
+
+    }
+
+
+
+</script>
+
+<script type="text/javascript">
+
+    function taxselection1(element) {
+
+
+        var data1 = element.value;
+
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:8087/api/Purchase/GetPurchaseData',
+            data: { "Token_Number": data1 },
+            dataType: 'json',
+            //contentType: 'application/json',
+            success: function (data) {
+
+                $("tr.mycontainer").children("td").children("textarea#dscrption").append(JSON.stringify(data["Data"]));
+                var mycls = element.attr('class');
+                alert(this.mycls);
+                //document.getElementById("dscrption").innerHTML = JSON.stringify(data["Data"]);
+            },
+            error: function (error) {
+                alert(error);
+
+            }
+        });
+
+    }
+
+
+
+</script>
+<style>
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+    tr.error {
+        background-color: rgba(255,0,0,0.35);
+    }
+</style>
+<script src="~/Scripts/Calculations.js"></script>

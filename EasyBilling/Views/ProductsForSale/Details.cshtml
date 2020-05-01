@@ -1,0 +1,275 @@
+﻿@model EasyBilling.Models.Products_For_Sale
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.10/jquery.validate.unobtrusive.min.js"></script>
+<!--//tags -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<link href="~/UI styles/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/style.css" rel="stylesheet" type="text/css" media="all" />
+<link href="~/UI styles/css/font-awesome.css" rel="stylesheet">
+<!--pop-up-box-->
+<link href="~/UI styles/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
+<!--//pop-up-box-->
+<!-- price range -->
+<link href="http://localhost:8087/fonts/flexslider.css" rel="stylesheet" />
+<link rel="stylesheet" type="text/css" href="~/UI styles/css/jquery-ui1.css">
+
+<!-- fonts -->
+<link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+
+<!-- top-header -->
+<div class="header-most-top w3-animate-right" style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c);">
+    <p style="background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">Item Details and Specifications</p>
+</div>
+
+
+
+<!-- page -->
+<div class="services-breadcrumb w3-animate-top" style="animation-duration:2s">
+    <div class="agile_inner_breadcrumb">
+        <div class="container">
+            <ul class="w3_short">
+                <li>
+                    <a href="~/">Home</a>
+                    <i>|</i>
+                </li>
+                <li>tyre specifications </li>
+
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- //page -->
+<!-- top Products -->
+
+<div class="banner-bootom-w3-agileits  w3-animate-top" style="padding:30px 0px 30px 0px;animation-duration:2s">
+    <div class="container">
+        <!-- tittle heading -->
+        <!-- //tittle heading -->
+
+        <div class="col-md-5 single-right-left ">
+            <div class="grid images_3_of_2">
+                <div class="flexslider">
+                    <img src="https://www.mrftyres.com/cimage-master/webroot/img.php?src=images/tyres/patterns/perfinza-right_angle.png&w=800&h=800&q=9" data-imagezoom="true" class="img-responsive" alt="">
+                    <ul class="slides">
+                        <li data-thumb="~/fonts/si.jpg">
+                            <div class="thumb-image">
+                                <img src="~/fonts/si.jpg" data-imagezoom="true" class="img-responsive" alt="">
+                            </div>
+                        </li>
+                        <li data-thumb="~/fonts/si.jpg">
+                            <div class="thumb-image">
+                                <img src="~/fonts/si.jpg" data-imagezoom="true" class="img-responsive" alt="">
+                            </div>
+                        </li>
+                        <li data-thumb="~/fonts/si.jpg">
+                            <div class="thumb-image">
+                                <img src="~/images/rsz_14439521.jpg" data-imagezoom="true" class="img-responsive" alt="">
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 single-right-left simpleCart_shelfItem">
+            <h3><b>@Html.DisplayFor(model => model.Name)</b></h3>
+            <h6><b>----By @Html.DisplayFor(model => model.Author_name) company [ manufacturer as @Html.DisplayFor(model => model.Publisher_name) ]</b></h6>
+            <h6 class="glyphicon glyphicon-th-list" tabindex="0" style="float:right;font-size:large" data-toggle="popover" data-placement="left" data-trigger="focus" title="<a href='http://localhost:8087/ProductsForSale/Create'><button type='button'><span class='glyphicon glyphicon-plus'></span></button></a><br/><br/><a href='http://localhost:8087/ProductsForSale/Edit/@Model.Token_Number' ><button type='button'><span class='glyphicon glyphicon-edit'></span></button></a>" data-html="true" data-content="<a href='http://localhost:8087/ProductsForSale'><button type='button'><span class='glyphicon glyphicon-list-alt'></span></button></a>"></h6>
+
+            <p>
+                @if (Model.Amout_after_tax != Model.Total)
+                {
+                    <span>M.R.P.:</span><del>Rs. @Html.DisplayFor(model => model.Amout_after_tax)</del><br />
+
+                    <label>Our price <span class="item_price">Rs. @Html.DisplayFor(model => model.Total)</span> &nbsp;<span class="glyphicon glyphicon-tyremark"></span></label>
+
+                }
+                else
+                {
+
+                    <label> Price <span class="item_price">Rs. @Html.DisplayFor(model => model.Total)</span> &nbsp;<span class="glyphicon glyphicon-tyremark"></span></label>
+
+                }
+                <label>Free delivery</label><br />
+                You save: @Html.DisplayFor(model => model.Discount)@@[Inclusive of all taxes]
+
+            </p>
+            <div class="occasion-cart" style="float:right">
+                <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
+                    <form action="#" method="post">
+                        <fieldset>
+                            <input type="hidden" name="cmd" value="_cart" />
+                            <input type="hidden" name="add" value="1" />
+                            <input type="hidden" name="business" value=" " />
+                            @if (Model.Sell_On == "Pieces" || Model.Sell_On == "Plate")
+                            {
+                                <input type="hidden" name="quantity" value="1" />
+                            }
+                            else
+                            {
+                                <input type="hidden" name="quantity" value="1" />
+                            }
+                            <input type="hidden" name="item_name" value="@Model.Name" />
+
+                            <input type="hidden" name="amount" value="@Model.Amout_after_tax" />
+                            <input type="hidden" name="discount_amount" value="@Model.Discount" />
+                            <input type="hidden" name="tax" value="@Model.Tax_rate" />
+                            <input type="hidden" name="token" value="@Model.Token_Number" />
+                            <input type="hidden" name="tokencust" class="tknno" value="" />
+                            <input type="hidden" name="sellon" value="@Model.Sell_On" />
+                            <input type="hidden" name="currency_code" value="INR" />
+                            <input type="hidden" name="return" value=" " />
+                            <input type="hidden" name="cancel_return" value=" " />
+                            @*<input type="submit" name="submit" value="Add to cart" class="button btnaddtocrt" />*@
+                            @if (Request.IsAuthenticated && (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com"))
+                            {
+
+                                @*<button type="submit" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                Add to cart
+                                <i class="fa fa-cart-plus" aria-hidden="true" style="float:right; text-align:center"></i>
+                            </button>*@
+                                <button type="submit" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                    <b> Add to cart</b>
+                                    <i class="fa fa-cart-plus" aria-hidden="true" style="float:right; text-align:center"></i>
+                                </button>
+                            }
+                            else
+                            {
+                                <a href="~/Home/Contact">
+                                    <button type="button" class="btnaddtocrt" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        <b> Contact with merchant</b>
+                                        <i class="fa fa-forward" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+                                </a>
+                                <br />
+                                <a href="~/Billing/CartList?v=@Model.Token_Number">
+                                    <button type="button" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        <b> Add to cart</b>
+                                        <i class="fa fa-cart-plus" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+                                </a>
+                                <br />
+                                <a href="~/Billing/DeliveryAddress?v=@Model.Token_Number">
+                                    <button type="button" class="btnaddtocrt" name="submit" style="text-align:left;background:linear-gradient(0.25turn, #3f87a6, #ebf8e1, #f69d3c); color:black">
+                                        <b> Buy now</b>
+                                        <i class="fa fa-buysellads" aria-hidden="true" style="float:right; text-align:center"></i>
+                                    </button>
+                                </a>
+                            }
+
+                        </fieldset>
+                    </form>
+                </div>
+            </div>
+            <p>
+                <label>Pay on Delivery (Cash/Card)</label> eligible <br />
+                @if (@ViewBag.stkin != "0")
+                {
+                    <label class="label-success">
+                        In stock.
+                        @if (Request.IsAuthenticated && (User.Identity.Name == "souravganguly707@gmail.com" || User.Identity.Name == "kannantyres@kannantyres.com"))
+                        {
+                            @ViewBag.stkin
+                        }
+                    </label>
+                }
+                else
+                {
+                    <label class="label-danger">Out of stock.</label>
+                }
+
+            </p>
+            <p>
+                Sell and Fulfilled by <label style="color:cornflowerblue">Kannan tyres</label>. <br />
+
+            </p>
+            <div class="featList" style="padding-bottom:2em;margin: 0;">
+                <h3 style="color: #ed1c23;
+    ">
+                    Features
+                </h3>
+                <ul>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">Futuristic Asymmetric Design</li>
+                    <li style="    list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+  ">Reinforcing Ribs with Sinusoidal grooves</li>
+                    <li style="    list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">Finest polymers and Silica blend</li>
+                    <li style="    list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+    ">Stability ply cover</li>
+                </ul>
+            </div>
+            <div class="featList" tyle="padding-bottom:2em;margin: 0;">
+                <h3 style="color: #ed1c23;">Benefits</h3>
+                <ul>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">Excelllent on-road performance in all weather conditions &nbsp; &nbsp;</li>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">Luxurious and comfortable drive</li>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">Superiror braking and better grip</li>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">Protection from UV damage</li>
+                </ul>
+            </div>
+            <div class="featList" tyle="padding-bottom:2em;margin: 0;">
+                <ul>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">
+                        Cash on Delivery Eligible.
+                    </li>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">
+                        Shipping Speed to Delivery.
+                    </li>
+                    <li style="list-style-type: disc;
+    color: #000;
+
+    margin: 0 0 0 1em;
+   ">
+                        All prices are including applicable GST..
+                    </li>
+
+                </ul>
+            </div>
+
+
+        </div>
+        <div class="clearfix"> </div>
+    </div>
+</div>
+<script src="http://localhost:8087/fonts/js/jquery.magnific-popup.js"></script>
+<script src="http://localhost:8087/fonts/js/jquery.flexslider.js"></script>
+<script src="http://localhost:8087/fonts/js/jquery.flexisel.js"></script>
+<script src="http://localhost:8087/fonts/js/imagezoom.js"></script>

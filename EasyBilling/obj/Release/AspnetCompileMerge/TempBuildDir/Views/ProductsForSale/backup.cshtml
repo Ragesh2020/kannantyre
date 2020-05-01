@@ -1,0 +1,148 @@
+﻿@model IEnumerable<EasyBilling.Models.Products_For_Sale>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HSN_SAC_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax_rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GL_CODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Sell_On)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Pieces)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Amout_after_tax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount_last_date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Discount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Single_product_not_combo_multi_)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Marchent_Token_number)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product.Product_Code)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product_name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.HSN_SAC_Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tax_rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GL_CODE)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Sell_On)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Pieces)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amout_after_tax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount_last_date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Single_product_not_combo_multi_)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Marchent_Token_number)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Product.Product_Code)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Token_Number }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Token_Number }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Token_Number })
+            </td>
+        </tr>
+    }
+
+</table>

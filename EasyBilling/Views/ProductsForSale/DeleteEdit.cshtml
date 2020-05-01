@@ -1,0 +1,149 @@
+﻿
+@model IEnumerable<EasyBilling.Models.RetrieveAllClass>
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<form id="selectionForm">
+    <div class="row" style="margin-top:10px">
+        <div class="col-md-2">
+            <input type="radio" class="radio" value="RETREP" checked name="isselection" id="isselection1" />
+            Delete/Edit
+        </div>
+        
+    </div>
+</form>
+<br />
+
+<form action="~/ProductsForsale/Retrieve" method="post">
+    <div class="row" style="margin-top:25px">
+        <div class="col-md-3">
+            <input type="search" class="srchitems" id="srchitems" name="srchitems" placeholder="Search" />
+        </div>
+        <div class="col-md-6">
+            To: <input type="date" class="Sdate" id="Sdate" name="Sdate" />  &nbsp;&nbsp; From: <input type="date" class="Edate" id="Edate" name="Edate" />
+        </div>
+        <div class="col-md-3">
+            <input type="submit" name="Sbmt_srch" value="GO" />  <input type="reset" value="Clear" />
+        </div>
+    </div>
+</form>
+
+<div style="background-color:white;margin:10px 10px 10px 10px" class="pre-scrollable">
+
+    <table class="table table-bordered">
+        <tr>
+            <th scope="col">
+                <label>Type of bill</label>
+            </th>
+            <th scope="col">
+                <label>Order number</label>
+            </th>
+
+            <th scope="col">
+                <label>Order date</label>
+            </th>
+            <th scope="col">
+                <label>Customer name</label>
+            </th>
+            <th scope="col">
+                <label>Total amount</label>
+            </th>
+            <th scope="col">
+                <label>Balance</label>
+            </th>
+            <th scope="col">Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+        <tr id="tr_@item.Tokennumber">
+
+            <td>
+                @Html.DisplayFor(modelItem => item.billtype)
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.orderNumber)
+
+            </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.orderDate)
+
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.customerName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Amount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Balance)
+            </td>
+            <td>
+                @{
+                    var value = @item.orderNumber;
+                    var url = @item.orderNumber + ".pdf";
+                }
+                <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"><a style="color:white" href="#">Edit</a></button>
+                <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"><a style="color:white" href="#">Delete</a></button>
+                @if (item.billtype == "Purchase")
+                {
+
+                    <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"><a style="color:white" href="http://localhost:8087/ProductsForSale/GetBillingListRpt?Bllno=@item.orderNumber">View</a></button>
+
+                    <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"> <a style="color:white" href="http://localhost:8087/kannanInvoice/Invoice_@url" target="_blank">Print</a></button>
+                    
+                    <input type="hidden" name="orderval" id="orderval" value="@value" />
+                }
+                else if (item.billtype == "Quotation")
+                {
+                    <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"><a style="color:white" href="http://localhost:8087/ProductsForSale/GetQuotationListRpt?Bllno=@item.orderNumber">View</a></button>
+
+                    <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"> <a style="color:white" href="http://localhost:8087/kannanInvoice/Invoice_@url" target="_blank">Print</a></button>
+                    
+                    <input type="hidden" name="orderval" id="orderval" value="@value" />
+                }
+                else
+                {
+                    <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"><a style="color:white" href="http://localhost:8087/ProductsForSale/GetOrderListRpt?Bllno=@item.orderNumber">View</a></button>
+
+                    <button type="button" style="color:white;background-color: #EC5252;border: 1px solid transparent;"> <a style="color:white" href="http://localhost:8087/kannanInvoice/Invoice_@url" target="_blank">Print</a></button>
+                    
+                    <input type="hidden" name="orderval" id="orderval" value="@value" />
+                }
+            </td>
+
+        </tr>
+
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script>
+    function Check() {
+        alert("yfgf");
+        window.open('http://localhost:8087/ProductsForSale/GetBillingListRptForPrint?Bllno=' + $("#orderval").val(), "_blank");
+    };
+</script>
+<div id="modaltest" class="modal fade">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img id="image" src="~/Images/Alert-Logo.jpg" />
+            <div class="modal-body msg" style="border:none; text-align:center;">
+
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

@@ -1,0 +1,386 @@
+﻿@*<html>
+    <head>
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>*@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+<script>
+jQuery(document).ready(function ($) {
+            var employeeTable = $('#employeeTable').DataTable({
+                ajax: {
+                    url: "/api/supplier",
+                    dataSrc: '',
+                },
+                columns: [
+                    {
+                        data: function (data, type, full, meta) {
+                            return '<input type="checkbox" name="id[]" value="' + $('<div/>').text(data.Token_number).html() + '">';
+                        }
+                    },
+                      { data: 'Date' },
+                     { data: 'Name' },
+    {data: 'Email'},
+                     { data: 'Phone_number' },
+     { data: 'Office_number' },
+     { data: 'Pan_number' },
+     { data: 'GST_number' },
+                     { data: 'Address' }
+                    //{
+                    //    data: '', "defaultContent":
+                    //    //'<button type="button" ' +
+                    //    //    'class="btn btn-primary pull-left edit" aria-label="Left Align" title="Edit">' +
+                    //    //    '<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                    //    //    '</button> ' +
+                    //      '<button type="button" ' +
+                    //        'class="btn btn-sm btn-danger delete" aria-label="Delete" title="Delete"> Delete &nbsp;  ' +
+                    //        '<span class="fa fa-trash-alt" aria-hidden="true"></span>' +
+                    //        '</button> '
+                    //}
+                ]
+            });
+            $('#example-select-all').on('click', function () {
+                // Get all rows with search applied
+                var rows = employeeTable.rows({ 'search': 'applied' }).nodes();
+                // Check/uncheck checkboxes for all rows in the table
+                $('input[type="checkbox"]', rows).prop('checked', this.checked);
+            });
+
+    // Handle click on checkbox to set state of "Select all" control
+            $('#employeeTable tbody').on('change', 'input[type="checkbox"]', function () {
+                // If checkbox is not checked
+                if (!this.checked) {
+                    var el = $('#example-select-all').get(0);
+                    // If "Select all" control is checked and has 'indeterminate' property
+                    if (el && el.checked && ('indeterminate' in el)) {
+                        // Set visual state of "Select all" control
+                        // as 'indeterminate'
+                        el.indeterminate = true;
+                    }
+                }
+            });
+            $('#modalPopup').find('.deletesel').on('click', function () {
+                var formData = {};
+                var list = new Array();
+                $("#employeeTable input[type=checkbox]:checked").each(function () {
+
+                    list.push($(this).val());
+
+                });
+
+                $.ajax({
+                    url: "/api/supplier/Deletesel", data: JSON.stringify(list),
+                    contentType: 'application/json', type: 'POST',
+                    success: function () {
+                        employeeTable.ajax.reload();
+                        $('#image').attr('src', 'Images/delete.png');
+                        $('#modaltest').find('.msg').text("Successfully Deleted");
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+
+                    }, error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        // alert(responseText.Message);
+                        $('#image').attr('src', 'Images/Alert-Logo.jpg');
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        $('#modaltest').find('.msg').text(responseText.Message);
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                        alertElnot.show();
+                    }
+                });
+            });
+            var editEmployee = function (e) {
+                var isEdit = e.type === 'dblclick';
+                var rowData = isEdit ? employeeTable.row($(this)).data() :
+                    employeeTable.row($(this).closest('tr')[0]).data();
+                if (isEdit || $(this).hasClass('edit')) {
+                    $('#employeeFormModal').modal();
+                    for (var key in rowData) {
+                        var value = key.indexOf('date') != -1 ? new Date(rowData[key]).toISOString().split('T')[0] :
+                            rowData[key];
+                        $('#employeeFormModal').find('#' + key).val(value);
+                    }
+                } else if ($(this).hasClass('delete')) {
+                    $('#confirmEmployeeDeleteModal').modal();
+                    $('#confirmEmployeeDeleteModal').find('input.Token_number').val(rowData.Token_number);
+                }
+            };
+            var resetModal = function (e) {
+                $('#employeeFormModal').find('input').val('');
+                $('#employeeFormModal').find('textarea').val('');
+                $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                $('#employeeFormModal').find('.modal-footer .alert').hide();
+            }
+            var saveEmployee = function (e) {
+                var alertEl = $('#employeeFormModal').find('.modal-footer .alert');
+                var alertElnot = $('#employeeFormModal').find('.modal-footer .alertnotsaved');
+
+                var isDelete = this.id == 'deleteEmployee';
+                var formData = {};
+                var data = $('#employeeForm').serializeArray();
+                var url = !isDelete ? '/api/supplier/PostSave' : '/api/supplier/' + $('#confirmEmployeeDeleteModal').find('input.Token_number').val();
+                var type = isDelete ? 'DELETE' : 'POST'
+
+                $.each(data, function (i, v) {
+
+                    formData[v.name] = v.value;
+                });
+
+                $.ajax({
+                    url: url, data: JSON.stringify(formData),
+                    contentType: 'application/json', type: type,
+                    success: function () {
+                        employeeTable.ajax.reload();
+                        $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                        //alertEl.show();
+                        setTimeout(function () {
+                            $('#employeeFormModal').find('.modal-footer .alert').hide();
+                            $('#employeeFormModal').modal('hide');
+                            $('#image').attr('src', 'Images/rsz_success.jpg');
+                            $('#modaltest').find('.msg').text("Supplier successfully created");
+                            $('#modaltest').modal('toggle');
+                            $('#modaltest').modal('show');
+                        }, 500);
+                        $('#employeeFormModal').find('input').val('');
+
+                    },
+                    error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        //alert(responseText.Message);
+                        $('#image').attr('src', 'Images/Alert-Logo.jpg');
+                        $('#modaltest').find('.msg').text(responseText.Message);
+                        $('#modaltest').modal('toggle');
+                        $('#modaltest').modal('show');
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        alertElnot.show();
+                    }
+                });
+            }
+
+            $('#employeeTable tbody').on('click', 'tr td button.btn', editEmployee);
+            $('#employeeTable tbody').on('dblclick', 'tr', editEmployee);
+            $('#employeeFormModal').on('hidden.bs.modal', resetModal);
+            $('body').on('click', '#deleteEmployee', saveEmployee);
+            $('body').on('click', '#employeeFormSubmit', saveEmployee);
+        });</script>
+<style>
+
+    .employeeTableWrap {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+</style>
+@*</head>
+    <body>*@
+<div class="container-fluid employeeTableWrap">
+    <div class="card shadow mb-4">
+        @*<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">
+                    Supplier list
+                </h6>
+                <button type="button" class="btn btn-sm btn-success pull-right" title="Add supplier"
+                        data-toggle="modal" data-target="#employeeFormModal">
+                    Add supplier &nbsp;
+                    <span class="fa fa-plus"></span>
+                </button>
+            </div>*@
+        <div class="card-header py-3 d-flex flex-row align-items-center ">
+            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between col-md-3">
+                <h6 class="m-0 font-weight-bold text-primary"> Supplier list</h6>
+            </div>
+            <div class="card-header py-2 d-flex flex-row align-items-center justify-content-end col-md-9">
+                <button type="button" class="btn btn-sm btn-success" style="float:right" title="export">
+                    <a href="~/Dealer/Suppliereexport" style="color:white">
+                        Export &nbsp;
+                    </a>
+                    <span class="fa fa-file-export"></span>
+                </button> &nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm btn-success" style="float:right" title="Add size"
+                        data-toggle="modal" data-target="#employeeFormModal">
+                    Add Supplier &nbsp;
+                    <span class="fa fa-plus"></span>
+                </button> &nbsp;&nbsp;&nbsp;
+                <button type="button" class="btn btn-sm btn-danger deletesel" aria-label="Delete" title="Delete" data-toggle="modal" data-target="#modalPopup">
+                    Delete &nbsp;
+                    <span class="fa fa-trash-alt" aria-hidden="true"></span>
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="card-body">
+            <div class="table-responsive employeeTable">
+                <table id="employeeTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+
+                        <tr>
+                            <th><input type="checkbox" name="select_all" value="1" id="example-select-all"></th>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Mobile number</th>
+                            <th>Office number</th>
+                            <th>Pan number</th>
+                            <th>GST number</th>
+                            <th>Address</th>
+
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="employeeFormModal" tabindex="-1" role="dialog" aria-labelledby="employeeFormModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalLabel">Add supplier</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+
+            </div>
+
+            <div class="modal-body container-fluid">
+                <form id="employeeForm" name="employeeForm">
+                    <div class="row">
+
+
+                        <input type="hidden" id="Token_number" name="Token_number" />
+
+                        <div class="form-group  col-md-4 ">
+                            <label for="message-text" class="control-label">Supplier name:</label>
+                            <input type="text" class="form-control form-control-sm" style="width:80%" id="Name" name="Name" />
+
+                        </div>
+                      
+                            <div class="form-group  col-md-4 ">
+                                <label for="message-text" class="control-label">Email:</label>
+                                <input type="email" class="form-control form-control-sm" style="width:80%" id="Email" name="Email" />
+
+                            </div>
+                            <div class="form-group  col-md-4 ">
+                                <label for="message-text" class="control-label">Mobile number:</label>
+                                <input type="text" onkeypress="validatephn(this)" class="form-control form-control-sm" style="width:80%" maxlength="10" min="1000000000" max="10" id="Phone_number" name="Phone_number" />
+                            </div>
+                            <div class="form-group  col-md-4 ">
+                                <label for="message-text" class="control-label">Office number:</label>
+                                <input type="text" onkeypress="validatephn(this)" class="form-control form-control-sm" style="width:80%" maxlength="11" min="10000000000" max="11" id="Office_number" name="Office_number" />
+                            </div>
+                            <div class="form-group  col-md-4 ">
+                                <label for="message-text" class="control-label">GST number:</label>
+                                <input type="text" class="form-control form-control-sm" style="width:80%" id="GST_number" name="GST_number" />
+
+                            </div>
+                            <div class="form-group  col-md-4 ">
+                                <label for="message-text" class="control-label">Pan number:</label>
+                                <input type="text" class="form-control form-control-sm" style="width:80%" id="Pan_number" name="Pan_number" />
+
+                            </div>
+                            <div class="form-group  col-md-10 ">
+                                <label for="message-text" class="control-label">Address:</label>
+                                <textarea class="form-control form-control-sm" id="Address" style="width:80%" name="Address"></textarea>
+                            </div>
+
+
+                            <script>
+                                function validatephn(txtPhone) {
+
+
+                                    if (!char.IsControl(txtPhone.KeyChar) && !char.IsDigit(txtPhone.KeyChar))
+                                    {
+                                        e.Handled = true;
+                                    }
+
+
+                            }
+                            </script>
+
+                        </div>
+</form>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Created!</strong> Supplier created successfully.
+                </div>
+                <div class="alertnotsaved alert-danger pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Not created!</strong> Supplier is not created.
+
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="employeeFormSubmit">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="confirmEmployeeDeleteModal" class="modal fade">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <input type="hidden" name="Token_number" class="Token_number" />
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger" id="deleteEmployee">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modaltest" class="modal fade">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img id="image" src="~/Images/Alert-Logo.jpg" />
+            <div class="modal-body msg" style="border:none; text-align:center;">
+
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalPopup" class="modal fade">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <input type="hidden" name="Token_Number" class="Token_Number" />
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger deletesel" id="deletesel">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+@*</body>
+    </html>*@
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/UI styles/Dashboard/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+

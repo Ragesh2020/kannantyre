@@ -1,0 +1,104 @@
+﻿@model IEnumerable<EasyBilling.Models.Products_For_Sale>
+
+@{
+    ViewBag.Title = "RateUpdate";
+}
+
+<h2>Tyre Rate Update</h2>
+<div style="background-color:white;margin:10px 10px 10px 10px">
+
+    <table class="table table-bordered">
+        <tr>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Product_name)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Tyre_Size)
+            </th>
+
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Up_Selling_Price)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Up_CGST)
+            </th>
+            <th scope="col">
+                @Html.DisplayNameFor(model => model.Up_SGST)
+            </th>
+
+            <th scope="col">Action</th>
+        </tr>
+        @{
+            int count = 0;
+        }
+        @foreach (var item in Model)
+        {
+            count++;
+            <tr id="tr_@count">
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.Product_name)
+                </td>
+
+                <td>
+                    @item.Tyre_Size
+                </td>
+
+
+
+                <td id="upselling">
+                    <input type="hidden" id="Token_Number_@count" value="@item.Token_Number" />
+
+                    <input type="text" id="Up_Selling_Price_@count" name="Up_Selling_Price_@count" />
+                </td>
+                <td>
+                    <input type="text" id="Up_CGST_@count" name="Up_CGST_@count" />
+
+                </td>
+                <td>
+                    <input type="text" id="Up_SGST_@count" name="Up_SGST_@count" />
+
+                </td>
+                <td>
+
+                    <button type="button" onclick="myFunction(@count)" style="color:white;background-color: #EC5252;border: 1px solid transparent;">Update rate</button>
+                </td>
+
+            </tr>
+
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    function myFunction(val) {
+        var Token_number = $('#Token_Number_' + val).val();
+        var UpSellingp = $('#Up_Selling_Price_' + val).val();
+        var Upcgst = $('#Up_CGST_' + val).val();
+        var Upsgst = $('#Up_SGST_' + val).val();
+
+        $.ajax({
+            type: "POST",
+            url: "http://etreesales.com/api/Product/PostRateUpdate",
+            cache: false,
+            data: JSON.stringify({ Token_number: Token_number, UpSellingp: UpSellingp, Upcgst: Upcgst, Upsgst: Upsgst }),
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+
+            success: function (data, textStatus, xhr) {
+
+                alert("Rate updated successfully. Thank you.");
+                location.reload();
+            },
+
+            error: function (xhr, textStatus, errorThrown) {
+
+                alert('Sorry! something error. Please try again');
+
+            }
+
+        });
+
+    }
+</script>

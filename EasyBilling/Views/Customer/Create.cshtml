@@ -1,0 +1,162 @@
+﻿@model EasyBilling.Models.Customer
+
+<link href="~/UI styles/Suppliers/css/style.css" rel="stylesheet" type="text/css" media="all" /><!--style_sheet-->
+<link href="//fonts.googleapis.com/css?family=Montserrat:400,600,700,800,900" rel="stylesheet"><!--online_fonts-->
+<link href="//fonts.googleapis.com/css?family=Lato" rel="stylesheet"><!--online_fonts-->
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="Suppliercss1">
+  
+    <div class="w3ls-main">
+        <div class="w3ls-main">
+            <span class="glyphicon glyphicon-th-list" tabindex="0" data-toggle="popover" data-trigger="focus" title="Customer List" data-html="true" data-content="<a href='http://localhost:8087/Customer'><button type='button'><span class='glyphicon glyphicon-list-alt'></span></button></a>"></span>
+            <h2 class="h2">Customer</h2>
+
+            <div class="w3ls-form">
+
+                <ul class="fields">
+                    <div class="Refer_w3l">
+                        <h3 class="h3">Customer Entry</h3>
+                        <li>
+                            <label class="w3ls-opt">Customer Name<span class="w3ls-star"> * </span></label>
+                            <div class="w3ls-name">
+                                @Html.EditorFor(model => model.Customer_Name, new { htmlAttributes = new { @type = "text", @placeholder = "Name" } })
+                                @Html.ValidationMessageFor(model => model.Customer_Name, "", new { @class = "text-danger" })
+                                @*<input type="text" name="username" placeholder="first name" required=" " />*@
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="mail">
+                                <label class="w3ls-opt">e-mail<span class="w3ls-star"> * </span></label>
+                                <span class="w3ls-text w3ls-name">
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @type = "email", @placeholder = "Email-Id" } })
+                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    @*<input type="email" name="email" placeholder="enter your e-mail" required="" />*@
+                                </span>
+                            </div>
+                        </li>
+                        
+                        <li>
+                            <div class="mail">
+                                <label class="w3ls-opt">Password<span class="w3ls-star"> * </span></label>
+                                <span class="w3ls-text w3ls-name">
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new {  @placeholder = "Password" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                    @*<input type="email" name="email" placeholder="enter your e-mail" required="" />*@
+                                </span>
+                            </div>
+                        </li>
+                        <li>
+                            <label class="w3ls-opt">Phone number</label>
+                            <span class="w3ls-text w3ls-name">
+                                @Html.EditorFor(model => model.Phone_number, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @placeholder = "Phone number"
+                            }
+                        })
+                                @Html.ValidationMessageFor(model => model.Phone_number, "", new { @class = "text-danger" })
+                                @*<input type="text" name="phone number" placeholder="phone number" required="" />*@
+                            </span>
+                        </li>
+                        <li>
+                            <label class="w3ls-opt">Alt. Phone number</label>
+                            <span class="w3ls-text w3ls-name">
+                                @Html.EditorFor(model => model.Alternate_phone_number, new
+                        {
+                            htmlAttributes = new
+                            {
+                                @placeholder = "Alternate phone number"
+                            }
+                        })
+                                @Html.ValidationMessageFor(model => model.Alternate_phone_number, "", new { @class = "text-danger" })
+                                @*<input type="text" name="phone number" placeholder="phone number" required="" />*@
+                            </span>
+                        </li>
+                        <li>
+                            <label class="w3ls-opt">Address</label>
+                            <span class="w3ls-input" style="width: 70%;">
+                                @Html.TextAreaFor(model => model.Address, new
+                        {
+                            @style = "width: 70%;",
+                            @placeholder = "Address"
+                        })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </span>
+                            @*<span class="w3ls-input" style="width: 70%;"><textarea style="width: 70%;" placeholder=""></textarea></span>*@
+
+                        </li>
+                        <li>
+                            <label class="w3ls-opt">Branch address</label>
+                            <span class="w3ls-input" style="width: 70%;">
+                                @Html.TextAreaFor(model => model.Second_Address, new
+                        {
+                            @style = "width: 70%;",
+                            @placeholder = "Branch address"
+                        })
+                                @Html.ValidationMessageFor(model => model.Second_Address, "", new { @class = "text-danger" })
+                            </span>
+                            @*<span class="w3ls-input" style="width: 70%;"><textarea style="width: 70%;" placeholder=""></textarea></span>*@
+
+                        </li>
+                    </div>
+                    <div class="Refer_w3l">
+                        <h3 class="h3">Referral details</h3>
+                        <li>
+                            <label class="w3ls-opt">Pan number<span class="w3ls-star"> * </span></label>
+                            <div class="w3ls-name">
+                                @Html.EditorFor(model => model.Pan_number, new { htmlAttributes = new { @placeholder = "Pan card number" } })
+                                @Html.ValidationMessageFor(model => model.Pan_number, "", new { @class = "text-danger" })
+                                @*<input type="text" name="username" placeholder="Supplier Code" required="" />*@
+                            </div>
+                        </li>
+                        <li>
+                            <div class="mail">
+                                <label class="w3ls-opt">State Code<span class="w3ls-star"> * </span></label>
+                                <span class="w3ls-text w3ls-name">
+                                    @Html.DropDownListFor(model => model.stcd, new SelectList(ViewBag.states, "State_Code", "Name"), "----------------select state---------------")
+
+                                    @Html.ValidationMessageFor(model => model.stcd, "", new { @class = "text-danger" })
+
+                                    @*<input type="" name="email" placeholder="State Code" required="" />*@
+                                </span>
+                            </div>
+                        </li>
+                        <li class="col-md-12 col-sm-12 col-xs-12">
+                            <div class="mail col-md-offset-4 col-sm-offset-4 col-xs-12">
+                                <label class="w3ls-opt" style="width:100%">
+                                    Approve for active?   @Html.CheckBoxFor(model => model.IsActive)
+
+                                    @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                                </label>
+                                <span class="">
+
+
+                                </span>
+                            </div>
+                        </li>
+                    </div>
+                    <div class="input">
+                        <label class="w3ls-opt1">More about customers</label>
+                        <span class="w3ls-input"><textarea placeholder=""></textarea></span>
+                    </div>
+                </ul>
+                <div class="clear"></div>
+                <div class="w3ls-btn">
+                    <input type="submit" value="submit">
+
+                </div>
+
+            </div>
+        </div>
+        </div>
+    </div>
+    }
+
+
+

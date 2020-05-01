@@ -1,0 +1,302 @@
+﻿@model IEnumerable<EasyBilling.Models.BalanceSheetClassesAll>
+@{
+    ViewBag.Title = "BalanceSheet";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+@if (@ViewBag.SDate == null || @ViewBag.EDate == null)
+{
+    <h6>Current balance sheet <br /> As on @DateTime.Now.ToString("yyyy-MM-dd")</h6>
+}
+else
+{
+    <h6>Current balance sheet <br /> As on @ViewBag.SDate to @ViewBag.EDate</h6>
+}
+<div class="form-row center-block">
+    <div class="col-md-12">
+        <div style="margin:5px 5px 5px 5px">
+            <div class="col-md-1">
+                From
+            </div>
+
+            @using (Html.BeginForm())
+            {
+
+                <div class="col-md-3">
+                    <input type="date" name="SDate" value="@ViewBag.SDate" class="form-control form-control-sm PD" />
+                    @*@Html.EditorFor(modelItem => item.SDate, new { htmlAttributes = new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now } })*@
+
+                </div>
+                <div class="col-md-1">
+                    To
+                </div>
+                <div class="col-md-3">
+                    <input type="date" name="EDate" id="EDate" value="@ViewBag.EDate" class="form-control form-control-sm ED EDate" />
+
+                </div>
+
+                <div class="form-actions no-color" style="padding-top:3px;padding-left:15px">
+                    <input type="submit" value="Go" class="btn btn-sm btn-primary Go" />
+
+                </div>
+
+                <div class="form-actions no-color" style="padding-top:3px;padding-left:15px">
+
+                    <button id="selectionbasedId" type="button" class="btn btn-sm btn-primary">Download</button>
+                </div>
+
+            }
+            <script>
+                $(".Go,#selectionbasedId").click(function () {
+                    var date = new Date();
+                    var yyyy = date.getFullYear().toString();
+                    var mm = (date.getMonth() + 1).toString(); // getMonth() is zero-based
+                    var dd = date.getDate().toString();
+                    var full = (dd[1] ? dd : "0" + dd[0]) + "-" + (mm[1] ? mm : "0" + mm[0]) + "-" + yyyy;
+
+                    var sdate = $('[name=SDate]').val().split("-");
+                    var edate = $('[name=EDate]').val().split("-");
+                    if (new Date(yyyy, mm - 1, dd) < new Date(edate[0], edate[1] - 1, edate[2])) {
+                        alert("End date can not be exceed than current date...");
+                        return false;
+                    }
+                    if (new Date(yyyy, mm - 1, dd) < new Date(sdate[0], sdate[1] - 1, sdate[2])) {
+                        alert("Start date can not be exceed than current date...");
+                        return false;
+                    }
+                    if (new Date(edate[0], edate[1] - 1, edate[2]) < new Date(sdate[0], sdate[1] - 1, sdate[2])) {
+                        alert("Start date can not be exceed than end date...");
+                        return false;
+                    }
+                });
+            </script>
+        </div>
+
+    </div>
+
+
+    <script type="text/javascript">
+        $('#selectionbasedId').on('click', function () {
+            window.open("http://localhost:8087/ProductsForSale/GetBalancesheetRpt?SDate=" + $('[name=SDate]').val() + "&&EDate=" + $('[name=EDate]').val());
+
+        });
+    </script>
+    <div style="background-color:white;margin:10px 10px 10px 10px" class="pre-scrollable">
+
+        <table class="table table-bordered">
+            <tr>
+                <th scope="col">
+                    <label>Date</label>
+                </th>
+                <th scope="col">
+                    <label>Billedby</label>
+                </th>
+                <th scope="col" colspan="5">
+                    <label>Income/Expenses details</label>
+                </th>
+                <th scope="col">
+                    <label>Income<br /> Amount (Rs.)</label>
+                </th>
+
+                @*<th scope="col">
+            <label>Expenses Details</label>
+        </th>*@
+                <th scope="col">
+                    <label>Expenses<br /> Amount (Rs.)</label>
+                </th>
+
+            </tr>
+            @{
+                bool flag = false;
+            }
+            @foreach (var singleitem in Model)
+            {
+                //foreach (var item in singleitem.BalanceSheetClassDateWise)
+                //{
+                //    if (item.CarryForward > 0 || item.CarryForward < 0)
+                //    {
+                <tr>
+                    <td> @Html.DisplayFor(modelItem => singleitem.CarryForwardDate)</td>
+                    <td></td>
+                    <td  colspan="5">
+                        Opening balance
+                    </td>
+
+                    <td>
+                        @{
+                            flag = false;
+                        }
+                        @Html.DisplayFor(modelItem => singleitem.CarryForward)
+
+                    </td>
+                    <td></td>
+
+                </tr>
+                @*}
+
+                    }*@
+                foreach (var item in singleitem.BalanceSheetClassDateWise)
+                {
+
+                <tr>
+                    @if (@item.Order_Amount_paid.ToString() != "0")
+                    {
+                        if (@item.Order_Amount_paid.ToString() != "0.00")
+                        {
+                            <td> @Html.DisplayFor(modelItem => item.Order_Date)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Order_BillBy)</td>
+                            <td colspan="5">
+                                @Html.DisplayFor(modelItem => item.Order_Details)
+                            </td>
+
+                            <td>
+                                @{
+                                    flag = true;
+                                }
+                                @Html.DisplayFor(modelItem => item.Order_Amount_paid)
+
+                            </td>
+                            <td></td>
+                        }
+                    }
+                    else if (@item.Billing_Amount_paid.ToString() != "0")
+                    {
+                        <td> @Html.DisplayFor(modelItem => item.Billing_Date)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Bill_BillBy)</td>
+                        <td colspan="5">
+                            @Html.DisplayFor(modelItem => item.Billing_Details)
+                        </td>
+
+                        <td>
+                            @{
+                                flag = true;
+                            }
+                            @Html.DisplayFor(modelItem => item.Billing_Amount_paid)
+
+                        </td>
+                        <td> </td>
+                    }
+                    else if (@item.Purchase_Total_amount.ToString() != "0")
+                    {
+                        <td> @Html.DisplayFor(modelItem => item.Purchase_Date)</td>
+                        <td></td>
+                        <td colspan="5">
+                            @Html.DisplayFor(modelItem => item.Purchase_Number)
+
+                        </td>
+                        <td></td>
+                        <td>
+                            @{
+                                flag = true;
+                            }
+                            @Html.DisplayFor(modelItem => item.Purchase_Total_amount)
+
+                        </td>
+                    }
+                    else if (@item.ExpenseTotal.ToString() != "0")
+                    {
+                        <td> @Html.DisplayFor(modelItem => item.ExenseDate)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Expense_BillBy)</td>
+                        <td colspan="5">
+                            @Html.DisplayFor(modelItem => item.Expense_Details)
+
+                        </td>
+                        <td></td>
+                        <td>
+                            @{
+                                flag = true;
+                            }
+                            @Html.DisplayFor(modelItem => item.ExpenseTotal)
+
+                        </td>
+                    }
+
+                </tr>
+                }
+
+                int ttlcnt = 0;
+
+                foreach (var item in singleitem.BalanceSheetClassDateWise)
+                {
+                    ttlcnt++;
+                    if (ttlcnt == singleitem.BalanceSheetClassDateWise.Count())
+                    {
+                        if (@item.TotalincomeCGST.ToString() != "0")
+                        {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="5">
+                        Total income CGST
+                    </td>
+                    <td>
+                        @item.TotalincomeCGST
+
+                    </td>
+
+                    <td></td>
+                </tr>
+                        }
+                        if (@item.TotalincomeSGST.ToString() != "0")
+                        {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="5">
+                        Total income SGST
+                    </td>
+                    <td>
+                        @item.TotalincomeSGST
+                    </td>
+
+                    <td></td>
+                </tr>
+                        }
+                        if (@item.TotalIncmBalance.ToString() != "0" || @item.TotalExpBalance.ToString() != "0")
+                        {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="5">
+                        Total
+                    </td>
+                    <td>
+                        @if (@item.TotalIncmBalance.ToString() != "0")
+                        {
+                            @item.TotalIncmBalance
+                        }
+                    </td>
+                    <td>
+                        @if (@item.TotalExpBalance.ToString() != "0")
+                        {
+                            @item.TotalExpBalance
+                        }
+                    </td>
+                </tr>
+                        }
+                        if (@flag == true)
+                        {
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td colspan="5">
+                        Balance (with added previous day opening balance amount)
+                    </td>
+                    <td>
+                        @singleitem.TotalBalance
+                    </td>
+                    <td></td>
+                </tr>
+                        }
+                    }
+                }
+            }
+        </table>
+    </div>
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+</div>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

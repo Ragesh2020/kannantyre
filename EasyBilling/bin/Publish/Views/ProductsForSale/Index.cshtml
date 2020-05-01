@@ -1,0 +1,1057 @@
+﻿@model EasyBilling.Models.Products_For_Sale
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+@*<html>
+    <head>
+        <link rel="stylesheet" href="//cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css" />
+
+
+        <script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>*@
+<script>
+jQuery(document).ready(function ($) {
+            var employeeTable = $('#employeeTable').DataTable({
+                ajax: {
+                    url: "/api/stocksitms",
+                    dataSrc: '',
+                },
+                columns: [
+                    { data: 'Purchase_number' },
+                     { data: 'Date' },
+                     { data: 'Item_tyre_Id' },
+                     { data: 'Pieces' },
+                     { data: 'SGST' },
+                       { data: 'CGST' },
+                           { data: 'Total' },
+
+                           { data: 'Approve' },
+                                 {
+                                     data: '', "defaultContent":
+                                         //'<button type="button" ' +
+                                         //'class="btn btn-primary pull-left edit" aria-label="Left Align" title="Edit">' +
+                                         //'<span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>' +
+                                         //'</button> ' +
+                                          '<button type="button" ' +
+                                         'class="btn btn-sm btn-primary pull-left edit" aria-label="Left Align" title="Edit">' +
+                                           '<span class="fas fa-save" aria-hidden="true"></span>' +
+                                         '</button> ' +
+                                         //'<td><input type="checkbox" name="ID" value="Product_name" class="custom-checkbox chkCheckBoxId" /></td>  '
+
+                                         '<button type="button" ' +
+                                         'class="btn btn-sm btn-danger delete" aria-label="Delete" title="Delete">' +
+                                         '<span class="fa fa-trash-alt" aria-hidden="true"></span>' +
+                                         '</button> '
+                                 }
+                    //{
+                    //    data: 'requestsend',
+                    //    render: function (value) { return value ? "<button class='btn btn-sm btn-success'>Add</button>":"<input type='checkbox' name='multiSelect'/>"}
+                    //}
+                ]
+            });
+            //var itmidTable = $('#itmidTable').DataTable({
+            //    ajax: {
+            //        url: "/api/stocksitms/Getitemsdetails",
+            //        dataSrc: '',
+            //    },
+            //    columns: [
+            //        { data: 'Item_tyre_Id' },
+            //         { data: 'Product_name' },
+            //          { data: 'Tyre_Size' },
+            //           { data: 'Tyre_feel' },
+            //            { data: 'Tyre_make' },
+            //             { data: 'Vehicle_type' },
+            //              { data: 'Pieces' },
+            //        {
+            //            data: '', "defaultContent": '<button type="button" class="btn btn-sm btn-success" title="Add vehicle"' +
+            //       ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+            //        },
+
+            //    ]
+            //});
+            var editEmployee = function (e) {
+                var isEdit = e.type === 'dblclick';
+                var rowData = isEdit ? employeeTable.row($(this)).data() :
+                    employeeTable.row($(this).closest('tr')[0]).data();
+                if (isEdit || $(this).hasClass('edit')) {
+                    $('#employeeFormModal').modal();
+                    for (var key in rowData) {
+                        var value = key.indexOf('date') != -1 ? new Date(rowData[key]).toISOString().split('T')[0] :
+                            rowData[key];
+                        $('#employeeFormModal').find('#' + key).val(value);
+                    }
+                } else if ($(this).hasClass('delete')) {
+                    $('#confirmEmployeeDeleteModal').modal();
+                    $('#confirmEmployeeDeleteModal').find('input.Token_Number').val(rowData.Token_Number);
+                }
+            };
+            var resetModal = function (e) {
+                $('#employeeFormModal').find('input').val('');
+
+                $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                $('#employeeFormModal').find('.modal-footer .alert').hide();
+            }
+            var saveEmployee = function (e) {
+
+                var alertEl = $('#employeeFormModal').find('.modal-footer .alert');
+                var alertElnot = $('#employeeFormModal').find('.modal-footer .alertnotsaved');
+
+                var isDelete = this.id == 'deleteEmployee';
+                var formData = {};
+                var data = $('#employeeForm').serializeArray();
+                var data1 = $('#purchaseForm').serializeArray();
+                var data2 = $('#selectionForm').serializeArray();
+              //  var data3 = $('#CompForm').serializeArray();
+
+                var url = !isDelete ? '/api/stocksitms' : '/api/stocksitms/' + $('#confirmEmployeeDeleteModal').find('input.Token_Number').val();
+                var type = isDelete ? 'DELETE' : 'PUT'
+
+                $.each(data, function (i, v) {
+
+                    formData[v.name] = v.value;
+                });
+                $.each(data1, function (i, v) {
+
+                    formData[v.name] = v.value;
+                });
+                $.each(data2, function (i, v) {
+                    if (v.value!="")
+                    formData[v.name] = v.value;
+                });
+                //$.each(data3, function (i, v) {
+                //    if (v.value != "")
+                //    formData[v.name] = v.value;
+                //});
+                $.ajax({
+                    url: url, data: JSON.stringify(formData),
+                    contentType: 'application/json', type: type,
+                    success: function () {
+                        employeeTable.ajax.reload();
+                        $('#employeeFormModal').find('.modal-footer .alertnotsaved').hide();
+                        alertEl.show();
+                        setTimeout(function () {
+                            $('#employeeFormModal').find('.modal-footer .alert').hide();
+                            $('#employeeFormModal').modal('hide');
+                            var hiddenContainer = '#stockTable';
+
+                            $(hiddenContainer).removeClass('hide');
+                            $('#stockTable1').addClass('hide');
+
+                            $(hiddenContainer + ' tr th:nth-child(1)').show();
+                            $(hiddenContainer + ' tr td:nth-child(1)').show();
+                            $(hiddenContainer + ' tr th:nth-child(2)').show();
+                            $(hiddenContainer + ' tr td:nth-child(2)').show();
+                            $(hiddenContainer + ' tr th:nth-child(3)').show();
+                            $(hiddenContainer + ' tr td:nth-child(3)').show();
+                            $(hiddenContainer + ' tr th:nth-child(4)').show();
+                            $(hiddenContainer + ' tr td:nth-child(4)').show();
+                            $(hiddenContainer + ' tr th:nth-child(5)').show();
+                            $(hiddenContainer + ' tr td:nth-child(5)').show();
+                            $(hiddenContainer + ' tr th:nth-child(6)').show();
+                            $(hiddenContainer + ' tr td:nth-child(6)').show();
+                            $(hiddenContainer + ' tr th:nth-child(7)').show();
+                            $(hiddenContainer + ' tr td:nth-child(7)').show();
+                            $(hiddenContainer + ' tr th:nth-child(8)').show();
+                            $(hiddenContainer + ' tr td:nth-child(8)').show();
+
+                        }, 2000);
+
+
+                    }, error: function (xhr, errorType, exception) {
+                        var responseText;
+                        var txtend = ".";
+                        responseText = jQuery.parseJSON(xhr.responseText);
+                        alert(responseText.Message);
+                        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+                        alertElnot.show();
+                    }
+                });
+            }
+
+            $('#employeeTable tbody').on('click', 'tr td button.btn', editEmployee);
+            $('#employeeTable tbody').on('dblclick', 'tr', editEmployee);
+            $('#employeeFormModal').on('hidden.bs.modal', resetModal);
+            $('body').on('click', '#deleteEmployee', saveEmployee);
+            $('body').on('click', '#employeeFormSubmit', saveEmployee);
+
+            function enableContainer(e) {
+                var hiddenContainer = $(this).data('hide');
+                $(hiddenContainer).removeClass('hide');
+                if (e.target.id === 'employeeFormSubmit') {
+                    $(hiddenContainer + ' tr th:first-child').show();
+                    $(hiddenContainer + ' tr td:first-child').show();
+
+                }
+                if (e.target.id === 'get-tyre-byID') {
+                    $(hiddenContainer + ' tr th:first-child').show();
+                    $(hiddenContainer + ' tr td:first-child').show();
+
+                }
+                if (e.target.id === 'get-tyre') {
+                    //$(hiddenContainer + ' tr th:first-child').hide();
+                    //$(hiddenContainer + ' tr td:first-child').hide();
+                    $(hiddenContainer + ' tr th:first-child').show();
+                    $(hiddenContainer + ' tr td:first-child').show();
+
+                    //$(hiddenContainer + ' tr th:nth-child(1)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(1)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(2)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(2)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(3)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(3)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(4)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(4)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(5)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(5)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(6)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(6)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(7)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(7)').show();
+                    //$(hiddenContainer + ' tr th:nth-child(8)').show();
+                    //$(hiddenContainer + ' tr td:nth-child(8)').show();
+
+                }
+            };
+
+            $('#invoice-go').on('click', function () {
+                var chkpurchnum = $('.PN').val();
+                var chkpurchdate = $('.PD').val();
+                var CurrentDate = new Date().getDate();
+                var myDate = new Date(chkpurchdate).getDate();
+
+                if (myDate > CurrentDate )
+                {
+                    alert("Purchase date should be same as current date or less");
+                    return false;
+                }
+                var chksupname = $('.SN').val();
+                if (chkpurchnum == '') {
+                    alert("Sorry, invoice number should not be blank");
+                } else if (chkpurchdate == '') {
+                    alert("Sorry, invoice date should not be blank");
+                }
+                else if (chksupname == '') {
+                    alert("Sorry,supplier name should not be blank");
+                }
+                else {
+                    var container = $(this);
+                    $.ajax
+                    ({
+                        type: 'GET',
+                        url: '@Url.Action("Getcheckingsuppliername")',
+                        dataType: 'json',
+                        data: { 'id': chksupname },
+
+                        success: function (data) {
+
+                            var hiddenContainer = container.data('hide');
+                            $(hiddenContainer).removeClass('hide');
+                            $('.PN').attr('readonly', true);
+                            $('.PD').attr('readonly', true);
+                            $('.SN').attr('readonly', true);
+                        },
+                        error: function (ex) {
+                            return false;
+
+                        }
+
+                    });
+
+
+                }
+
+            });
+    $('#invoice-go-clear').on('click', function () {
+
+        $('.PN').val("");
+        $('.SN').val("");
+        $('.PD').val("")
+
+    });
+
+    //$('#get-tyre').on('click', enableContainer);
+            $('#get-tyre').on('click', function () {
+                var chkcompnm = $('.compname').val();
+                $('.itmid').val("");
+                if (chkcompnm == '') {
+                    alert("Sorry, company name should not be blank");
+                }
+                else {
+
+                    var hiddenContainer = $(this).data('hide');
+                    $(hiddenContainer).removeClass('hide');
+
+
+                    $(hiddenContainer + ' tr th:nth-child(1)').show();
+                    $(hiddenContainer + ' tr td:nth-child(1)').show();
+                    $(hiddenContainer + ' tr th:nth-child(2)').show();
+                    $(hiddenContainer + ' tr td:nth-child(2)').show();
+                    $(hiddenContainer + ' tr th:nth-child(3)').show();
+                    $(hiddenContainer + ' tr td:nth-child(3)').show();
+                    $(hiddenContainer + ' tr th:nth-child(4)').show();
+                    $(hiddenContainer + ' tr td:nth-child(4)').show();
+                    $(hiddenContainer + ' tr th:nth-child(5)').show();
+                    $(hiddenContainer + ' tr td:nth-child(5)').show();
+                    $(hiddenContainer + ' tr th:nth-child(6)').show();
+                    $(hiddenContainer + ' tr td:nth-child(6)').show();
+                    $(hiddenContainer + ' tr th:nth-child(7)').show();
+                    $(hiddenContainer + ' tr td:nth-child(7)').show();
+                    $(hiddenContainer + ' tr th:nth-child(8)').show();
+                    $(hiddenContainer + ' tr td:nth-child(8)').show();
+
+                    $(hiddenContainer + ' tr th:nth-child(9)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(9)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(10)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(10)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(11)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(11)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(12)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(12)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(13)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(13)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(14)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(14)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(15)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(15)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(16)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(16)').hide();
+                }
+
+            });
+            $('#get-tyre-byID').on('click', function () {
+                var chkitmid = $('.itmid').val();
+                $('.compname').val("");
+                if (chkitmid == '') {
+                    alert("Sorry, item id should not be blank");
+                }
+                else {
+
+                    var hiddenContainer = $(this).data('hide');
+                    $(hiddenContainer).removeClass('hide');
+
+
+                    $(hiddenContainer + ' tr th:nth-child(1)').show();
+                    $(hiddenContainer + ' tr td:nth-child(1)').show();
+                    $(hiddenContainer + ' tr th:nth-child(2)').show();
+                    $(hiddenContainer + ' tr td:nth-child(2)').show();
+                    $(hiddenContainer + ' tr th:nth-child(3)').show();
+                    $(hiddenContainer + ' tr td:nth-child(3)').show();
+                    $(hiddenContainer + ' tr th:nth-child(4)').show();
+                    $(hiddenContainer + ' tr td:nth-child(4)').show();
+                    $(hiddenContainer + ' tr th:nth-child(5)').show();
+                    $(hiddenContainer + ' tr td:nth-child(5)').show();
+                    $(hiddenContainer + ' tr th:nth-child(6)').show();
+                    $(hiddenContainer + ' tr td:nth-child(6)').show();
+                    $(hiddenContainer + ' tr th:nth-child(7)').show();
+                    $(hiddenContainer + ' tr td:nth-child(7)').show();
+                    $(hiddenContainer + ' tr th:nth-child(8)').show();
+                    $(hiddenContainer + ' tr td:nth-child(8)').show();
+
+                    $(hiddenContainer + ' tr th:nth-child(9)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(9)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(10)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(10)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(11)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(11)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(12)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(12)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(13)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(13)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(14)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(14)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(15)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(15)').hide();
+                    $(hiddenContainer + ' tr th:nth-child(16)').hide();
+                    $(hiddenContainer + ' tr td:nth-child(16)').hide();
+                }
+
+            });
+
+        });</script>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $("#accordionSidebar li.nav-item,#accordionSidebar .collapse-item").removeClass("active");
+        $("#masters,#nav-company").addClass("active");
+    });
+</script>
+<style>
+
+    .employeeTableWrap {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+
+    .item-number:before, .other-item:before {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        content: '\f056';
+        font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: 900;
+    }
+
+    .item-number.collapsed:before, .other-item.collapsed:before {
+        content: '\f055';
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .collapse-container {
+        margin-top: 20px;
+    }
+
+        .collapse-container .row {
+            margin-bottom: 15px;
+        }
+</style>
+@*</head>
+    <body>*@
+<div class="container-fluid employeeTableWrap">
+    <div class="card shadow mb-4">
+        @*<div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Stock entry</h6>
+                <button type="button" class="btn btn-sm btn-success" title="Add vehicle"
+                        data-toggle="modal" data-target="#employeeFormModal">
+                    Add stock  &nbsp;
+                    <span class="fa fa-plus" aria-hidden="true"></span>
+                </button>
+            </div>*@
+        <div class="card-body">
+            <form id="purchaseForm" name="purchaseForm">
+                <div class="row">
+                    <script type="text/javascript">
+    $(function () {
+
+        $(".SN").autocomplete({
+            source: '@Url.Action("GetSupplier")',
+            minLength: 1
+        });
+
+    });
+                    </script>
+                    <div class="col-md-3">
+                        @*<input type="number" placeholder="Supplier Invoice Number" name="supplierInvoiceNo" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.Purchase_number, new { htmlAttributes = new { @class = "form-control form-control-sm PN", @placeholder = "Supplier Invoice Number", @id = "Purchase_number", @name = "Purchase_number" } })
+
+                    </div>
+                    <div class="col-md-3">
+                        @*<input type="text" placeholder="Supplier Invoice Date" name="supplierInvoiceDate" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now } })
+
+                    </div>
+                    <div class="col-md-3">
+                        @*<input type="text" placeholder="Supplier Name" name="supplierName" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.Supplier_name, new { htmlAttributes = new { @class = "form-control form-control-sm SN", @placeholder = "Supplier Name", @id = "Supplier_name", @name = "Supplier_name" } })
+
+                    </div>
+
+                    <div class="col-md-9" style="margin-top:10px">
+                        @*<input type="text" placeholder="Supplier Name" name="supplierName" value="" class="form-control form-control-sm" />*@
+                        @Html.TextAreaFor(model => model.Delivery_address, new { @class = "form-control form-control-sm SDA", @placeholder = "Supplier address", @id = "Delivery_address", @name = "Delivery_address" })
+
+                    </div>
+                    <div class="col-md-1">
+                        <button id="invoice-go" type="button" data-hide="#collapse-container" style="margin-top:10px" class="btn btn-sm btn-primary invoice">Go</button>
+                    </div>
+                    <div class="col-md-1">
+                        <button id="invoice-go-clear" type="button" data-hide="#collapse-container" style="margin-top:10px" class="btn btn-sm btn-primary invoice">Clear</button>
+                    </div>
+                </div>
+            </form>
+            <form id="selectionForm">
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-2">
+                        <input type="radio" class="radio" value="itmtyre" checked name="isselection" id="isselection" />
+                        Item tyre
+                    </div>
+                    <div class="col-md-2">
+                        <input type="radio" class="radio" value="itmtube" name="isselection" id="isselection" />
+                        Item tube
+                    </div>
+                    <div class="col-md-2">
+                        <input type="radio" class="radio" value="prdct" name="isselection" id="isselection" />
+                        Product
+                    </div>
+                </div>
+                <div class="row" style="margin-top:10px">
+                    <div class="col-md-3">
+
+                        <script type="text/javascript">
+    $(function () {
+
+        $(".itmid").autocomplete({
+            source: '@Url.Action("GetItemId")',
+            minLength: 1
+        });
+
+    });
+                        </script>
+
+                        @Html.EditorFor(model => model.Item_tyre_Id, new { htmlAttributes = new { @class = "form-control form-control-sm itmid", @placeholder = "Item ID Number", name = "Item_tyre_Id" } })
+
+
+                    </div>
+                    <div class="col-md-1" style="text-align:center">
+                        <label style="text-align:center" class="or">OR</label>
+                    </div>
+                    <div class="col-md-3">
+                        <script type="text/javascript">
+    $(function () {
+
+        $(".compname").autocomplete({
+            source: '@Url.Action("GetCompName")',
+            minLength: 1
+        });
+
+    });
+                        </script>
+
+                        @Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control form-control-sm compname", @placeholder = "Company Name", name = "Product_name" } })
+
+                    </div>
+                    <div class="col-md-3">
+                        <button id="get-tyre-byID" type="button" data-hide="#stockTable1" class="btn btn-sm btn-primary itmidgo">Go</button>
+                    </div>
+                </div>
+            </form>
+            <div id="stockTable1" class="table-responsive itmidTable hide">
+                <table id="itmidTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+
+                        <tr>
+                            <th>Item ID</th>
+                            <th>Company</th>
+                            <th>Tyre size</th>
+                            <th>Tyre feel</th>
+                            <th>Tyre make</th>
+                            <th>Vehicle type</th>
+                            <th>Old stock</th>
+                            <th></th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                </table>
+            </div>
+            @*<div id="collapse-container" class="collapse-container hide">
+                    <div class="row">
+                    <div class="col-md-12">
+                        <a data-toggle="collapse" href="#itemNumber" class="collapsed item-number" role="button" aria-expanded="false" aria-controls="itemNumber">
+                            Select Item id
+                        </a>
+                    </div>
+                </div>
+                    <div class="collapse" id="itemNumber">
+                        <form id="itemForm" name="itemForm">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <script type="text/javascript">
+        $(function () {
+
+            $(".itmid").autocomplete({
+                source: '@Url.Action("GetItemId")',
+                minLength: 1
+            });
+
+        });
+                                    </script>
+
+                                    @Html.EditorFor(model => model.Item_tyre_Id, new { htmlAttributes = new { @class = "form-control form-control-sm itmid", @placeholder = "Item ID Number", name = "Item_tyre_Id" } })
+
+                                </div>
+                                <div class="col-md-3">
+                                    <button id="get-tyre-byID" type="button" data-hide="#stockTable1" class="btn btn-sm btn-primary itmidgo">Go</button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a data-toggle="collapse" href="#otherItems" role="button" class="collapsed other-item" aria-expanded="false" aria-controls="otherItems">
+                                Select Others
+                            </a>
+                        </div>
+                    </div>
+                    <div class="collapse" id="otherItems">
+                        <form id="CompForm" name="CompForm">
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <script type="text/javascript">
+        $(function () {
+
+            $(".compname").autocomplete({
+                source: '@Url.Action("GetCompName")',
+                minLength: 1
+            });
+
+        });
+                                    </script>
+
+                                    @Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control form-control-sm compname", @placeholder = "Company Name", name = "Product_name" } })
+
+                                </div>
+                                <div class="col-md-3">
+                                    <button id="get-tyre" data-hide="#stockTable1" type="button" class="btn btn-sm btn-primary compnamego">Go</button>
+                                </div>
+
+                            </div>
+                        </form>
+
+                    </div>
+                    <div id="stockTable1" class="table-responsive itmidTable hide">
+                        <table id="itmidTable" class="table table-bordered" width="100%" cellspacing="0">
+                            <thead>
+
+                                <tr>
+                                    <th>Item ID</th>
+                                    <th>Company</th>
+                                    <th>Tyre size</th>
+                                    <th>Tyre feel</th>
+                                    <th>Tyre make</th>
+                                    <th>Vehicle type</th>
+                                    <th>Old stock</th>
+                                    <th></th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+
+                        </table>
+                    </div>
+                </div>*@
+
+
+            <div id="stockTable" class="table-responsive employeeTable hide">
+                <table id="employeeTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            @*<th>Item ID</th>
+                        <th>Company</th>
+                        <th>Tyre size</th>
+                        <th>Tyre feel</th>
+                        <th>Tyre make</th>
+                        <th>Vehicle type</th>
+                        <th>Old stock</th>
+                        <th>Options</th>*@
+                            <th>Invoice number</th>
+                            <th>Date of stock entry</th>
+                            <th> Item id</th>
+                            @*<th>Tyre make</th>
+                        <th>Tyre type</th>
+                        <th>Company name</th>
+                        <th>Tyre sizes</th>
+
+                        <th>Supplier</th>*@
+                            <th>No of pieces</th>
+                            <th>SGST</th>
+                            <th>CGST</th>
+                            <th>Total</th>
+
+                            <th>Current State</th>
+                            <th>Action</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="employeeFormModal" tabindex="-1" role="dialog" aria-labelledby="employeeFormModalLabel">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="myModalLabel">Add stock</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            </div>
+            <div class="modal-body container-fluid">
+                <form id="employeeForm" name="employeeForm">
+                    <div class="row">
+                        <input type="hidden" id="Token_Number" name="Token_Number" />
+                        @Html.HiddenFor(model => model.Item_tyre_Id, new { @class = "form-control form-control-sm itmidbycomp", @placeholder = "Item ID Number", name = "Item_tyre_Id" })
+
+                        @*<div class="form-group  col-md-4 ">
+                                <label for="message-text" class="control-label">Bill number:</label>
+                                @Html.EditorFor(model => model.Purchase_number, new { htmlAttributes = new { @class = "form-control form-control-sm", @style = "width:80%", @id = "Purchase_number", @name = "Purchase_number" } })
+
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Bill date:</label>
+                                @Html.EditorFor(model => model.PurchaseDate, new { htmlAttributes = new { @class = "form-control form-control-sm", @style = "width:80%", @type = "date" } })
+
+
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Delivery ph. number:</label>
+
+                                @Html.EditorFor(model => model.Delivery_contact_number, new { htmlAttributes = new { @class = "form-control form-control-sm", @style = "width:80%", @type = "number" } })
+
+
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Delivery address:</label>
+                                @Html.TextAreaFor(model => model.Delivery_address, new { @class = "form-control form-control-sm", @style = "width:80%" })
+
+
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Item Id:</label>
+                                @Html.DropDownListFor(model => model.Item_tyre_token, new SelectList(@ViewBag.itmtyres, "Token_number", "Item_Id"),
+                                                    "Select Item Id", new { @class = "form-control form-control-sm pp", @style = "width:80%" })
+
+
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Tyre make:</label>
+
+                                @Html.EditorFor(model => model.Tyre_make, new { htmlAttributes = new { @class = "form-control form-control-sm TM", @style = "width:80%", @readonly = "readonly" } })
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Tyre type:</label>
+
+                                @Html.EditorFor(model => model.Tyre_type, new { htmlAttributes = new { @class = "form-control form-control-sm TT", @style = "width:80%", @readonly = "readonly" } })
+
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Tyre feel:</label>
+
+                                @Html.EditorFor(model => model.Tyre_feel, new { htmlAttributes = new { @class = "form-control form-control-sm TF", @style = "width:80%", @readonly = "readonly" } })
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Company name:</label>
+
+                                @Html.EditorFor(model => model.Product_name, new { htmlAttributes = new { @class = "form-control COMP", @readonly = "readonly" } })
+                                @Html.HiddenFor(model => model.Product_Token, new { htmlAttributes = new { @class = "form-control form-control-sm COMPtkn", @style = "width:80%" } })
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Tyre Size:</label>
+
+                                @Html.EditorFor(model => model.Tyre_Size, new { htmlAttributes = new { @class = "form-control form-control-sm TS", @style = "width:80%", @readonly = "readonly" } })
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Supplier name:</label>
+                                @Html.DropDownListFor(model => model.Supplier_token, new SelectList(@ViewBag.dlr, "Token_number", "Name"),
+                                                     "Select Supplier name", new { @class = "form-control form-control-sm", @style = "width:80%" })
+
+                            </div>
+                            <div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Vehicle type:</label>
+
+
+                                @Html.EditorFor(model => model.Vehicle_type, new { htmlAttributes = new { @class = "form-control form-control-sm VT", @style = "width:80%", @readonly = "readonly" } })
+                            </div>*@
+
+                        <div class="form-group col-md-4 ">
+                            <label for="message-text" class="control-label">Purchase Price:</label>
+                            @Html.TextBoxFor(model => model.Purchase_Price, new { @class = "form-control form-control-sm purchprice", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">Rate per unit:</label>
+                            @Html.RadioButtonFor(model => model.rateperunit, "1", new { @class = "radio", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">Total amount:</label>
+                            @Html.RadioButtonFor(model => model.rateperunit, "2", new { @class = "radio", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">SGST:</label>
+                            @Html.TextBoxFor(model => model.SGST, new { @class = "form-control form-control-sm sgst", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">CGST:</label>
+                            @Html.TextBoxFor(model => model.CGST, new { @class = "form-control form-control-sm cgst", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label"> % </label>
+                            @Html.RadioButtonFor(model => model.percent, "3", new { htmlAttributes = new { @class = "radio", @onchange = "calculate()" } })
+
+                        </div>
+                        <div class="form-group col-md-2 ">
+                            <label for="message-text" class="control-label">Amount:</label>
+                            @Html.RadioButtonFor(model => model.percent, "4", new { htmlAttributes = new { @class = "radio", @onchange = "calculate()" } })
+
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="message-text" class="control-label">Pieces:</label>
+                            @Html.TextBoxFor(model => model.Pieces, new { @class = "form-control form-control-sm pcs", @style = "width:80%", @onchange = "calculate()" })
+
+                        </div>
+                        <div class="form-group col-md-4 ">
+                            <label for="message-text" class="control-label">Total:</label>
+                            @Html.TextBoxFor(model => model.Total, new { @class = "form-control form-control-sm total", @style = "width:80%", @readonly = "readonly" })
+
+                        </div>
+                        @*<div class="form-group col-md-4 ">
+                                <label for="message-text" class="control-label">Date:</label>
+                                @Html.EditorFor(model => model.Date, new { htmlAttributes = new { @class = "form-control form-control-sm", @style = "width:80%", @type = "date" } })
+
+                            </div>
+                            <div class="form-group col-xs-10 col-sm-10 col-md-10 col-lg-10">
+                                <label for="message-text" class="control-label">Description:</label>
+                                @Html.TextAreaFor(model => model.Description, new { @class = "form-control form-control-sm", @style = "width:80%", @rows = "2" })
+
+                            </div>*@
+
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <div class="alert alert-success pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Created!</strong> Stock created successfully.
+                </div>
+                <div class="alertnotsaved alert-danger pull-left no-margin" role="alert" style="display:none">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <strong>Not created!</strong> Stock is not created.
+
+                </div>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" data-hide="#stockTable" class="btn btn-primary" id="employeeFormSubmit">Save</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="confirmEmployeeDeleteModal" class="modal fade">
+    <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+            <input type="hidden" name="Token_Number" class="Token_Number" />
+            <div class="modal-body">
+                Are you sure?
+            </div>
+            <div class="modal-footer">
+                <button type="button" data-dismiss="modal" class="btn btn-danger" id="deleteEmployee">Delete</button>
+                <button type="button" data-dismiss="modal" class="btn">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+        //$('#employeeFormModal').find('input.pp')
+        $('#employeeFormModal').find('.pp').on('change', function () {
+            var prdcttkn = $('.pp').val();
+
+            if (prdcttkn == "") {
+                prdcttkn = "0000";
+            }
+            $.ajax
+            ({
+                type: 'GET',
+                url: '@Url.Action("GetItemDetails")',
+                dataType: 'json',
+                data: { 'id': prdcttkn },
+
+                success: function (data) {
+
+                    $('#employeeFormModal').find('.TM').val(data.Tyre_make);
+                    $('#employeeFormModal').find('.TT').val(data.Tyre_type);
+                    $('#employeeFormModal').find('.TF').val(data.Tyre_feel);
+                    $('#employeeFormModal').find('.COMP').val(data.Company_name);
+                    $('#employeeFormModal').find('.COMPtkn').val(data.Company_token);
+                    $('#employeeFormModal').find('.TS').val(data.Tyre_size);
+                    $('#employeeFormModal').find('.VT').val(data.Vehicle_type);
+
+
+                },
+                error: function (ex) {
+                    $('#employeeFormModal').find('.TM').val('');
+                    $('#employeeFormModal').find('.TT').val('');
+                    $('#employeeFormModal').find('.TF').val('');
+                    $('#employeeFormModal').find('.COMP').val('');
+                    $('#employeeFormModal').find('.TS').val('');
+                    $('#employeeFormModal').find('.VT').val('');
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                }
+            });
+            return false;
+        });
+
+
+</script>
+<script type="text/javascript">
+
+    $('#purchaseForm').find('.SN').on('change', function () {
+            var prdcttkn = $('.SN').val();
+
+            $.ajax
+            ({
+                type: 'GET',
+                url: '@Url.Action("Getcheckingsupplieraddbyname")',
+                dataType: 'json',
+                data: { 'id': prdcttkn },
+
+                success: function (data) {
+
+                    $('#purchaseForm').find('.SDA').val(data.Address);
+
+                },
+                error: function (ex) {
+                    $('#purchaseForm').find('.SDA').val("");
+                    var r = jQuery.parseJSON(response.responseText);
+                    alert("Message: " + r.Message);
+                }
+            });
+            return false;
+        });
+
+
+</script>
+<script type="text/javascript">
+
+        //$('#employeeFormModal').find('input.pp')
+    $('.itmidgo').on('click', function () {
+        var prdcttkn = $('.itmid').val();
+        var itmidTable = $('#itmidTable').DataTable({
+            destroy: true,
+            ajax: {
+                url: "/api/stocksitms/Getitemsdetails",
+                dataSrc: '',
+                data: { 'id': prdcttkn },
+            },
+            columns: [
+
+                { data: 'Item_Id' },
+                        { data: 'Company_name' },
+                         { data: 'Tyre_size' },
+                          { data: 'Tyre_feel' },
+                           { data: 'Tyre_make' },
+                            { data: 'Vehicle_type' },
+                             { data: 'Pieces' },
+                       {
+                           data: '', "defaultContent": '<button type="button" class="btn btn-sm btn-success" title="Add vehicle"' +
+                      ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                       },
+
+                //{
+                //    data: 'requestsend',
+                //    render: function (value) { return value ? "<button class='btn btn-sm btn-success'>Add</button>":"<input type='checkbox' name='multiSelect'/>"}
+                //}
+            ]
+        });
+
+            //var prdcttkn = $('.itmid').val();
+
+            //if (prdcttkn == "") {
+            //    prdcttkn = "0000";
+            //}
+            //$.ajax
+            //({
+            //    url: "/api/stocksitms/Getitemsdetails",
+            //    dataSrc: '',
+
+
+            //    data: { 'id': prdcttkn },
+            //    success: function (data) {
+            //        alert(data.Item_Id);
+
+            //        var itmidTable = $('#itmidTable').DataTable({
+            //            destroy: true,
+            //            ajax: {
+            //                url: "/api/stocksitms/Getitemsdetails",
+            //                dataSrc: '',
+            //                data: { 'id': prdcttkn },
+            //            },
+            //            columns: [
+            //           { data: 'Item_Id' },
+            //            { data: 'Company_name' },
+            //             { data: 'Tyre_Size' },
+            //              { data: 'Tyre_feel' },
+            //               { data: 'Tyre_make' },
+            //                { data: 'Vehicle_type' },
+            //                 //{ data: 'Pieces' },
+            //           {
+            //               data: '', "defaultContent": '<button type="button" class="btn btn-sm btn-success" title="Add vehicle"' +
+            //          ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+            //           },
+            //            ]
+            //        });
+            //        //itmidTable.ajax.reload();
+            //        alert(data.Item_Id);
+            //    }, error: function (xhr, errorType, exception) {
+            //        var responseText;
+            //        var txtend = ".";
+            //        responseText = jQuery.parseJSON(xhr.responseText);
+            //        alert(responseText.Message);
+            //        //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+            //        alertElnot.show();
+            //    }
+
+
+            //});
+           // return false;
+    });
+    $('.compnamego').on('click', function () {
+        var prdcttkn = $('.compname').val();
+        var itmidTable = $('#itmidTable').DataTable({
+            destroy: true,
+            ajax: {
+                url: "/api/stocksitms/GetitemsdetailsByCompname",
+                dataSrc: '',
+                data: { 'id': prdcttkn },
+            },
+            columns: [
+
+                { data: 'Item_Id' },
+                        { data: 'Company_name' },
+                         { data: 'Tyre_size' },
+                          { data: 'Tyre_feel' },
+                           { data: 'Tyre_make' },
+                            { data: 'Vehicle_type' },
+                             { data: 'Pieces' },
+                       {
+                           data: '', "defaultContent": '<button type="button" onclick = "calculate1()" class="btn btn-sm btn-success addstk" title="Add stock"' +
+                      ' data-toggle="modal" data-target="#employeeFormModal">  Add stock  &nbsp;  <span class="fa fa-plus" aria-hidden="true"></span></button>'
+                       },
+
+            ]
+
+        });
+
+
+    });
+</script>
+@*</body>
+    </html>*@
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/UI styles/Dashboard/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+<script src="~/Scripts/CalculationStockentry.js"></script>

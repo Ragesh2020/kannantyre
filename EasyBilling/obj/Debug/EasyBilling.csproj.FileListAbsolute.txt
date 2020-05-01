@@ -1,0 +1,600 @@
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\ApplicationInsights.config
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\EasyBilling.dll.config
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Antlr3.Runtime.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Newtonsoft.Json.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Helpers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Http.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Optimization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.WebPages.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\WebGrease.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Newtonsoft.Json.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Helpers.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Http.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Optimization.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.WebPages.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Antlr3.Runtime.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\obj\Debug\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\obj\Debug\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\EntityFramework.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\EntityFramework.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\GridMvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportSource.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.Shared.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\stdole.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Zender.Mail.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\PagedList.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\PagedList.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\PagedList.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\PagedList.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\ApplicationInsights.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EasyBilling.dll.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Antlr3.Runtime.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportSource.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.Shared.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\GridMvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Newtonsoft.Json.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Helpers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Optimization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\WebGrease.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Zender.Mail.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\stdole.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Newtonsoft.Json.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Helpers.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Optimization.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Antlr3.Runtime.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csprojAssemblyReference.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CopyComplete
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\WebApiContrib.Formatting.JavaScriptSerializer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\ApplicationInsights.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EasyBilling.dll.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Antlr3.Runtime.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportSource.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.Shared.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\GridMvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Newtonsoft.Json.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Helpers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Optimization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\WebApiContrib.Formatting.JavaScriptSerializer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\WebGrease.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Zender.Mail.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\stdole.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\PagedList.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Newtonsoft.Json.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Helpers.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Optimization.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Antlr3.Runtime.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csprojAssemblyReference.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CopyComplete
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kadambari book store\EasyBilling_lastnew_updated\EasyBilling_lastnew\EasyBilling\EasyBilling\obj\Debug\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\WebApiContrib.Formatting.JavaScriptSerializer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csprojAssemblyReference.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CopyComplete
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\ApplicationInsights.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\EasyBilling.dll.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Antlr3.Runtime.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportSource.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.Shared.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\EntityFramework.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\GridMvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Newtonsoft.Json.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\PagedList.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\PagedList.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Helpers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Http.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Optimization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.WebPages.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\WebApiContrib.Formatting.JavaScriptSerializer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\WebGrease.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Zender.Mail.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\stdole.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\EntityFramework.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\PagedList.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\PagedList.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Newtonsoft.Json.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Helpers.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Http.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Optimization.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.WebPages.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Antlr3.Runtime.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csprojAssemblyReference.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CopyComplete
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\obj\Debug\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling\EasyBilling\obj\Debug\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\ApplicationInsights.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\EasyBilling.dll.config
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Antlr3.Runtime.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.CrystalReports.Engine.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportSource.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.Shared.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\EntityFramework.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\GridMvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Newtonsoft.Json.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\PagedList.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\PagedList.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Helpers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Http.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Mvc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Optimization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.WebPages.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\WebApiContrib.Formatting.JavaScriptSerializer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\WebGrease.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Zender.Mail.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\stdole.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\EntityFramework.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\PagedList.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\PagedList.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Newtonsoft.Json.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Helpers.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Http.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Mvc.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Optimization.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.WebPages.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Antlr3.Runtime.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csprojAssemblyReference.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CoreCompileInputs.cache
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CopyComplete
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\obj\Debug\EasyBilling.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\obj\Debug\EasyBilling.pdb
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\log4net.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\log4net.xml
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\itextsharp.dll
+C:\Users\user\Desktop\work\BILLING PROJECT\Kanantyres tires\EasyBilling_11032019-up\EasyBilling\EasyBilling\bin\itextsharp.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\EasyBilling.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\ApplicationInsights.config
+D:\mychecking\EasyBilling\EasyBilling\bin\EasyBilling.dll.config
+D:\mychecking\EasyBilling\EasyBilling\bin\EasyBilling.pdb
+D:\mychecking\EasyBilling\EasyBilling\bin\Antlr3.Runtime.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.CrystalReports.Engine.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportSource.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.Shared.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\GridMvc.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\itextsharp.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\itextsharp.xmlworker.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\log4net.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.Agent.Intercept.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.PerfCounterCollector.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ReportViewer.WinForms.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.Web.Infrastructure.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Newtonsoft.Json.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\PagedList.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\PagedList.Mvc.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Quartz.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Helpers.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Optimization.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Razor.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\WebApiContrib.Formatting.JavaScriptSerializer.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\WebGrease.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Zender.Mail.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\stdole.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\Antlr3.Runtime.pdb
+D:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\itextsharp.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\log4net.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ReportViewer.WinForms.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Newtonsoft.Json.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\PagedList.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\PagedList.Mvc.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Quartz.pdb
+D:\mychecking\EasyBilling\EasyBilling\bin\Quartz.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Helpers.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Optimization.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Razor.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.xml
+D:\mychecking\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.pdb
+D:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CoreCompileInputs.cache
+D:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CopyComplete
+D:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.dll
+D:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.pdb
+D:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csprojAssemblyReference.cache
+F:\mychecking\EasyBilling\EasyBilling\bin\ApplicationInsights.config
+F:\mychecking\EasyBilling\EasyBilling\bin\EasyBilling.dll.config
+F:\mychecking\EasyBilling\EasyBilling\bin\EasyBilling.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\EasyBilling.pdb
+F:\mychecking\EasyBilling\EasyBilling\bin\Antlr3.Runtime.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.CrystalReports.Engine.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportSource.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.Shared.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\GridMvc.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\itextsharp.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\itextsharp.xmlworker.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\log4net.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.Agent.Intercept.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.PerfCounterCollector.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ReportViewer.WinForms.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.Web.Infrastructure.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Newtonsoft.Json.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\PagedList.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\PagedList.Mvc.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Quartz.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Helpers.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Optimization.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Razor.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\WebApiContrib.Formatting.JavaScriptSerializer.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\WebGrease.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Zender.Mail.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Controllers.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommLayer.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.DataSetConversion.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.Prompting.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.XmlSerialize.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CubeDefModel.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonObjectModel.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.ObjectFactory.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.SqlServer.Types.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\CrystalDecisions.ReportAppServer.CommonControls.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\stdole.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\Antlr3.Runtime.pdb
+F:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\EntityFramework.SqlServer.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\itextsharp.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\log4net.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.DependencyCollector.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.ServerTelemetryChannel.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.Web.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.AI.WindowsServer.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ApplicationInsights.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.ReportViewer.WinForms.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Newtonsoft.Json.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\PagedList.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\PagedList.Mvc.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Quartz.pdb
+F:\mychecking\EasyBilling\EasyBilling\bin\Quartz.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Net.Http.Formatting.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Helpers.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Http.WebHost.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Mvc.Extensions.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Optimization.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.Razor.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Deployment.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\System.Web.WebPages.Razor.xml
+F:\mychecking\EasyBilling\EasyBilling\bin\Vse.Web.Serialization.pdb
+F:\mychecking\EasyBilling\EasyBilling\bin\de\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\es\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\fr\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\it\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\ja\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\ko\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\pt\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\ru\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+F:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csprojAssemblyReference.cache
+F:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CoreCompileInputs.cache
+F:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.csproj.CopyComplete
+F:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.dll
+F:\mychecking\EasyBilling\EasyBilling\obj\Debug\EasyBilling.pdb
+D:\mychecking\EasyBilling\EasyBilling\bin\Microsoft.SqlServer.Types.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\de\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\es\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\fr\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\it\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\ja\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\ko\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\pt\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\ru\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+D:\mychecking\EasyBilling\EasyBilling\bin\zh-Hant\Microsoft.SqlServer.Types.resources.dll

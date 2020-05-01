@@ -1,0 +1,43 @@
+﻿@model EasyBilling.Models.Tax_Group
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tax_Group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_Rate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_Rate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.GL_CODE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.GL_CODE)
+        </dd>
+
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Tax_Token }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

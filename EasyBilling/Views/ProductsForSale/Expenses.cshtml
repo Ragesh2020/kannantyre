@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Expenses";
+}
+
+<h2>Expenses</h2>
+
+<select class="form-control form-control-sm" data-val="true" data-val-required="Expenses should be selected" id="ExpensesSelection" name="ExpensesSelection" style="width:30%">
+    <option value="">Select expenses</option>
+    <option value="Salary">Salary</option>
+    <option value="Products">Products</option>
+    <option value="Supplierpayment">Supplier Payment</option>
+    <option value="Rawmaterialspayment">Raw Materials Payment</option>
+    <option value="OtherExpenses">Other Expenses</option>
+    
+</select>
+<script type="text/javascript">
+    $('#ExpensesSelection').change(function () {
+  
+        if ($("#ExpensesSelection").val().toLowerCase() == "salary") {
+            window.location.replace('http://localhost:8087/ProductsForSale/EmpSalExpenses');
+        }
+        else if ($("#ExpensesSelection").val().toLowerCase() == "products") {
+            window.location.replace('http://localhost:8087/ProductsForSale/ProductsExpenses');
+        }
+        else if ($("#ExpensesSelection").val().toLowerCase() == "otherexpenses") {
+            window.location.replace('http://localhost:8087/ProductsForSale/OtherExpenses');
+        }
+    });
+</script>

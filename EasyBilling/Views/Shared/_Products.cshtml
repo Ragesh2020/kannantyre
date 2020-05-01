@@ -1,0 +1,78 @@
+﻿@model IEnumerable<EasyBilling.Models.Products_For_Sale>
+
+
+@*<div class="w3-animate-top" style="animation-duration:2s">
+    <br />
+    <div class="container">*@
+
+<div class="agileinfo-ads-display col-md-9 w3l-rightpro" id="searchResult" style="height:420px; width:121%; overflow-y:scroll; ">
+    <div class="wrapper">
+        <!-- first section -->
+        <div class="product-sec1">
+            @{
+            var count = 0;
+            }
+            @foreach (var prdcts in Model)
+        {
+
+            <div class="col-xs-2 product-men prdtlsdiv" style="width:20%">
+                <div class="men-pro-item simpleCart_shelfItem" id="searchResult">
+                    @*@Html.Action("SearchPeople", new { keyword = "" })*@
+                    <div class="men-thumb-item">
+                        <img src="~/UI styles/Test UI/images/tyre.png" style="height:100px;width:120px;text-align:center;position:center" class="morph" alt="Easy Billing">
+
+                    </div>
+                    <div class="item-info-product ">
+                        <div class="caption" style="text-align:center;width:120px">
+                            <h4>
+                                <a id="prdctnm">@prdcts.Name</a>
+                            </h4>
+                            <label class="prdctprce" style="color:brown;float:right">Rs. @prdcts.Total</label>
+                            <label class="prdcttkn" hidden>@prdcts.Token_Number</label>
+                        </div>
+
+                    </div>
+                    <table id="tblprdcts" style="width:100%" class="hidden">
+                        <tr style="background-color:#ded7d7">
+                            <td style="border:2px solid black;">
+                                <label style="float:left; color:black; font-size:12px" class="col-md-12">@prdcts.Name</label>
+                                <label style="float:left; color:black; font-size:12px" class="col-md-7 ttllvl">Rs. <span id="ttl"> @prdcts.Total</span></label>
+                                <label class="prdcttkntbl" hidden>@prdcts.Token_Number</label>
+                                <label class="prdcdistbl" hidden>@prdcts.Discount</label>
+                                <label class="prdctaxtbl" hidden>@prdcts.Tax_rate</label>
+                                
+                                <label style="float:right; color:black; font-size:12px" class="col-md-5 ttlpcs">
+                                    Qty: <span id="ttlpcsspn"> @prdcts.Pieces</span>
+
+                                </label>
+                                <button style="float:right;" class="remove col-md-12">
+                                    <span class="glyphicon glyphicon-trash"></span>
+                                </button>
+                            </td>
+                        </tr>
+
+
+                    </table>
+                </div>
+
+            </div>
+        count++;
+        if (count == 5)
+        {
+            <div class="col-md-12 col-sm-12 col-xs-12 product-men"><br /></div>
+        count = 0;
+    }
+}
+
+
+
+            <div class="clearfix"></div>
+        </div>
+
+        <script src="~/Scripts/InvoiceCalcsrch.js"></script>
+    </div>
+</div>
+
+<!-- //product right -->
+@*</div>
+    </div>*@

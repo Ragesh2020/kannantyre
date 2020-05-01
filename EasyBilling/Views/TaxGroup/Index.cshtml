@@ -1,0 +1,154 @@
+﻿@model IEnumerable<EasyBilling.Models.Tax_Group>
+
+@{
+    ViewBag.Title = "Index";
+}
+<style>
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 25px;
+    }
+
+        .switch input {
+            display: none;
+        }
+
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        -webkit-transition: .4s;
+        transition: .4s;
+    }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            -webkit-transition: .4s;
+            transition: .4s;
+        }
+
+    input:checked + .slider {
+        background-color: #2196F3;
+    }
+
+    input:focus + .slider {
+        box-shadow: 0 0 1px #2196F3;
+    }
+
+    input:checked + .slider:before {
+        -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+        transform: translateX(26px);
+    }
+
+    /* Rounded sliders */
+    .slider.round {
+        border-radius: 34px;
+    }
+
+        .slider.round:before {
+            border-radius: 40%;
+        }
+</style>
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tax_Rate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.GL_CODE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tax_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tax_Rate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.GL_CODE)
+            </td>
+            <td>
+
+                <label class="switch" id="mySelect">
+                    @if (item.IsActive == true)
+                    {
+                        ViewBag.token = item.Tax_Token;
+
+                        <input type="checkbox" id="chk1" value="@item.Tax_Token" onchange="myFunction(this.value)" checked>
+
+                        <span class="slider round"></span>
+                    }
+                    else
+                    {
+                        <input type="checkbox" id="chk2" value="@item.Tax_Token" onchange="myFunction(this.value)">
+                        <span class="slider round"></span>
+                    }
+                </label>
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Tax_Token }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Tax_Token }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Tax_Token })
+            </td>
+        </tr>
+    }
+
+</table>
+<script src="~/Scripts/respond.min.js"></script>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script type="text/javascript">
+    function myFunction(val) {
+        $.ajax({
+            type: "POST",
+            url: "http://localhost:8087/api/TaxGroup/PostActivate",
+            cache: false,
+            data: JSON.stringify({ Token_number: val }),
+            contentType: "application/json; charset=utf-8",
+            traditional: true,
+
+            success: function (data, textStatus, xhr) {
+
+                alert("Change successfully");
+
+            },
+
+            error: function (xhr, textStatus, errorThrown) {
+
+                alert('Sorry! something error. Please try again');
+
+            }
+
+        });
+
+    }
+</script>

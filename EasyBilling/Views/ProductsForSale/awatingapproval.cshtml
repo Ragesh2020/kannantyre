@@ -1,0 +1,255 @@
+﻿
+@model EasyBilling.Models.Products_For_Sale
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" rel="stylesheet" />
+
+
+<script>
+
+jQuery(document).ready(function ($) {
+    var employeeTable = $('#employeeTable').DataTable({
+        searching: true, paging: false, info: false, ordering: false,
+                ajax: {
+                    url: "/api/stocksitms/GetAllNotApproved",
+                    dataSrc: '',
+                },
+                columns: [
+
+                     { data: 'Item_tyre_Id' },
+                     { data: 'Pieces' },
+                     //{ data: 'SGST' },
+                     //  { data: 'CGST' },
+                           { data: 'Total' },
+
+                           //{ data: 'Approve' }
+                ]
+            });
+
+});
+var saveStock = function (e) {
+
+
+    $.ajax({
+    url: '/api/stocksitms/GetApprovestock',
+    contentType: 'application/json', type: 'GET',
+    success: function () {
+        $('#image').attr('src', 'http://localhost:8087/Images/rsz_success.jpg');
+        $('#modaltest').find('.msg').text("Successfully approved all stocks.");
+        $('#modaltest').modal('toggle');
+        $('#modaltest').modal('show');
+      //  alert("Successfully approved all stocks.");
+        var employeeTable = $('#employeeTable').DataTable({
+           destroy:true,searching: true, paging: false, info: false, ordering: false,
+            ajax: {
+                url: "/api/stocksitms/GetAllNotApproved",
+                dataSrc: '',
+            },
+            columns: [
+
+                 { data: 'Item_tyre_Id' },
+                 { data: 'Pieces' },
+                 //{ data: 'SGST' },
+                 //  { data: 'CGST' },
+                       { data: 'Total' },
+
+                       //{ data: 'Approve' }
+            ]
+        });
+        $(':input', '#purchaseForm').val('');
+        
+           // location.reload();
+        }, error: function (xhr, errorType, exception) {
+            var responseText;
+            var txtend = ".";
+            responseText = jQuery.parseJSON(xhr.responseText);
+            // alert(responseText.Message);
+            $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+            $('#modaltest').find('.msg').text(responseText.Message);
+            $('#modaltest').modal('toggle');
+            $('#modaltest').modal('show');
+            //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+            alertElnot.show();
+        }
+    });
+}
+var retStock = function (e) {
+
+    $.ajax({
+        url: '/api/stocksitms/Getretstock',
+        contentType: 'application/json', type: 'GET',
+        success: function () {
+            $('#image').attr('src', 'http://localhost:8087/Images/rsz_success.jpg');
+            $('#modaltest').find('.msg').text("Successfully returned.");
+            $('#modaltest').modal('toggle');
+            $('#modaltest').modal('show');
+            setTimeout(function () {
+                window.location.replace("http://localhost:8087/ProductsForSale/");
+            }, 3000);
+            
+
+            // location.reload();
+        }, error: function (xhr, errorType, exception) {
+            var responseText;
+            var txtend = ".";
+
+            responseText = jQuery.parseJSON(xhr.responseText);
+            $('#image').attr('src', 'http://localhost:8087/Images/Alert-Logo.jpg');
+            $('#modaltest').find('.msg').text(responseText.Message);
+            $('#modaltest').modal('toggle');
+            $('#modaltest').modal('show');
+           // alert(responseText.Message);
+            //$('#employeeFormModal').find('.modal-footer .alertnotsaved').find('label#err').text(responseText.Message);
+            alertElnot.show();
+        }
+    });
+}
+$('body').on('click', '#all-save', saveStock);
+$('body').on('click', '#all-ret', retStock);
+</script>
+
+<script>
+    jQuery(document).ready(function ($) {
+        $("#accordionSidebar li.nav-item,#accordionSidebar .collapse-item").removeClass("active");
+        $("#masters,#nav-company").addClass("active");
+    });
+</script>
+<style>
+
+    .employeeTableWrap {
+        padding-right: 10px !important;
+        padding-left: 10px !important;
+        margin-right: auto;
+        margin-left: auto;
+    }
+
+    .no-padding {
+        padding: 0 !important;
+    }
+
+    .no-margin {
+        margin: 0 !important;
+    }
+
+    .item-number:before, .other-item:before {
+        -moz-osx-font-smoothing: grayscale;
+        -webkit-font-smoothing: antialiased;
+        display: inline-block;
+        font-style: normal;
+        font-variant: normal;
+        text-rendering: auto;
+        line-height: 1;
+        content: '\f056';
+        font-family: "Font Awesome 5 Free";
+        font-style: normal;
+        font-weight: 900;
+    }
+
+    .item-number.collapsed:before, .other-item.collapsed:before {
+        content: '\f055';
+    }
+
+    .hide {
+        display: none;
+    }
+
+    .show {
+        display: block;
+    }
+
+    .collapse-container {
+        margin-top: 20px;
+    }
+
+        .collapse-container .row {
+            margin-bottom: 15px;
+        }
+</style>
+
+<div class="container-fluid employeeTableWrap">
+    <div class="card shadow mb-4">
+
+        <div class="card-body">
+            <form id="purchaseForm" name="purchaseForm">
+                <div class="row">
+                    <script type="text/javascript">
+    $(function () {
+
+        $(".SN").autocomplete({
+            source: '@Url.Action("GetSupplier")',
+            minLength: 1
+        });
+
+    });
+                    </script>
+
+                    <div class="col-md-4">
+                        @*<input type="number" placeholder="Supplier Invoice Number" name="supplierInvoiceNo" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.Purchase_number, new { htmlAttributes = new { @class = "form-control form-control-sm PN", value = @ViewBag.invno, @placeholder = "Invoice Number", @id = "Purchase_number", @readonly = "readonly", @name = "Purchase_number" } })
+
+                    </div>
+                    <div class="col-md-3">
+                        @*<input type="text" placeholder="Supplier Invoice Date" name="supplierInvoiceDate" value="" class="form-control form-control-sm" />*@
+                        @*@Html.TextBoxFor(model => model.Date, new { @class = "form-control form-control-sm PD", @type = "date", @max = DateTime.Now })*@
+                        @Html.TextBoxFor(model => model.Date,"{0:dd/MM/yyyy}",  new { @class = "form-control form-control-sm ", @readonly = "readonly"  })
+                    </div>
+                    <div class="col-md-5">
+                        @*<input type="text" placeholder="Supplier Name" name="supplierName" value="" class="form-control form-control-sm" />*@
+                        @Html.EditorFor(model => model.Supplier_name, new { htmlAttributes = new { @class = "form-control form-control-sm SN", @placeholder = "Supplier Name", @id = "Supplier_name", @name = "Supplier_name", @readonly = "readonly" } })
+
+                    </div>
+
+                    <div class="col-md-12" style="margin-top:10px">
+                        @*<input type="text" placeholder="Supplier Name" name="supplierName" value="" class="form-control form-control-sm" />*@
+                        @Html.TextAreaFor(model => model.Delivery_address, new { @class = "form-control form-control-sm SDA", @placeholder = "Supplier address", @id = "Delivery_address", @name = "Delivery_address", @readonly = "readonly" })
+
+                    </div>
+
+                </div>
+            </form>
+
+            <div id="stockTable" class="table-responsive employeeTable " style="margin-top:10px">
+                <table id="employeeTable" class="table table-bordered" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+
+                            <th> Item id</th>
+
+                            <th>No of pieces</th>
+                            @*<th>SGST</th>
+                            <th>CGST</th>*@
+                            <th>Total</th>
+
+                            @*<th>Current State</th>*@
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                </table>
+                <div style="text-align:right">
+                    <button type="button" id="all-save" class="btn btn-sm btn-primary ">Approve</button>
+                    <button type="button" id="all-ret" class="btn btn-sm btn-danger ">Return</button>
+                    <button type="button" id="all-clear" class="btn btn-sm btn-dark " onclick="window.print()"><span class="fa fa-print"></span> Print</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<div id="modaltest" class="modal fade">
+    <div class="modal-dialog modal-sm modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <img id="image" src="~/Images/Alert-Logo.jpg" />
+            <div class="modal-body msg" style="border:none; text-align:center;">
+
+            </div>
+            <div class="modal-footer" style="border:none">
+                <button type="button" data-dismiss="modal" class="btn btn-sm btn-info">Ok</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="//cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+<script src="~/UI styles/Dashboard/js/vendor/datatables/dataTables.bootstrap4.min.js"></script>

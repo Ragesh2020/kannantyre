@@ -1,0 +1,801 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="KannanTyresModelStoreContainer" CdmEntityContainer="EasyBillingEntities">
+    <EntitySetMapping Name="Barcode_Masters">
+      <EntityTypeMapping TypeName="KannanTyresModel.Barcode_Master">
+        <MappingFragment StoreEntitySet="Barcode Master">
+          <ScalarProperty Name="Barcode_Number" ColumnName="Barcode Number" />
+          <ScalarProperty Name="Billing_Number" ColumnName="Billing Number" />
+          <ScalarProperty Name="Billing_Token_number" ColumnName="Billing Token number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+          <ScalarProperty Name="Image" ColumnName="Image" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Billing_Details">
+      <EntityTypeMapping TypeName="KannanTyresModel.Billing_Detail">
+        <MappingFragment StoreEntitySet="Billing Details">
+          <ScalarProperty Name="Billing_details_number" ColumnName="Billing details number" />
+          <ScalarProperty Name="Billing_Token_number" ColumnName="Billing Token number" />
+          <ScalarProperty Name="Billing_number" ColumnName="Billing number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Selling_item_token" ColumnName="Selling item token" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+          <ScalarProperty Name="Selling_item_id" ColumnName="Selling item id" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Billing_Masters">
+      <EntityTypeMapping TypeName="KannanTyresModel.Billing_Master">
+        <MappingFragment StoreEntitySet="Billing Master">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Billing_Number" ColumnName="Billing Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Total_tax" ColumnName="Total tax" />
+          <ScalarProperty Name="Rate_including_tax" ColumnName="Rate including tax" />
+          <ScalarProperty Name="Total_discount" ColumnName="Total discount" />
+          <ScalarProperty Name="Total_amount" ColumnName="Total amount" />
+          <ScalarProperty Name="Discountper" ColumnName="Discountper" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="Amount_paid" ColumnName="Amount paid" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="Mode_of_payment" ColumnName="Mode of payment" />
+          <ScalarProperty Name="Transaction_Id" ColumnName="Transaction Id" />
+          <ScalarProperty Name="Customer_token_number" ColumnName="Customer token number" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customers">
+      <EntityTypeMapping TypeName="KannanTyresModel.Customer">
+        <MappingFragment StoreEntitySet="Customer">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Customer_Name" ColumnName="Customer Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Vehicle_type" ColumnName="Vehicle type" />
+          <ScalarProperty Name="Vehicle_number" ColumnName="Vehicle number" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Customer_shipping_addresses">
+      <EntityTypeMapping TypeName="KannanTyresModel.Customer_shipping_address">
+        <MappingFragment StoreEntitySet="Customer shipping address">
+          <ScalarProperty Name="Customer_token_number" ColumnName="Customer token number" />
+          <ScalarProperty Name="First_name" ColumnName="First name" />
+          <ScalarProperty Name="Last_name" ColumnName="Last name" />
+          <ScalarProperty Name="Address_Line1" ColumnName="Address Line1" />
+          <ScalarProperty Name="Address_Line2" ColumnName="Address Line2" />
+          <ScalarProperty Name="Town_City" ColumnName="Town City" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="Pin_code" ColumnName="Pin code" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Dealers">
+      <EntityTypeMapping TypeName="KannanTyresModel.Dealer">
+        <MappingFragment StoreEntitySet="Dealer">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Dealer_code" ColumnName="Dealer code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Office_number" ColumnName="Office number" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+          <ScalarProperty Name="GST_number" ColumnName="GST number" />
+          <ScalarProperty Name="Pan_number" ColumnName="Pan number" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="State_Name" ColumnName="State Name" />
+          <ScalarProperty Name="Isactive" ColumnName="Isactive" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employees">
+      <EntityTypeMapping TypeName="KannanTyresModel.Employee">
+        <MappingFragment StoreEntitySet="Employee">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Employee_Id" ColumnName="Employee Id" />
+          <ScalarProperty Name="Employee_name" ColumnName="Employee name" />
+          <ScalarProperty Name="Designation" ColumnName="Designation" />
+          <ScalarProperty Name="Joining_date" ColumnName="Joining date" />
+          <ScalarProperty Name="Contact_number" ColumnName="Contact number" />
+          <ScalarProperty Name="Email_id" ColumnName="Email id" />
+          <ScalarProperty Name="Salary" ColumnName="Salary" />
+          <ScalarProperty Name="Leaving_date" ColumnName="Leaving date" />
+          <ScalarProperty Name="login_required" ColumnName="login required" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="Image_path" ColumnName="Image path" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Tubes">
+      <EntityTypeMapping TypeName="KannanTyresModel.Item_Tube">
+        <MappingFragment StoreEntitySet="Item Tube">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Item_Id" ColumnName="Item Id" />
+          <ScalarProperty Name="Size_token" ColumnName="Size token" />
+          <ScalarProperty Name="Tube_size" ColumnName="Tube size" />
+          <ScalarProperty Name="Company_token" ColumnName="Company token" />
+          <ScalarProperty Name="Company_name" ColumnName="Company name" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Item_Tyres">
+      <EntityTypeMapping TypeName="KannanTyresModel.Item_Tyre">
+        <MappingFragment StoreEntitySet="Item Tyre">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Item_Id" ColumnName="Item Id" />
+          <ScalarProperty Name="Tyre_make" ColumnName="Tyre make" />
+          <ScalarProperty Name="Tyre_type" ColumnName="Tyre type" />
+          <ScalarProperty Name="Tyre_feel" ColumnName="Tyre feel" />
+          <ScalarProperty Name="Company_token" ColumnName="Company token" />
+          <ScalarProperty Name="Company_name" ColumnName="Company name" />
+          <ScalarProperty Name="Tyre_token" ColumnName="Tyre token" />
+          <ScalarProperty Name="Tyre_size" ColumnName="Tyre size" />
+          <ScalarProperty Name="Vehicle_token" ColumnName="Vehicle token" />
+          <ScalarProperty Name="Vehicle_type" ColumnName="Vehicle type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Managers">
+      <EntityTypeMapping TypeName="KannanTyresModel.Manager">
+        <MappingFragment StoreEntitySet="Manager">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Manager_name" ColumnName="Manager name" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="State_Code" ColumnName="State Code" />
+          <ScalarProperty Name="Pan_Number" ColumnName="Pan Number" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Verification_code" ColumnName="Verification code" />
+          <ScalarProperty Name="State_Name" ColumnName="State Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marchent_Accounts">
+      <EntityTypeMapping TypeName="KannanTyresModel.Marchent_Account">
+        <MappingFragment StoreEntitySet="Marchent Account">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Marchent_name" ColumnName="Marchent name" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="Telephone_No" ColumnName="Telephone No" />
+          <ScalarProperty Name="GSTIN_Number" ColumnName="GSTIN Number" />
+          <ScalarProperty Name="CIN_Number" ColumnName="CIN Number" />
+          <ScalarProperty Name="UIN_Number" ColumnName="UIN Number" />
+          <ScalarProperty Name="State_Code" ColumnName="State Code" />
+          <ScalarProperty Name="Pan_Number" ColumnName="Pan Number" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Verification_code" ColumnName="Verification code" />
+          <ScalarProperty Name="State_Name" ColumnName="State Name" />
+          <ScalarProperty Name="License" ColumnName="License" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Marchent_account_payment_details">
+      <EntityTypeMapping TypeName="KannanTyresModel.Marchent_account_payment_detail">
+        <MappingFragment StoreEntitySet="Marchent account payment details">
+          <ScalarProperty Name="GLCODE" ColumnName="GLCODE" />
+          <ScalarProperty Name="Account_name" ColumnName="Account name" />
+          <ScalarProperty Name="Card_number" ColumnName="Card number" />
+          <ScalarProperty Name="Marchent_token" ColumnName="Marchent token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Details">
+      <EntityTypeMapping TypeName="KannanTyresModel.Order_Detail">
+        <MappingFragment StoreEntitySet="Order Details">
+          <ScalarProperty Name="Order_details_number" ColumnName="Order details number" />
+          <ScalarProperty Name="Order_Token_number" ColumnName="Order Token number" />
+          <ScalarProperty Name="Order_number" ColumnName="Order number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Selling_item_token" ColumnName="Selling item token" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+          <ScalarProperty Name="Selling_item_id" ColumnName="Selling item id" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+          <ScalarProperty Name="Tyre_number" ColumnName="Tyre number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Order_Masters">
+      <EntityTypeMapping TypeName="KannanTyresModel.Order_Master">
+        <MappingFragment StoreEntitySet="Order Master">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Order_Number" ColumnName="Order Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Total_tax" ColumnName="Total tax" />
+          <ScalarProperty Name="Rate_including_tax" ColumnName="Rate including tax" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Total_discount" ColumnName="Total discount" />
+          <ScalarProperty Name="Total_amount" ColumnName="Total amount" />
+          <ScalarProperty Name="Discountper" ColumnName="Discountper" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="Amount_paid" ColumnName="Amount paid" />
+          <ScalarProperty Name="Balance" ColumnName="Balance" />
+          <ScalarProperty Name="Mode_of_payment" ColumnName="Mode of payment" />
+          <ScalarProperty Name="Transaction_Id" ColumnName="Transaction Id" />
+          <ScalarProperty Name="Customer_token_number" ColumnName="Customer token number" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Other_Products">
+      <EntityTypeMapping TypeName="KannanTyresModel.Other_Product">
+        <MappingFragment StoreEntitySet="Other Product">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Product_type" ColumnName="Product type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="Product_id" ColumnName="Product id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Placed_Orders">
+      <EntityTypeMapping TypeName="KannanTyresModel.Placed_Order">
+        <MappingFragment StoreEntitySet="Placed Order">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Item_token" ColumnName="Item token" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Orderplaced" ColumnName="Orderplaced" />
+          <ScalarProperty Name="Customer_token" ColumnName="Customer token" />
+          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order Date" />
+          <ScalarProperty Name="Ispaid" ColumnName="Ispaid" />
+          <ScalarProperty Name="Approve_Date" ColumnName="Approve Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products">
+      <EntityTypeMapping TypeName="KannanTyresModel.Product">
+        <MappingFragment StoreEntitySet="Products">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Product_Code" ColumnName="Product Code" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Products_For_Sales">
+      <EntityTypeMapping TypeName="KannanTyresModel.Products_For_Sale">
+        <MappingFragment StoreEntitySet="Products For Sale">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Product_Token" ColumnName="Product Token" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Tyre_token" ColumnName="Tyre token" />
+          <ScalarProperty Name="Tyre_Size" ColumnName="Tyre Size" />
+          <ScalarProperty Name="Supplier_token" ColumnName="Supplier token" />
+          <ScalarProperty Name="Supplier_name" ColumnName="Supplier name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Selling_Price" ColumnName="Selling Price" />
+          <ScalarProperty Name="Amout_after_tax" ColumnName="Amout after tax" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Approve_date" ColumnName="Approve date" />
+          <ScalarProperty Name="Approve" ColumnName="Approve" />
+          <ScalarProperty Name="Administrator_Token_number" ColumnName="Administrator Token number" />
+          <ScalarProperty Name="Administrator_name" ColumnName="Administrator name" />
+          <ScalarProperty Name="Delivery_contact_number" ColumnName="Delivery contact number" />
+          <ScalarProperty Name="Delivery_address" ColumnName="Delivery address" />
+          <ScalarProperty Name="Item_tyre_token" ColumnName="Item tyre token" />
+          <ScalarProperty Name="Item_tyre_Id" ColumnName="Item tyre Id" />
+          <ScalarProperty Name="Purchase_number" ColumnName="Purchase number" />
+          <ScalarProperty Name="Vehicle_Token" ColumnName="Vehicle Token" />
+          <ScalarProperty Name="Vehicle_type" ColumnName="Vehicle type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Tyre_make" ColumnName="Tyre make" />
+          <ScalarProperty Name="Tyre_feel" ColumnName="Tyre feel" />
+          <ScalarProperty Name="Tyre_type" ColumnName="Tyre type" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="requestsend" ColumnName="requestsend" />
+          <ScalarProperty Name="Selling_CGST" ColumnName="Selling CGST" />
+          <ScalarProperty Name="Selling_SGST" ColumnName="Selling SGST" />
+          <ScalarProperty Name="CGST_SGST_CHECK" ColumnName="CGST-SGST-CHECK" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="Approve_user_id" ColumnName="Approve user id" />
+          <ScalarProperty Name="Approve_user_name" ColumnName="Approve user name" />
+          <ScalarProperty Name="Rate_update_user_id" ColumnName="Rate update user id" />
+          <ScalarProperty Name="Rate_update_user_name" ColumnName="Rate update user name" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+          <ScalarProperty Name="CalculationByRatePerUnit" ColumnName="CalculationByRatePerUnit" />
+          <ScalarProperty Name="Selling_net_total" ColumnName="Selling net total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proprietors">
+      <EntityTypeMapping TypeName="KannanTyresModel.Proprietor">
+        <MappingFragment StoreEntitySet="Proprietor">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Proprietor_name" ColumnName="Proprietor name" />
+          <ScalarProperty Name="Email_Id" ColumnName="Email Id" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+          <ScalarProperty Name="State_Code" ColumnName="State Code" />
+          <ScalarProperty Name="Pan_Number" ColumnName="Pan Number" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Verification_code" ColumnName="Verification code" />
+          <ScalarProperty Name="State_Name" ColumnName="State Name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase_details">
+      <EntityTypeMapping TypeName="KannanTyresModel.Purchase_detail">
+        <MappingFragment StoreEntitySet="Purchase details">
+          <ScalarProperty Name="Purchase_details_number" ColumnName="Purchase details number" />
+          <ScalarProperty Name="Purchase_Token_number" ColumnName="Purchase Token number" />
+          <ScalarProperty Name="Purcahse_number" ColumnName="Purcahse number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Product_Token" ColumnName="Product Token" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Taxable_amount" ColumnName="Taxable amount" />
+          <ScalarProperty Name="Tax_Token" ColumnName="Tax Token" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Discount_percent" ColumnName="Discount percent" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase_Invoices">
+      <EntityTypeMapping TypeName="KannanTyresModel.Purchase_Invoice">
+        <MappingFragment StoreEntitySet="Purchase Invoice">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Purchase_invoice_number" ColumnName="Purchase invoice number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Stock_entry_token" ColumnName="Stock entry token" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Purchase_Masters">
+      <EntityTypeMapping TypeName="KannanTyresModel.Purchase_Master">
+        <MappingFragment StoreEntitySet="Purchase Master">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Purchase_Number" ColumnName="Purchase Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+          <ScalarProperty Name="Dealer_Token_number" ColumnName="Dealer Token number" />
+          <ScalarProperty Name="Tax_token" ColumnName="Tax token" />
+          <ScalarProperty Name="Total_tax" ColumnName="Total tax" />
+          <ScalarProperty Name="Rate_including_tax" ColumnName="Rate including tax" />
+          <ScalarProperty Name="Discount_percent" ColumnName="Discount percent" />
+          <ScalarProperty Name="Total_discount" ColumnName="Total discount" />
+          <ScalarProperty Name="Total_amount" ColumnName="Total amount" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="IGST" ColumnName="IGST" />
+          <ScalarProperty Name="UTGST" ColumnName="UTGST" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quotation_Details">
+      <EntityTypeMapping TypeName="KannanTyresModel.Quotation_Detail">
+        <MappingFragment StoreEntitySet="Quotation Details">
+          <ScalarProperty Name="Quotation_details_number" ColumnName="Quotation details number" />
+          <ScalarProperty Name="Quotation_Token_number" ColumnName="Quotation Token number" />
+          <ScalarProperty Name="Quotation_number" ColumnName="Quotation number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Selling_item_token" ColumnName="Selling item token" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Tax" ColumnName="Tax" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+          <ScalarProperty Name="Selling_item_id" ColumnName="Selling item id" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Quotation_Masters">
+      <EntityTypeMapping TypeName="KannanTyresModel.Quotation_Master">
+        <MappingFragment StoreEntitySet="Quotation Master">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Quotation_Number" ColumnName="Quotation Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Total_tax" ColumnName="Total tax" />
+          <ScalarProperty Name="Rate_including_tax" ColumnName="Rate including tax" />
+          <ScalarProperty Name="Discount" ColumnName="Discount" />
+          <ScalarProperty Name="Total_discount" ColumnName="Total discount" />
+          <ScalarProperty Name="Total_amount" ColumnName="Total amount" />
+          <ScalarProperty Name="Discountper" ColumnName="Discountper" />
+          <ScalarProperty Name="Narration" ColumnName="Narration" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="Transaction_Id" ColumnName="Transaction Id" />
+          <ScalarProperty Name="Customer_token_number" ColumnName="Customer token number" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Rate_update_Backups">
+      <EntityTypeMapping TypeName="KannanTyresModel.Rate_update_Backup">
+        <MappingFragment StoreEntitySet="Rate update Backup">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Item_number" ColumnName="Item number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Date_of_stock_entry" ColumnName="Date of stock entry" />
+          <ScalarProperty Name="Selling_rate" ColumnName="Selling rate" />
+          <ScalarProperty Name="Selling_CGST" ColumnName="Selling CGST" />
+          <ScalarProperty Name="Selling_SGST" ColumnName="Selling SGST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="States">
+      <EntityTypeMapping TypeName="KannanTyresModel.State">
+        <MappingFragment StoreEntitySet="State">
+          <ScalarProperty Name="State_Code" ColumnName="State Code" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="State_Identity" ColumnName="State Identity" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="UTGST" ColumnName="UTGST" />
+          <ScalarProperty Name="IGST" ColumnName="IGST" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stocks">
+      <EntityTypeMapping TypeName="KannanTyresModel.Stock">
+        <MappingFragment StoreEntitySet="Stock">
+          <ScalarProperty Name="Stock_Id" ColumnName="Stock Id" />
+          <ScalarProperty Name="Purchase_Token_number" ColumnName="Purchase Token number" />
+          <ScalarProperty Name="Purcahse_number" ColumnName="Purcahse number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Remodify_Date" ColumnName="Remodify Date" />
+          <ScalarProperty Name="Product_Token" ColumnName="Product Token" />
+          <ScalarProperty Name="Remodify_pcs" ColumnName="Remodify pcs" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StockForBillingRPTs">
+      <EntityTypeMapping TypeName="KannanTyresModel.StockForBillingRPT">
+        <MappingFragment StoreEntitySet="StockForBillingRPT">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Tyre_Size" ColumnName="Tyre Size" />
+          <ScalarProperty Name="Selling_Price" ColumnName="Selling Price" />
+          <ScalarProperty Name="Item_tyre_Id" ColumnName="Item tyre Id" />
+          <ScalarProperty Name="Selling_CGST" ColumnName="Selling CGST" />
+          <ScalarProperty Name="Selling_SGST" ColumnName="Selling SGST" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Stockouts">
+      <EntityTypeMapping TypeName="KannanTyresModel.Stockout">
+        <MappingFragment StoreEntitySet="Stockout">
+          <ScalarProperty Name="Stock_out_Id" ColumnName="Stock out Id" />
+          <ScalarProperty Name="Billing_Token_number" ColumnName="Billing Token number" />
+          <ScalarProperty Name="Billing_number" ColumnName="Billing number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Product_Token" ColumnName="Product Token" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="Sub_Total" ColumnName="Sub Total" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tax_Groups">
+      <EntityTypeMapping TypeName="KannanTyresModel.Tax_Group">
+        <MappingFragment StoreEntitySet="Tax Group">
+          <ScalarProperty Name="Tax_Token" ColumnName="Tax Token" />
+          <ScalarProperty Name="Tax_Name" ColumnName="Tax Name" />
+          <ScalarProperty Name="Tax_Rate" ColumnName="Tax Rate" />
+          <ScalarProperty Name="GL_CODE" ColumnName="GL CODE" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temp_Bill">
+      <EntityTypeMapping TypeName="KannanTyresModel.Temp_Bill">
+        <MappingFragment StoreEntitySet="Temp_Bill">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Product_Token" ColumnName="Product Token" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Tyre_token" ColumnName="Tyre token" />
+          <ScalarProperty Name="Tyre_Size" ColumnName="Tyre Size" />
+          <ScalarProperty Name="Supplier_token" ColumnName="Supplier token" />
+          <ScalarProperty Name="Supplier_name" ColumnName="Supplier name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Selling_Price" ColumnName="Selling Price" />
+          <ScalarProperty Name="Amout_after_tax" ColumnName="Amout after tax" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Approve_date" ColumnName="Approve date" />
+          <ScalarProperty Name="Approve" ColumnName="Approve" />
+          <ScalarProperty Name="Administrator_Token_number" ColumnName="Administrator Token number" />
+          <ScalarProperty Name="Administrator_name" ColumnName="Administrator name" />
+          <ScalarProperty Name="Delivery_contact_number" ColumnName="Delivery contact number" />
+          <ScalarProperty Name="Delivery_address" ColumnName="Delivery address" />
+          <ScalarProperty Name="Item_tyre_token" ColumnName="Item tyre token" />
+          <ScalarProperty Name="Item_tyre_Id" ColumnName="Item tyre Id" />
+          <ScalarProperty Name="Purchase_number" ColumnName="Purchase number" />
+          <ScalarProperty Name="Vehicle_Token" ColumnName="Vehicle Token" />
+          <ScalarProperty Name="Vehicle_type" ColumnName="Vehicle type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Tyre_make" ColumnName="Tyre make" />
+          <ScalarProperty Name="Tyre_feel" ColumnName="Tyre feel" />
+          <ScalarProperty Name="Tyre_type" ColumnName="Tyre type" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="requestsend" ColumnName="requestsend" />
+          <ScalarProperty Name="Selling_CGST" ColumnName="Selling CGST" />
+          <ScalarProperty Name="Selling_SGST" ColumnName="Selling SGST" />
+          <ScalarProperty Name="CGST_SGST_CHECK" ColumnName="CGST-SGST-CHECK" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="Approve_user_id" ColumnName="Approve user id" />
+          <ScalarProperty Name="Approve_user_name" ColumnName="Approve user name" />
+          <ScalarProperty Name="Rate_update_user_id" ColumnName="Rate update user id" />
+          <ScalarProperty Name="Rate_update_user_name" ColumnName="Rate update user name" />
+          <ScalarProperty Name="Tyre_number" ColumnName="Tyre number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temp_placedorder">
+      <EntityTypeMapping TypeName="KannanTyresModel.Temp_placedorder">
+        <MappingFragment StoreEntitySet="Temp_placedorder">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Item_token" ColumnName="Item token" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Customer_token" ColumnName="Customer token" />
+          <ScalarProperty Name="IsUser" ColumnName="IsUser" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order Date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Temp_Stock">
+      <EntityTypeMapping TypeName="KannanTyresModel.Temp_Stock">
+        <MappingFragment StoreEntitySet="Temp_Stock">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Product_Token" ColumnName="Product Token" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Tyre_token" ColumnName="Tyre token" />
+          <ScalarProperty Name="Tyre_Size" ColumnName="Tyre Size" />
+          <ScalarProperty Name="Supplier_token" ColumnName="Supplier token" />
+          <ScalarProperty Name="Supplier_name" ColumnName="Supplier name" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Purchase_Price" ColumnName="Purchase Price" />
+          <ScalarProperty Name="CGST" ColumnName="CGST" />
+          <ScalarProperty Name="SGST" ColumnName="SGST" />
+          <ScalarProperty Name="Pieces" ColumnName="Pieces" />
+          <ScalarProperty Name="Selling_Price" ColumnName="Selling Price" />
+          <ScalarProperty Name="Amout_after_tax" ColumnName="Amout after tax" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="Approve_date" ColumnName="Approve date" />
+          <ScalarProperty Name="Approve" ColumnName="Approve" />
+          <ScalarProperty Name="Administrator_Token_number" ColumnName="Administrator Token number" />
+          <ScalarProperty Name="Administrator_name" ColumnName="Administrator name" />
+          <ScalarProperty Name="Delivery_contact_number" ColumnName="Delivery contact number" />
+          <ScalarProperty Name="Delivery_address" ColumnName="Delivery address" />
+          <ScalarProperty Name="Item_tyre_token" ColumnName="Item tyre token" />
+          <ScalarProperty Name="Item_tyre_Id" ColumnName="Item tyre Id" />
+          <ScalarProperty Name="Purchase_number" ColumnName="Purchase number" />
+          <ScalarProperty Name="Vehicle_Token" ColumnName="Vehicle Token" />
+          <ScalarProperty Name="Vehicle_type" ColumnName="Vehicle type" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Tyre_make" ColumnName="Tyre make" />
+          <ScalarProperty Name="Tyre_feel" ColumnName="Tyre feel" />
+          <ScalarProperty Name="Tyre_type" ColumnName="Tyre type" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="requestsend" ColumnName="requestsend" />
+          <ScalarProperty Name="IsGstPercent" ColumnName="IsGstPercent" />
+          <ScalarProperty Name="CalculationByRatePerUnit" ColumnName="CalculationByRatePerUnit" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Transaction_amount_details">
+      <EntityTypeMapping TypeName="KannanTyresModel.Transaction_amount_detail">
+        <MappingFragment StoreEntitySet="Transaction amount details">
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+          <ScalarProperty Name="Marchent_Token" ColumnName="Marchent Token" />
+          <ScalarProperty Name="Purchase_Token" ColumnName="Purchase Token" />
+          <ScalarProperty Name="Purchase_number" ColumnName="Purchase number" />
+          <ScalarProperty Name="Sale_invoice_token" ColumnName="Sale invoice token" />
+          <ScalarProperty Name="Sale_invoice_number" ColumnName="Sale invoice number" />
+          <ScalarProperty Name="GL_CODE" ColumnName="GL CODE" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="Card_number" ColumnName="Card number" />
+          <ScalarProperty Name="Cheque_number" ColumnName="Cheque number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Tyre_sizes">
+      <EntityTypeMapping TypeName="KannanTyresModel.Tyre_size">
+        <MappingFragment StoreEntitySet="Tyre size">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Tyre_size1" ColumnName="Tyre size" />
+          <ScalarProperty Name="With_tube" ColumnName="With tube" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="KannanTyresModel.User">
+        <MappingFragment StoreEntitySet="User">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone_number" ColumnName="Phone number" />
+          <ScalarProperty Name="Alternate_phone_number" ColumnName="Alternate phone number" />
+          <ScalarProperty Name="State" ColumnName="State" />
+          <ScalarProperty Name="State_Name" ColumnName="State Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Second_Address" ColumnName="Second Address" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+          <ScalarProperty Name="Marchent_Token_number" ColumnName="Marchent Token number" />
+          <ScalarProperty Name="Applied_date" ColumnName="Applied date" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vehicles">
+      <EntityTypeMapping TypeName="KannanTyresModel.Vehicle">
+        <MappingFragment StoreEntitySet="Vehicle">
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+          <ScalarProperty Name="Vehicle_type" ColumnName="Vehicle type" />
+          <ScalarProperty Name="Vehicle_make" ColumnName="Vehicle make" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Employee_salary_expenses">
+      <EntityTypeMapping TypeName="KannanTyresModel.Employee_salary_expense">
+        <MappingFragment StoreEntitySet="Employee salary expense">
+          <ScalarProperty Name="Salary_paid_date" ColumnName="Salary paid date" />
+          <ScalarProperty Name="Updated_salary" ColumnName="Updated salary" />
+          <ScalarProperty Name="Salary_updated_date" ColumnName="Salary updated date" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Salary_paid" ColumnName="Salary paid" />
+          <ScalarProperty Name="Monthly_salary" ColumnName="Monthly salary" />
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Employee_name" ColumnName="Employee name" />
+          <ScalarProperty Name="Employee_token_number" ColumnName="Employee token number" />
+          <ScalarProperty Name="salary_to_be_paid" ColumnName="salary to be paid" />
+          <ScalarProperty Name="Advance_collected" ColumnName="Advance collected" />
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Other_expenses">
+      <EntityTypeMapping TypeName="KannanTyresModel.Other_expense">
+        <MappingFragment StoreEntitySet="Other expense">
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Other_expense_amount" ColumnName="Other expense amount" />
+          <ScalarProperty Name="Other_expense_type" ColumnName="Other expense type" />
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Product_expenses">
+      <EntityTypeMapping TypeName="KannanTyresModel.Product_expense">
+        <MappingFragment StoreEntitySet="Product expense">
+          <ScalarProperty Name="User_name" ColumnName="User name" />
+          <ScalarProperty Name="User_Id" ColumnName="User Id" />
+          <ScalarProperty Name="Mac_id" ColumnName="Mac id" />
+          <ScalarProperty Name="ExpenseId" ColumnName="ExpenseId" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Product_name" ColumnName="Product name" />
+          <ScalarProperty Name="Product_token_number" ColumnName="Product token number" />
+          <ScalarProperty Name="Amount_for_expense" ColumnName="Amount for expense" />
+          <ScalarProperty Name="Token_number" ColumnName="Token number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Balance_calculation_data_tables">
+      <EntityTypeMapping TypeName="KannanTyresModel.Balance_calculation_data_table">
+        <MappingFragment StoreEntitySet="Balance calculation data table">
+          <ScalarProperty Name="Employee_salary_expense_ExpenseId" ColumnName="Employee salary expense ExpenseId" />
+          <ScalarProperty Name="Employee_salary_expense_Date" ColumnName="Employee salary expense Date" />
+          <ScalarProperty Name="Employee_salary_expense_salary_to_be_paid" ColumnName="Employee salary expense salary to be paid" />
+          <ScalarProperty Name="Employee_salary_expense_Token_number" ColumnName="Employee salary expense Token number" />
+          <ScalarProperty Name="Product_expense_ExpenseId" ColumnName="Product expense ExpenseId" />
+          <ScalarProperty Name="Product_expense_Date" ColumnName="Product expense Date" />
+          <ScalarProperty Name="Product_expense_Amount_for_expense" ColumnName="Product expense Amount for expense" />
+          <ScalarProperty Name="Product_expense_Token_number" ColumnName="Product expense Token number" />
+          <ScalarProperty Name="Other_expense_ExpenseId" ColumnName="Other expense ExpenseId" />
+          <ScalarProperty Name="Other_expense_Date" ColumnName="Other expense Date" />
+          <ScalarProperty Name="Other_expense_amount" ColumnName="Other expense amount" />
+          <ScalarProperty Name="Other_expense_Token_number" ColumnName="Other expense Token number" />
+          <ScalarProperty Name="Order_Balance" ColumnName="Order Balance" />
+          <ScalarProperty Name="Order_Amount_paid" ColumnName="Order Amount paid" />
+          <ScalarProperty Name="Order_Total_amount" ColumnName="Order Total amount" />
+          <ScalarProperty Name="Order_Date" ColumnName="Order Date" />
+          <ScalarProperty Name="Order_Number" ColumnName="Order Number" />
+          <ScalarProperty Name="Order_Token_Number" ColumnName="Order Token Number" />
+          <ScalarProperty Name="Billing_Balance" ColumnName="Billing Balance" />
+          <ScalarProperty Name="Billing_Amount_paid" ColumnName="Billing Amount paid" />
+          <ScalarProperty Name="Billing_Total_amount" ColumnName="Billing Total amount" />
+          <ScalarProperty Name="Bill_Date" ColumnName="Bill Date" />
+          <ScalarProperty Name="Billing_Number" ColumnName="Billing Number" />
+          <ScalarProperty Name="Billing_Token_Number" ColumnName="Billing Token Number" />
+          <ScalarProperty Name="Date" ColumnName="Date" />
+          <ScalarProperty Name="Token_Number" ColumnName="Token Number" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
